@@ -25,7 +25,7 @@ function Leaders() {
     {
       name: "Anand",
       role: "Vice President",
-      url:'https://i.ibb.co/Fkv2vQjq/Anand-sir.jpg',
+      url:'https://i.ibb.co/yB4NY67b/Anand-sir.jpg',
       // image: anandImg,
       exp: "5+ Years",
       desc: "Specializing in Staffing, RPO, and US Finance & Accounting services, Anand plays a key role in operational execution and client delivery, ensuring efficient processes for global clients.",

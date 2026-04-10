@@ -3,6 +3,7 @@ import { Upload, Send, CheckCircle } from "lucide-react";
 
 function ApplicationForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
   const [applicantData, setApplicantData] = useState({
     first_name: "",
     last_name: "",
@@ -14,6 +15,7 @@ function ApplicationForm() {
   });
 
   function handleOnchange(e) {
+    // validate();
     const { name, value } = e.target;
     setApplicantData((prev) => ({ ...prev, [name]: value }));
   }
@@ -25,9 +27,13 @@ function ApplicationForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!validate()) return;
+
     console.log("Submitting Data:", applicantData);
-    // Simulate API call
+
     setIsSubmitted(true);
+
     setApplicantData({
       first_name: "",
       last_name: "",
@@ -36,10 +42,62 @@ function ApplicationForm() {
       position: "Head of Technology & AI Product",
       resume: null,
       message: "",
-    })
+    });
 
+    setErrors({});
 
-    setTimeout(() => setIsSubmitted(false), 5000); 
+    setTimeout(() => setIsSubmitted(false), 5000);
+  }
+  function validate() {
+    let newErrors = {};
+
+    // First Name
+    if (!applicantData.first_name.trim()) {
+      newErrors.first_name = "First name is required";
+    }
+
+    // Last Name
+    if (!applicantData.last_name.trim()) {
+      newErrors.last_name = "Last name is required";
+    }
+
+    // Email
+    if (!applicantData.email) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(applicantData.email)) {
+      newErrors.email = "Invalid email format";
+    }
+
+    // Phone
+    // Phone validation
+    if (!applicantData.phone) {
+      newErrors.phone = "Phone number is required";
+    } else if (!/^\d{10}$/.test(applicantData.phone)) {
+      // \d = digit 0-9, {10} = exactly 10 digits
+      newErrors.phone = "Enter valid 10-digit phone number";
+    }
+
+    // Resume
+    if (!applicantData.resume) {
+      newErrors.resume = "Resume is required";
+    } else {
+      if (applicantData.resume.type !== "application/pdf") {
+        newErrors.resume = "Only PDF files allowed";
+      }
+      if (applicantData.resume.size > 2 * 1024 * 1024) {
+        newErrors.resume = "File size must be less than 2MB";
+      }
+    }
+
+    // Message
+    if (!applicantData.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (applicantData.message.length < 20) {
+      newErrors.message = "Message must be at least 20 characters";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   }
 
   if (isSubmitted) {
@@ -48,9 +106,14 @@ function ApplicationForm() {
         <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
           <CheckCircle className="w-12 h-12" />
         </div>
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">Application Received!</h2>
-        <p className="text-gray-600 mb-8">Thank you for your interest. Our team will review your profile and get back to you shortly.</p>
-        <button 
+        <h2 className="text-2xl font-bold text-gray-800 mb-2">
+          Application Received!
+        </h2>
+        <p className="text-gray-600 mb-8">
+          Thank you for your interest. Our team will review your profile and get
+          back to you shortly.
+        </p>
+        <button
           onClick={() => setIsSubmitted(false)}
           className="text-sky-600 font-semibold hover:underline"
         >
@@ -66,7 +129,9 @@ function ApplicationForm() {
         <h1 className="text-3xl md:text-4xl font-bold text-sky-600 mb-3">
           Join Our Mission
         </h1>
-        <p className="text-gray-500">Fill out the form below and start your next chapter with us.</p>
+        <p className="text-gray-500">
+          Fill out the form below and start your next chapter with us.
+        </p>
       </div>
 
       <form
@@ -76,7 +141,12 @@ function ApplicationForm() {
         {/* Row 1: Names */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
           <div className="flex flex-col">
-            <label htmlFor="first_name" className="text-gray-700 mb-2 text-sm font-semibold ml-1">First Name</label>
+            <label
+              htmlFor="first_name"
+              className="text-gray-700 mb-2 text-sm font-semibold ml-1"
+            >
+              First Name
+            </label>
             <input
               id="first_name"
               required
@@ -87,9 +157,17 @@ function ApplicationForm() {
               className="border border-gray-200 rounded-xl p-3 focus:outline-none focus:ring-4 focus:ring-sky-50 focus:border-sky-400 transition-all placeholder:text-gray-300"
               type="text"
             />
+            {errors.first_name && (
+              <p className="text-red-500 text-sm mt-1">{errors.first_name}</p>
+            )}
           </div>
           <div className="flex flex-col">
-            <label htmlFor="last_name" className="text-gray-700 mb-2 text-sm font-semibold ml-1">Last Name</label>
+            <label
+              htmlFor="last_name"
+              className="text-gray-700 mb-2 text-sm font-semibold ml-1"
+            >
+              Last Name
+            </label>
             <input
               id="last_name"
               required
@@ -100,13 +178,21 @@ function ApplicationForm() {
               className="border border-gray-200 rounded-xl p-3 focus:outline-none focus:ring-4 focus:ring-sky-50 focus:border-sky-400 transition-all placeholder:text-gray-300"
               type="text"
             />
+            {errors.last_name && (
+              <p className="text-red-500 text-sm mt-1">{errors.first_name}</p>
+            )}
           </div>
         </div>
 
         {/* Row 2: Contact */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
           <div className="flex flex-col">
-            <label htmlFor="email" className="text-gray-700 mb-2 text-sm font-semibold ml-1">Email Address</label>
+            <label
+              htmlFor="email"
+              className="text-gray-700 mb-2 text-sm font-semibold ml-1"
+            >
+              Email Address
+            </label>
             <input
               required
               name="email"
@@ -117,9 +203,17 @@ function ApplicationForm() {
               className="border border-gray-200 rounded-xl p-3 focus:outline-none focus:ring-4 focus:ring-sky-50 focus:border-sky-400 transition-all"
               type="email"
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email}</p>
+            )}
           </div>
           <div className="flex flex-col">
-            <label htmlFor="phone" className="text-gray-700 mb-2 text-sm font-semibold ml-1">Phone Number</label>
+            <label
+              htmlFor="phone"
+              className="text-gray-700 mb-2 text-sm font-semibold ml-1"
+            >
+              Phone Number
+            </label>
             <input
               required
               id="phone"
@@ -130,12 +224,20 @@ function ApplicationForm() {
               className="border border-gray-200 rounded-xl p-3 focus:outline-none focus:ring-4 focus:ring-sky-50 focus:border-sky-400 transition-all"
               type="tel"
             />
+            {errors.phone && (
+              <p className="text-red-500 text-sm">{errors.phone}</p>
+            )}
           </div>
         </div>
 
         {/* Row 3: Position Select */}
         <div className="flex flex-col w-full">
-          <label htmlFor="position" className="text-gray-700 mb-2 text-sm font-semibold ml-1">Position Applied For</label>
+          <label
+            htmlFor="position"
+            className="text-gray-700 mb-2 text-sm font-semibold ml-1"
+          >
+            Position Applied For
+          </label>
           <select
             id="position"
             name="position"
@@ -154,7 +256,12 @@ function ApplicationForm() {
 
         {/* Row 4: File Upload */}
         <div className="flex flex-col w-full">
-          <label htmlFor="resume" className="text-gray-700 mb-2 text-sm font-semibold ml-1">Upload Resume (PDF only)</label>
+          <label
+            htmlFor="resume"
+            className="text-gray-700 mb-2 text-sm font-semibold ml-1"
+          >
+            Upload Resume (PDF only)
+          </label>
           <div className="relative group">
             <input
               required
@@ -164,11 +271,16 @@ function ApplicationForm() {
               onChange={handleFileChange}
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
             />
+            {errors.resume && (
+              <p className="text-red-500 text-sm mt-2">{errors.resume}</p>
+            )}
             <div className="border-2 border-dashed border-gray-200 group-hover:border-sky-400 group-hover:bg-sky-50 rounded-2xl p-8 transition-all flex flex-col items-center justify-center gap-2">
               <Upload className="w-8 h-8 text-gray-400 group-hover:text-sky-500" />
               <p className="text-sm text-gray-500">
                 {applicantData.resume ? (
-                  <span className="text-sky-600 font-medium">{applicantData.resume.name}</span>
+                  <span className="text-sky-600 font-medium">
+                    {applicantData.resume.name}
+                  </span>
                 ) : (
                   "Click to upload or drag and drop"
                 )}
@@ -179,7 +291,12 @@ function ApplicationForm() {
 
         {/* Row 5: Message */}
         <div className="flex flex-col w-full">
-          <label htmlFor="message" className="text-gray-700 mb-2 text-sm font-semibold ml-1">Cover Letter / Message</label>
+          <label
+            htmlFor="message"
+            className="text-gray-700 mb-2 text-sm font-semibold ml-1"
+          >
+            Cover Letter / Message
+          </label>
           <textarea
             name="message"
             id="message"
@@ -188,6 +305,9 @@ function ApplicationForm() {
             placeholder="Tell us why you're a great fit..."
             className="border border-gray-200 rounded-xl p-3 h-32 resize-none focus:outline-none focus:ring-4 focus:ring-sky-50 focus:border-sky-400 transition-all"
           ></textarea>
+          {errors.message && (
+            <p className="text-red-500 text-sm">{errors.message}</p>
+          )}
         </div>
 
         {/* Submit Button */}
