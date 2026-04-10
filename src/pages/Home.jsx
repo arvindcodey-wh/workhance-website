@@ -64,7 +64,7 @@ function Home() {
     ⭐ ⭐ ⭐ ⭐ ⭐
   </div>
       <p>
-        “Their IT team delivered a scalable and efficient solution that perfectly matched our business needs. Great communication and <span>strong technical expertise</span>.”
+        “The IT solutions provided were well-planned and aligned with our business needs. The team ensured <span>smooth implementation and reliable performance</span> throughout.”
       </p>
     </div>
 
@@ -85,7 +85,7 @@ function Home() {
     ⭐ ⭐ ⭐ ⭐ ⭐
   </div>
       <p>
-        “Their digital marketing strategies helped us significantly improve our online presence and generate <span>quality leads</span>. A great partner for growth!”
+        “Their digital marketing approach was practical and well-structured. We saw <span>steady improvement in engagement</span> and overall online presence within a short time.”
       </p>
     </div>
   </div>
