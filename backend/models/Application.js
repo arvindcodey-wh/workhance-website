@@ -52,7 +52,7 @@ const getApplications = async ({ jobId, limit, offset }) => {
     params.push(jobId);
   }
 
-  query += ` ORDER BY a.created_at DESC LIMIT ${limit} OFFSET ${offset}`;
+  query += ` ORDER BY a.created_at ASC LIMIT ${limit} OFFSET ${offset}`;
 
   const [rows] = await db.execute(query, params);
   return rows;

@@ -23,7 +23,7 @@ const getAllJobs = async ({ search, location, company, limit, offset, sort }) =>
     const allowedSort = ["created_at", "title", "company"];
     const sortField = allowedSort.includes(sort) ? sort : "created_at";
 
-    query += ` ORDER BY ${sortField} DESC, id DESC`;
+    query += ` ORDER BY ${sortField} ASC, id ASC`;
 
     // pagination (same fix as before)
     query += ` LIMIT ${limit} OFFSET ${offset}`;
