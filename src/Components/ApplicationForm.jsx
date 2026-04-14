@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Upload, Send, CheckCircle } from "lucide-react";
-
+import PhoneInput from "react-phone-input-2";
+const PhoneInputComponent = PhoneInput.default || PhoneInput;
+import "react-phone-input-2/lib/style.css";
+import { isValidPhoneNumber } from "libphonenumber-js";
 function ApplicationForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
@@ -17,7 +20,15 @@ function ApplicationForm() {
   function handleOnchange(e) {
     // validate();
     const { name, value } = e.target;
-    setApplicantData((prev) => ({ ...prev, [name]: value }));
+    if (name === "first_name" || name === "last_name") {
+      const sanitizedValue = value.replace(/[^A-Za-z\s]/g, "");
+      // console.log(sanitizedValue);
+
+      setApplicantData({
+        ...applicantData,
+        [name]: sanitizedValue,
+      });
+    } else setApplicantData((prev) => ({ ...prev, [name]: value }));
   }
 
   function handleFileChange(e) {
@@ -29,8 +40,14 @@ function ApplicationForm() {
     e.preventDefault();
 
     if (!validate()) return;
+    
+    const finalData = {
+      ...applicantData,
+      first_name: applicantData.first_name.trim(),
+      last_name: applicantData.last_name.trim(),
+    };
 
-    console.log("Submitting Data:", applicantData);
+    console.log("Submitting Data:", finalData);
 
     setIsSubmitted(true);
 
@@ -72,18 +89,26 @@ function ApplicationForm() {
     // Phone validation
     if (!applicantData.phone) {
       newErrors.phone = "Phone number is required";
-    } else if (!/^\d{10}$/.test(applicantData.phone)) {
-      // \d = digit 0-9, {10} = exactly 10 digits
-      newErrors.phone = "Enter valid 10-digit phone number";
+    } else if (!isValidPhoneNumber(applicantData.phone)) {
+      newErrors.phone = "Enter valid phone number";
     }
 
     // Resume
+    const allowedTypes = [
+      "application/pdf",
+      "application/msword", // .doc
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .docx
+    ];
+
     if (!applicantData.resume) {
       newErrors.resume = "Resume is required";
     } else {
-      if (applicantData.resume.type !== "application/pdf") {
-        newErrors.resume = "Only PDF files allowed";
+      // Check if the file type is in our allowed list
+      if (!allowedTypes.includes(applicantData.resume.type)) {
+        newErrors.resume = "Only PDF and Word documents allowed";
       }
+
+      // Size check (keeping your 2MB limit)
       if (applicantData.resume.size > 2 * 1024 * 1024) {
         newErrors.resume = "File size must be less than 2MB";
       }
@@ -208,21 +233,18 @@ function ApplicationForm() {
             )}
           </div>
           <div className="flex flex-col">
-            <label
-              htmlFor="phone"
-              className="text-gray-700 mb-2 text-sm font-semibold ml-1"
-            >
-              Phone Number
-            </label>
-            <input
-              required
-              id="phone"
-              name="phone"
+            <label htmlFor="">Phone no</label>
+            <PhoneInputComponent
+              country={"in"}
               value={applicantData.phone}
-              onChange={handleOnchange}
-              placeholder="+1 (555) 000-0000"
-              className="border border-gray-200 rounded-xl p-3 focus:outline-none focus:ring-4 focus:ring-sky-50 focus:border-sky-400 transition-all"
-              type="tel"
+              onChange={(phone) =>
+                setApplicantData((prev) => ({
+                  ...prev,
+                  phone: "+" + phone, // ✅ ADD +
+                }))
+              }
+              inputClass="!w-full !py-3 !pl-14 !rounded-xl"
+              containerClass="w-full"
             />
             {errors.phone && (
               <p className="text-red-500 text-sm">{errors.phone}</p>
@@ -264,6 +286,7 @@ function ApplicationForm() {
           </label>
           <div className="relative group">
             <input
+              accept=".pdf,.docx,.doc"
               required
               type="file"
               id="resume"

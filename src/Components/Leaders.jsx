@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Award, Briefcase } from "lucide-react";
+import DetailedLeaderCard from "./DetailedLeaderCard";
 
 
 
 function Leaders() {
+  const [isDetail,setIsDetail]=useState(false)
+  const [currInd,setcurrInd]=useState(0)
   const leaders = [
     {
       name: "Jay Prakash",
@@ -42,7 +45,7 @@ function Leaders() {
 
   return (
     <section className="py-24 bg-white">
-      <div className="w-[90%] max-w-7xl mx-auto">
+      <div className="w-[90%] max-w-7xl mx-auto relative">
         
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -53,7 +56,11 @@ function Leaders() {
         {/* Leaders Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {leaders.map((leader, index) => (
-            <div 
+            <div
+              onClick={()=>{
+                setIsDetail(true)
+                setcurrInd(index)
+              }} 
               key={index} 
               className="group bg-white rounded-3xl p-6 shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100 flex flex-col items-center text-center relative overflow-hidden"
             >
@@ -88,8 +95,10 @@ function Leaders() {
       
               
             </div>
+            
           ))}
         </div>
+        <DetailedLeaderCard data={leaders[currInd]}  setIsDetail={setIsDetail} isDetail={isDetail}></DetailedLeaderCard>
       </div>
     </section>
   );

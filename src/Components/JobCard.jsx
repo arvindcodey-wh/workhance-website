@@ -86,7 +86,7 @@ function JobCard() {
                 </div>
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-bold text-gray-800 mb-1 group-hover:text-sky-600 transition-colors">
+                <h3 className="text-lg font-bold text-gray-800 mb-1 group-hover:text-sky-600 transition-colors line-clamp-1">
                   {job.title}
                 </h3>
                 <div className="flex flex-wrap gap-2 mt-2">

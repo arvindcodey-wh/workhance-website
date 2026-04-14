@@ -1,35 +1,59 @@
 import React from "react";
 import Banner from "../Components/Banner";
-import { Users, Target, Zap, TrendingUp, Award } from "lucide-react";
+import { Users, Target, Zap, TrendingUp, Award, ShieldCheck,BarChart } from "lucide-react";
 import Leaders from "../Components/Leaders";
+import AboutUsDetail from "../Components/AboutUsDetail";
 
 function AboutUs() {
   const sections = [
     {
+      id: 1,
       title: "Our Story",
-      content: "Founded in 2025, Work Hance emerged from a vision to revolutionize recruitment process outsourcing. We recognized that finding the right talent requires more than just matching skills—it requires understanding culture, aspirations, and potential. Today, we serve over 200+ clients across 15 countries, having successfully placed more than 10,000 professionals in roles that drive business growth.",
+      tagline: "Bridging Ambition and Opportunity",
+      content: "Incorporated in August 2025, Work Hance LLP was established with a mission to redefine professional service standards in India. From our headquarters in Jabalpur, we began as a vision to simplify complex business processes, growing rapidly into a trusted partner for firms seeking operational excellence and strategic growth.",
       icon: <Award className="w-8 h-8 text-sky-500" />,
-      img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80", // Team working
+      img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80",
     },
     {
+      id: 2,
       title: "What We Are",
-      content: "Work Hance LLP is a forward-thinking partnership firm committed to delivering high-quality professional services with a focus on innovation, reliability, and client success. We combine strategic insight with operational excellence to help businesses and individuals thrive in a competitive landscape.",
+      tagline: "Innovation Meets Integrity",
+      content: "Work Hance LLP is a forward-thinking Limited Liability Partnership specializing in diversified business solutions. We operate at the intersection of innovation and reliability, providing a stable foundation for startups and established enterprises to navigate the competitive Indian market.",
       icon: <Users className="w-8 h-8 text-sky-500" />,
-      img: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80", // Modern office
+      img: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80",
     },
     {
+      id: 3,
       title: "What We Do",
-      content: "We specialize in delivering tailored solutions across domains such as business advisory, operational support, strategic planning, and professional consulting. We work closely with clients to understand their goals and implement practical strategies that drive growth and efficiency.",
+      tagline: "Comprehensive Service Excellence",
+      content: "We provide end-to-back professional services, ranging from strategic business advisory to operational support. Our core focus is on delivering practical, data-driven solutions that help our clients optimize their workflows and scale their impact effectively.",
       icon: <Target className="w-8 h-8 text-sky-500" />,
-      img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80", // Strategy/Data
+      img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
     },
     {
-      title: "How We Work",
-      content: "Our processes are grounded in careful analysis, open communication, and measurable outcomes. We begin by understanding client goals, conducting in-depth assessments, and implementing customized strategies with an emphasis on quality and accountability.",
-      icon: <Zap className="w-8 h-8 text-sky-500" />,
-      img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80", // Collaboration
+      id: 4,
+      title: "Our Values",
+      tagline: "The Core of Our Operations",
+      content: "Transparency, accountability, and client-centricity are the pillars of Work Hance LLP. We believe in building long-term relationships through ethical practices and a relentless commitment to quality in every project we undertake.",
+      icon: <ShieldCheck className="w-8 h-8 text-sky-500" />,
+      img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80",
     },
-    
+    {
+      id: 5,
+      title: "How We Work",
+      tagline: "A Systematic Approach to Success",
+      content: "Our methodology is rooted in deep analysis and open communication. We move through four distinct phases: comprehensive assessment, customized strategy design, meticulous implementation, and continuous performance monitoring.",
+      icon: <Zap className="w-8 h-8 text-sky-500" />,
+      img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80",
+    },
+    {
+      id: 6,
+      title: "Why Choose Us",
+      tagline: "The Work Hance Advantage",
+      content: "By choosing Work Hance LLP, you gain a partner that understands the nuances of modern business. We offer the agility of a startup with the professional rigor of a seasoned consultancy, ensuring that your goals are met with precision.",
+      icon: <BarChart className="w-8 h-8 text-sky-500" />,
+      img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80",
+    },
   ];
 
   return (
@@ -38,45 +62,18 @@ function AboutUs() {
 
       {/* Main Content Sections */}
       <div className="py-20 flex flex-col gap-24 md:gap-32">
-        {sections.map((item, index) => (
-          <div 
-            key={index} 
-            className={`w-[90%] max-w-6xl mx-auto flex  ${index % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-12 md:gap-20`}
-          >
-            {/* Text Side */}
-            <div className="w-full md:w-1/2 space-y-6">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-sky-50 mb-2">
-                {item.icon}
-              </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-800 leading-tight">
-                {item.title}
-              </h2>
-              <div className="w-16 h-1 bg-sky-500 rounded-full" />
-              <p className="text-slate-600 text-lg md:text-xl leading-relaxed font-light">
-                {item.content}
-              </p>
-            </div>
-
-            {/* Image Side */}
-            <div className="w-full md:w-1/2 relative group">
-              {/* Decorative Background Square */}
-              <div className={`absolute -inset-4 bg-sky-50 rounded-3xl -z-10 transition-transform group-hover:scale-105 duration-500`} />
-              
-              <div className="aspect-square w-full max-w-[450px] mx-auto overflow-hidden rounded-2xl shadow-2xl">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
-            </div>
-          </div>
-        ))}
+        {
+      
+        sections.map((item, index) => (
+         <AboutUsDetail index={index} item={sections[index]}></AboutUsDetail>
+        ))
+        
+        }
       </div>
       <Leaders></Leaders>
 
       {/* Simple Stats Bar for "Our Story" numbers */}
-      <div className="bg-sky-600 py-16 mb-20">
+      <div className="bg-sky-600 py-16 ">
         <div className="w-[90%] max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center text-white">
           <div>
             <p className="text-4xl font-bold mb-2">200+</p>
