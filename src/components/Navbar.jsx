@@ -9,7 +9,7 @@ function Navbar() {
         {/* Logo + Name */}
         <div className="logo-section">
           <img src={logo} alt="Work Hance Logo" className="logo-img" />
-          <h2>Work Hance LLP</h2>
+          <h2>Work Hance</h2>
         </div>
 
         {/* Links */}

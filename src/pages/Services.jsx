@@ -1,4 +1,6 @@
-import { useState } from "react";
+import servicesBanner from "../assets/services-banner.png";
+import servicesBanner2 from "../assets/services-banner-2.png";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FaLaptopCode,
@@ -10,39 +12,62 @@ import {
 function Services() {
   const navigate = useNavigate();
   const [activeService, setActiveService] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const banners = [servicesBanner, servicesBanner2];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % banners.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [banners.length]);
 
   const services = [
     {
       title: "IT Services",
       icon: FaLaptopCode,
       intro:
-        "We provide reliable and scalable IT solutions designed to support business growth and long-term digital performance.",
+        "Scalable technology solutions built to improve operations, strengthen digital presence, and support long-term business growth.",
       points: [
-        "Custom-built web and software solutions tailored to business needs",
-        "Cloud-based deployment for flexibility and scalability",
-        "User-focused design to improve experience and usability",
-        "Continuous maintenance and system optimization",
+        "Custom websites, web apps, and software solutions",
+        "Cloud deployment and infrastructure support",
+        "UI/UX-focused product design and usability improvement",
+        "Maintenance, optimization, and technical support",
       ],
       overview:
-        "Our IT services are designed to build strong digital foundations that enable businesses to operate efficiently, scale confidently, and adapt to evolving technological demands.",
+        "Our IT services are designed to solve real business problems through practical, scalable technology. From websites and business software to cloud support and product design, we help organizations build strong digital systems that perform reliably and grow with the business.",
+      subServices: [
+        "Custom Web Development",
+        "Software Development",
+        "Cloud Solutions & Deployment",
+        "UI/UX Design",
+        "Mobile App Development",
+        "Website Maintenance & Optimization",
+      ],
+      subServicesNote:
+        "Each solution is planned around actual business needs so the final product is not just functional, but aligned with performance, usability, and future scalability.",
       included: [
         "Custom web and application development aligned with business goals",
-        "Cloud infrastructure setup for scalable operations",
-        "UI/UX design focused on usability and engagement",
-        "Ongoing maintenance and system optimization",
+        "Software solutions for business workflows and operations",
+        "Cloud setup for flexible and scalable infrastructure",
+        "UI/UX support and continuous optimization",
       ],
       delivery: [
-        "Understanding business requirements and technical needs",
-        "Planning and designing scalable system architecture",
-        "Development, testing, and deployment",
-        "Continuous monitoring and performance improvement",
+        "Understand the business requirement and technical objective",
+        "Plan the solution structure, flow, and project roadmap",
+        "Develop, test, and deploy the required system",
+        "Provide ongoing support and performance improvement",
       ],
       value: [
-        "Improved operational efficiency",
-        "Scalable and reliable digital systems",
-        "Better user experience and engagement",
-        "Long-term technical support and stability",
+        "Improves operational efficiency and workflow clarity",
+        "Builds scalable digital systems for future growth",
+        "Enhances user experience and overall platform usability",
+        "Reduces technical disruption through continuous support",
       ],
+      whyItMatters:
+        "Outdated or inefficient technology can quietly slow down a business. Strong digital infrastructure helps teams work faster, serve customers better, and scale without constant technical setbacks.",
       stats: [
         { value: "30%", label: "Faster Delivery" },
         { value: "95%", label: "System Stability" },
@@ -53,33 +78,45 @@ function Services() {
       title: "Staffing & RPO Services",
       icon: FaUsers,
       intro:
-        "Our staffing solutions help businesses streamline hiring and connect with the right talent efficiently.",
+        "Structured hiring solutions that help businesses find the right talent faster, improve recruitment efficiency, and support workforce growth.",
       points: [
-        "End-to-end recruitment process management",
-        "Talent sourcing, screening, and evaluation",
-        "Domain-specific staffing across multiple industries",
-        "Resume support and hiring process optimization",
+        "End-to-end recruitment process support",
+        "Candidate sourcing, screening, and shortlisting",
+        "IT, healthcare, and finance staffing support",
+        "Resume formatting and hiring coordination assistance",
       ],
       overview:
-        "We simplify recruitment by providing structured hiring solutions that help businesses identify, evaluate, and onboard the right talent efficiently.",
+        "Our Staffing and RPO services are built to reduce hiring effort while improving the quality and speed of recruitment. We support businesses across key hiring stages and act as an extended recruitment arm that helps identify, evaluate, and onboard the right talent efficiently.",
+      subServices: [
+        "Recruitment Process Outsourcing (RPO)",
+        "IT Staffing",
+        "Healthcare Staffing",
+        "Finance & Accounting Staffing",
+        "Talent Sourcing & Screening",
+        "Resume Formatting & VMS Support",
+      ],
+      subServicesNote:
+        "The hiring model is designed to be flexible and scalable, so businesses can strengthen recruitment without building a large in-house hiring structure.",
       included: [
-        "Complete recruitment lifecycle management",
-        "Candidate sourcing and screening",
-        "Industry-specific staffing solutions",
-        "Resume enhancement and hiring support",
+        "End-to-end recruitment process management",
+        "Candidate sourcing and screening support",
+        "Domain-specific staffing solutions",
+        "Resume enhancement and onboarding coordination",
       ],
       delivery: [
-        "Understanding hiring requirements",
-        "Sourcing and shortlisting candidates",
-        "Coordinating interviews and evaluations",
-        "Supporting onboarding and integration",
+        "Understand hiring requirements and role expectations",
+        "Source and shortlist relevant candidates",
+        "Coordinate screening and interview stages",
+        "Support final selection and onboarding process",
       ],
       value: [
-        "Faster hiring cycles",
-        "Better quality candidate selection",
-        "Reduced recruitment effort",
-        "Scalable hiring processes",
+        "Reduces hiring time and recruitment workload",
+        "Improves the quality of shortlisted candidates",
+        "Supports team growth with a structured hiring model",
+        "Creates a more efficient and scalable recruitment process",
       ],
+      whyItMatters:
+        "Hiring delays, poor candidate fit, and fragmented recruitment processes directly affect growth. A structured talent pipeline helps businesses scale faster with less internal pressure and better hiring outcomes.",
       stats: [
         { value: "40%", label: "Faster Hiring" },
         { value: "90%", label: "Better Matches" },
@@ -90,33 +127,45 @@ function Services() {
       title: "Finance & Accounting Services",
       icon: FaMoneyCheckDollar,
       intro:
-        "We support businesses with accurate financial management and structured accounting processes.",
+        "Reliable finance support that improves accuracy, strengthens process control, and helps businesses manage operations with more confidence.",
       points: [
-        "Financial record management and reporting",
-        "Payroll and compliance handling",
-        "Accounts payable and receivable support",
-        "Data-driven financial insights",
+        "Bookkeeping and financial reporting",
+        "Accounts payable and receivable handling",
+        "Payroll processing and compliance support",
+        "Financial insights for better decision-making",
       ],
       overview:
-        "Our finance and accounting services ensure accurate financial management while maintaining compliance and supporting informed decision-making.",
+        "Our finance and accounting services help businesses maintain structured financial operations without the overhead of building a large internal team. From bookkeeping and payroll to reporting and compliance support, we focus on accuracy, consistency, and better financial visibility.",
+      subServices: [
+        "Bookkeeping & Financial Reporting",
+        "Accounts Payable & Receivable",
+        "Payroll Management",
+        "Tax & Compliance Support",
+        "Financial Analysis",
+        "Advisory Support",
+      ],
+      subServicesNote:
+        "The service approach is designed to keep financial processes organized, reduce manual gaps, and support better reporting for operational as well as strategic decisions.",
       included: [
-        "Bookkeeping and financial reporting",
-        "Payroll and compliance management",
-        "Accounts payable and receivable handling",
-        "Financial analysis and insights",
+        "Bookkeeping and regular financial reporting",
+        "Accounts payable and receivable management",
+        "Payroll and compliance-related support",
+        "Financial analysis and reporting assistance",
       ],
       delivery: [
-        "Assessing financial processes and requirements",
-        "Setting up structured workflows",
-        "Executing financial operations",
-        "Providing reports and performance insights",
+        "Review business needs and current finance processes",
+        "Set up a structured workflow for operations",
+        "Manage accounting activities with consistency and accuracy",
+        "Share reports and support informed planning",
       ],
       value: [
-        "Improved financial accuracy",
-        "Better control over operations",
-        "Compliance with regulations",
-        "Data-driven decision support",
+        "Improves accuracy in records and reporting",
+        "Supports better control over financial operations",
+        "Helps maintain compliance and process discipline",
+        "Provides useful financial visibility for decision-making",
       ],
+      whyItMatters:
+        "Weak financial processes can lead to reporting errors, compliance risks, and poor planning. Strong accounting support creates clarity, improves control, and helps businesses make smarter decisions with confidence.",
       stats: [
         { value: "35%", label: "Efficiency Boost" },
         { value: "98%", label: "Accuracy" },
@@ -127,33 +176,45 @@ function Services() {
       title: "Digital Marketing Services",
       icon: FaChartLine,
       intro:
-        "We help businesses grow their online presence through targeted and performance-driven marketing strategies.",
+        "Performance-focused marketing solutions that improve visibility, strengthen audience engagement, and support measurable business growth.",
       points: [
         "SEO and search visibility improvement",
-        "Paid campaigns for better reach and conversions",
-        "Social media growth and engagement",
-        "Strategic content planning and execution",
+        "Paid campaigns for reach and lead generation",
+        "Social media management and audience engagement",
+        "Content strategy and performance tracking",
       ],
       overview:
-        "We help businesses strengthen their digital presence through targeted strategies focused on visibility, engagement, and measurable growth.",
+        "Our digital marketing services are designed to help businesses grow through visibility, engagement, and conversion-focused execution. We work across SEO, paid campaigns, social platforms, and content strategy to build a stronger digital presence and deliver measurable marketing outcomes.",
+      subServices: [
+        "Search Engine Optimization (SEO)",
+        "Search Engine Marketing (SEM)",
+        "Social Media Marketing",
+        "Paid Advertising",
+        "Content Marketing",
+        "Analytics & Performance Reporting",
+      ],
+      subServicesNote:
+        "Every activity is aligned with a business objective, whether that means better reach, stronger engagement, more qualified leads, or improved overall marketing performance.",
       included: [
-        "SEO and search engine visibility optimization",
-        "Paid advertising campaigns across digital platforms",
-        "Social media management and growth",
-        "Content strategy and execution",
+        "SEO and search visibility optimization",
+        "Paid advertising across digital platforms",
+        "Social media growth and management",
+        "Content planning and reporting support",
       ],
       delivery: [
-        "Analyzing market and audience behavior",
-        "Planning marketing strategies",
-        "Executing campaigns across channels",
-        "Monitoring and optimizing performance",
+        "Understand audience behavior and business goals",
+        "Plan the right digital strategy and content direction",
+        "Execute campaigns across selected channels",
+        "Track performance and optimize for better results",
       ],
       value: [
-        "Increased online visibility",
-        "Higher audience engagement",
-        "Better lead generation",
-        "Improved marketing ROI",
+        "Increases brand visibility and online reach",
+        "Improves audience engagement and lead quality",
+        "Supports business growth through focused campaigns",
+        "Helps improve ROI through measurable optimization",
       ],
+      whyItMatters:
+        "Visibility alone is not enough if it does not lead to engagement or conversion. A clear marketing strategy helps businesses attract the right audience, build trust, and turn digital activity into growth.",
       stats: [
         { value: "45%", label: "Engagement Growth" },
         { value: "32%", label: "Visibility Boost" },
@@ -164,9 +225,24 @@ function Services() {
 
   return (
     <div className="services-container">
-      <div className="container">
-        <h1>Our Services</h1>
+      <section className="services-banner">
+        <img
+          src={banners[currentSlide]}
+          alt="Services banner"
+          className="services-banner-img"
+        />
 
+        <div className="services-banner-overlay">
+          <div className="services-banner-content">
+            <h1>Our Services</h1>
+            <p>
+              One partner for technology, talent, finance, and marketing solutions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container">
         {services.map((service, index) => {
           const Icon = service.icon;
 
@@ -222,6 +298,20 @@ function Services() {
               </div>
 
               <div className="service-detail-section">
+                <h3>Sub-Services</h3>
+                <div className="service-box-grid">
+                  {activeService.subServices.map((item, i) => (
+                    <div className="service-box" key={i}>
+                      {item}
+                    </div>
+                  ))}
+                </div>
+                <p className="modal-description">
+                  {activeService.subServicesNote}
+                </p>
+              </div>
+
+              <div className="service-detail-section">
                 <h3>What’s Included</h3>
                 <div className="service-box-grid">
                   {activeService.included.map((item, i) => (
@@ -251,6 +341,12 @@ function Services() {
                     <li key={i}>{item}</li>
                   ))}
                 </ul>
+              </div>
+
+              <div className="service-detail-section
+              why-section">
+                <h3>Why It Matters</h3>
+                <p className="modal-description">{activeService.whyItMatters}</p>
               </div>
 
               <div className="service-detail-section">

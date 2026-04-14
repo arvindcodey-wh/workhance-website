@@ -1,39 +1,58 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import ServicesOverview from "../components/ServicesOverview";
 import GlobalClients from "../components/GlobalClients";
 import heroImg from "../assets/hero.png";
 
 function Home() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollToServices) {
+      const section = document.getElementById("core-services");
+
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
 
   return (
     <div className="home-container">
-      <div className="container">
-        <section
-          className="hero-section"
-          style={{ backgroundImage: `url(${heroImg})` }}
-        >
-          <div className="hero-overlay">
-            <div className="hero-content">
-              <h1>Empowering Global Businesses</h1>
-              <p>
-                Work Hance LLP provides IT Services, RPO & Staffing, and US Finance &
-                Accounting solutions to clients worldwide.
-              </p>
-              <button
-                className="primary-btn"
-                onClick={() => navigate("/services")}
-              >
-                Explore Services
-              </button>
-            </div>
+
+      {/* Hero Section */}
+      <section className="hero-section">
+        <img src={heroImg} alt="Hero banner" className="hero-img" />
+
+        <div className="hero-overlay">
+          <div className="hero-content">
+            <h1>Empowering Global Businesses</h1>
+
+            <p>
+              Work Hance LLP provides IT Services, RPO & Staffing, and US Finance &
+              Accounting solutions to clients worldwide.
+            </p>
+
+            <button
+              className="primary-btn"
+              onClick={() => navigate("/services")}
+            >
+              Explore Services
+            </button>
           </div>
-        </section>
+        </div>
+      </section>
+
+      <div className="container">
 
         <GlobalClients />
-        <ServicesOverview />
 
-{/* Testimonials Section */}
+        <ServicesOverview
+          initialOpenService={location.state?.openService}
+        />
+
+        {/* Testimonials Section */}
 <section className="testimonials-section">
   <h2>What Our Clients Say</h2>
 
@@ -91,9 +110,14 @@ function Home() {
   </div>
 </section>
 
+        {/* CTA Section */}
         <section className="home-cta">
           <h2>Looking for reliable business support solutions?</h2>
-          <p>Explore our services and connect with us for the right support.</p>
+
+          <p>
+            Explore our services and connect with us for the right support.
+          </p>
+
           <button
             className="primary-btn"
             onClick={() => navigate("/contact")}
@@ -101,6 +125,7 @@ function Home() {
             Get in Touch
           </button>
         </section>
+
       </div>
     </div>
   );
