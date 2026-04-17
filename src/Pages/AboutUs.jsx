@@ -1,67 +1,28 @@
 import React from "react";
 import Banner from "../Components/Banner";
-import { Users, Target, Zap, TrendingUp, Award, ShieldCheck,BarChart } from "lucide-react";
+import {
+  Users,
+  Target,
+  Zap,
+  TrendingUp,
+  Award,
+  ShieldCheck,
+  BarChart,
+  Monitor,
+  BarChart3,
+  Rocket,
+} from "lucide-react";
 import Leaders from "../Components/Leaders";
 import AboutUsDetail from "../Components/AboutUsDetail";
-
+import { sections,services } from "../utils/AboutUsData";
 function AboutUs() {
-  const sections = [
-    {
-      id: 1,
-      title: "Our Story",
-      tagline: "Bridging Ambition and Opportunity",
-      content: "Incorporated in August 2025, Work Hance LLP was established with a mission to redefine professional service standards in India. From our headquarters in Jabalpur, we began as a vision to simplify complex business processes, growing rapidly into a trusted partner for firms seeking operational excellence and strategic growth.",
-      icon: <Award className="w-8 h-8 text-sky-500" />,
-      img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 2,
-      title: "What We Are",
-      tagline: "Innovation Meets Integrity",
-      content: "Work Hance LLP is a forward-thinking Limited Liability Partnership specializing in diversified business solutions. We operate at the intersection of innovation and reliability, providing a stable foundation for startups and established enterprises to navigate the competitive Indian market.",
-      icon: <Users className="w-8 h-8 text-sky-500" />,
-      img: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 3,
-      title: "What We Do",
-      tagline: "Comprehensive Service Excellence",
-      content: "We provide end-to-back professional services, ranging from strategic business advisory to operational support. Our core focus is on delivering practical, data-driven solutions that help our clients optimize their workflows and scale their impact effectively.",
-      icon: <Target className="w-8 h-8 text-sky-500" />,
-      img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 4,
-      title: "Our Values",
-      tagline: "The Core of Our Operations",
-      content: "Transparency, accountability, and client-centricity are the pillars of Work Hance LLP. We believe in building long-term relationships through ethical practices and a relentless commitment to quality in every project we undertake.",
-      icon: <ShieldCheck className="w-8 h-8 text-sky-500" />,
-      img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 5,
-      title: "How We Work",
-      tagline: "A Systematic Approach to Success",
-      content: "Our methodology is rooted in deep analysis and open communication. We move through four distinct phases: comprehensive assessment, customized strategy design, meticulous implementation, and continuous performance monitoring.",
-      icon: <Zap className="w-8 h-8 text-sky-500" />,
-      img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 6,
-      title: "Why Choose Us",
-      tagline: "The Work Hance Advantage",
-      content: "By choosing Work Hance LLP, you gain a partner that understands the nuances of modern business. We offer the agility of a startup with the professional rigor of a seasoned consultancy, ensuring that your goals are met with precision.",
-      icon: <BarChart className="w-8 h-8 text-sky-500" />,
-      img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80",
-    },
-  ];
-
+  
   return (
     <div className="min-h-screen bg-white">
       <Banner type={"about us"} />
 
       {/* Main Content Sections */}
-      <div className="py-20 flex flex-col gap-24 md:gap-32">
+      {/* <div className="py-20 flex flex-col gap-24 md:gap-32">
         {
       
         sections.map((item, index) => (
@@ -69,6 +30,102 @@ function AboutUs() {
         ))
         
         }
+      </div> */}
+      <div>
+        <section className="max-w-4xl mx-auto py-16 px-6 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Who We Are</h2>
+          <div className="space-y-4 text-gray-600 leading-relaxed text-lg">
+            <p>
+              Work Hance is a fast-growing global business solutions and
+              outsourcing company, built with a vision to empower organizations
+              through high-quality, reliable, and scalable services.
+            </p>
+            <p>
+              We specialize in Staffing & RPO, IT Services, US Finance &
+              Accounting, and Digital Marketing, helping businesses streamline
+              operations, reduce costs, and achieve sustainable growth.
+            </p>
+          </div>
+        </section>
+        <AboutUsDetail index={0} item={sections[0]}></AboutUsDetail>
+        <section className="bg-slate-50/50 py-24 px-6">
+          <div className="max-w-7xl mx-auto flex items-center flex-col gap-5">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              What we do
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {services.map((s, i) => (
+                <div
+                  key={i}
+                  className="group relative bg-white p-10 rounded-2xl border border-slate-200 transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl hover:shadow-slate-200/50 overflow-hidden"
+                >
+                  {/* Subtle accent line on top that appears on hover */}
+
+                  {/* Icon Container */}
+                  <div className=" text-blue-500 transition-colors duration-300 mb-6">
+                    {s.icon}
+                  </div>
+
+                  {/* Text Content */}
+                  <h3 className="text-xl font-bold tracking-tight  mb-3 text-blue-500 transition-colors duration-300">
+                    {s.title}
+                  </h3>
+
+                  <p className="text-slate-500 text-[15px] leading-relaxed font-normal">
+                    {s.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <AboutUsDetail index={1} item={sections[1]}></AboutUsDetail>
+        <section className=" py-24 px-6">
+          <div className="max-w-7xl mx-auto flex items-center flex-col gap-5">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              Why to choose Work Hance
+            </h2>
+            <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-4">
+              {[
+                "Experienced Leadership",
+                "Multi-domain Expertise",
+                "Cost-effective Solutions",
+                "Performance Driven",
+                "Client Focused",
+              ].map((text, i) => (
+                <div
+                  key={i}
+                  className="p-4 bg-gray-50 rounded-lg text-center text-sm font-medium text-gray-700 transition-transform hover:-translate-y-1 hover:bg-blue-50 hover:text-blue-700 cursor-default shadow-sm hover:shadow-md"
+                >
+                  {text}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <AboutUsDetail index={2} item={sections[2]}></AboutUsDetail>
+        <section className="py-20 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+          <div className="p-10 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-shadow">
+            <h3 className="text-2xl font-bold text-blue-600 mb-4">
+              Our Vision
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              To establish Work Hance as a globally recognized leader in
+              business solutions and outsourcing, delivering innovative and
+              high-performance services.
+            </p>
+          </div>
+          <div className="p-10 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-shadow">
+            <h3 className="text-2xl font-bold text-blue-600 mb-4">
+              Our Mission
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              To empower businesses by providing reliable, cost-effective, and
+              result-driven solutions across Staffing, Technology, and Finance.
+            </p>
+          </div>
+        </section>
+        <AboutUsDetail index={3} item={sections[3]}></AboutUsDetail>
       </div>
       <Leaders></Leaders>
 
@@ -77,15 +134,21 @@ function AboutUs() {
         <div className="w-[90%] max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center text-white">
           <div>
             <p className="text-4xl font-bold mb-2">200+</p>
-            <p className="text-sky-100 uppercase tracking-widest text-sm">Global Clients</p>
+            <p className="text-sky-100 uppercase tracking-widest text-sm">
+              Global Clients
+            </p>
           </div>
           <div>
             <p className="text-4xl font-bold mb-2">15+</p>
-            <p className="text-sky-100 uppercase tracking-widest text-sm">Countries Served</p>
+            <p className="text-sky-100 uppercase tracking-widest text-sm">
+              Countries Served
+            </p>
           </div>
           <div>
             <p className="text-4xl font-bold mb-2">10k+</p>
-            <p className="text-sky-100 uppercase tracking-widest text-sm">Placed Professionals</p>
+            <p className="text-sky-100 uppercase tracking-widest text-sm">
+              Placed Professionals
+            </p>
           </div>
         </div>
       </div>

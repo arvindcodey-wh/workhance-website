@@ -1,57 +1,7 @@
 import React from "react";
-
+import { sections } from "../utils/AboutUsData";
 function AboutUsDetail({ index, item }) {
-  const sections = [
-    {
-      id: 1,
-      title: "Our Story",
-      content:
-        "Incorporated in August 2025, Work Hance LLP was established with a mission to redefine professional service standards in India. From our headquarters in Jabalpur, we began as a vision to simplify complex business processes, growing rapidly into a trusted partner for firms seeking operational excellence.",
-    },
-    {
-      id: 2,
-      title: "What We Are",
-      content:
-        "Work Hance LLP is a forward-thinking Limited Liability Partnership specializing in diversified business solutions. We operate at the intersection of innovation and reliability, providing a stable foundation for startups and established enterprises.",
-    },
-    {
-      id: 3,
-      title: "What We Do",
-      content:
-        "We provide end-to-back professional services, ranging from strategic business advisory to operational support. Our core focus is on delivering practical, data-driven solutions that help our clients optimize their workflows.",
-      cardContent: [
-        "Strategic Advisory: Tailored roadmaps for scaling.",
-        "Operational Support: Back-office integration.",
-        "Consulting: Expert regulatory guidance.",
-        "Performance Tracking: Data-driven reporting.",
-      ],
-    },
-    {
-      id: 4,
-      title: "Our Values",
-      content:
-        "Transparency, accountability, and client-centricity are the pillars of Work Hance LLP. We believe in building long-term relationships through ethical practices and a relentless commitment to quality.",
-    },
-    {
-      id: 5,
-      title: "How We Work",
-      content:
-        "Our methodology is rooted in deep analysis and open communication. We move through distinct phases to ensure meticulous implementation and performance.",
-      cardContent: [
-        "Discovery: Deep-dive into business bottlenecks.",
-        "Blueprint: Creation of a risk-mitigated strategy.",
-        "Execution: Deployment of professional teams.",
-        "Optimization: Continuous feedback loops.",
-      ],
-    },
-    {
-      id: 6,
-      title: "Why Choose Us",
-      content:
-        "By choosing Work Hance LLP, you gain a partner that understands the nuances of modern business, offering the agility of a startup with professional rigor.",
-    },
-  ];
-
+  
   return (
     <div
       key={item.id}

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaInstagram, FaLinkedinIn ,FaTwitter} from "react-icons/fa";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
@@ -36,9 +36,16 @@ const Footer = () => {
               <a
                 href="https://www.instagram.com/workhance.in/"
                 target="_blank"
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-pink-600 transition-all"
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-blue-600 transition-all"
               >
                 <FaInstagram size={18} />
+              </a>
+              <a
+                href="https://x.com/workhance?s=11"
+                target="_blank"
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-blue-600 transition-all"
+              >
+                <FaTwitter size={18} />
               </a>
             </div>
           </div>

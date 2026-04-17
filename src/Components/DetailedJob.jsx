@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   MapPin,
@@ -9,6 +9,7 @@ import {
   Share2,
   Globe,
 } from "lucide-react";
+import ShareModal from "./ShareModal";
 
 const data = [
   {
@@ -275,12 +276,11 @@ const data = [
 function DetailedJob() {
   const { index } = useParams();
   const navigate = useNavigate();
+  const [openShareModal, setOpenShareModal] = useState(false);
 
-  
   const jobIndex = parseInt(index);
   const job = data[jobIndex];
 
- 
   if (!job) {
     return (
       <div className="h-screen flex flex-col items-center justify-center">
@@ -307,7 +307,10 @@ function DetailedJob() {
             <ChevronLeft size={20} /> Back to Openings
           </button>
           <div className="hidden md:flex items-center gap-4">
-            <button className="p-2 text-gray-400 hover:text-sky-600 transition-colors">
+            <button onClick={()=>{
+              setOpenShareModal(true)
+
+            }} className="p-2 text-gray-400 hover:text-sky-600 transition-colors">
               <Share2 size={20} />
             </button>
           </div>
@@ -473,6 +476,7 @@ function DetailedJob() {
           </div>
         </div>
       </div>
+      <ShareModal title={job.title} setOpenShareModal={setOpenShareModal} openShareModal={openShareModal}></ShareModal>
     </div>
   );
 }

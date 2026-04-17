@@ -22,9 +22,7 @@ function Navbar() {
             <span className="text-2xl font-bold text-slate-800 leading-tight tracking-tight">
               Work Hance
             </span>
-            <span className="text-[10px] uppercase tracking-[0.15em] text-slate-400 font-medium">
-              Talent Acquisition Excellence
-            </span>
+            
           </div>
         </Link>
         
