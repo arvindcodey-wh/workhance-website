@@ -14,13 +14,13 @@ function Banner({ type }) {
 
   
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timeout = setTimeout(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 2000); 
 
-    return () => clearInterval(interval);
+    return () => clearTimeout(timeout);
   }, [currentImageIndex]);
-
+   
   const config = isAboutUs 
     ? {
         title: "Our Path, Your Prosperity",

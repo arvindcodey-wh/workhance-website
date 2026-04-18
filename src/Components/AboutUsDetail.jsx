@@ -64,8 +64,8 @@ function AboutUsDetail({ index, item }) {
               } hidden lg:block w-20 h-20 bg-sky-50 rounded-full -z-10`}
             ></div>
           </div>
-          <div className="w-[90%] absolute left-[50%] bottom-0 translate-x-[-50%]  bg-white py-5 px-3 rounded-2xl">
-            <p>{sections[index]?.content}</p>
+          <div className="w-[90%] absolute left-[50%] bottom-0 translate-x-[-50%]  bg-gray-200/90 py-5 px-3 rounded-2xl">
+            {/* <p>{sections[index]?.content}</p> */}
             <div className="flex flex-col items-start gap-2 mt-2">
             {sections[index]?.cardContent?.map((one, ind) => {
               return (
