@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { FaLinkedinIn, FaInstagram } from "react-icons/fa6";
+import { FaLinkedinIn, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import logo from "../assets/workhance_logo.png";
 
 function Footer() {
@@ -15,7 +15,6 @@ function Footer() {
     });
   };
 
-  // NEW: handle same-page scroll
   const handleQuickLinkClick = (path) => {
     if (location.pathname === path) {
       window.scrollTo({
@@ -61,6 +60,15 @@ function Footer() {
             >
               <FaInstagram />
             </a>
+
+            <a
+              href="https://x.com/workhance?s=11"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X"
+            >
+              <FaXTwitter />
+            </a>
           </div>
         </div>
 
@@ -68,9 +76,9 @@ function Footer() {
         <div className="footer-col">
           <h4>Quick Links</h4>
           <p onClick={() => handleQuickLinkClick("/")}>Home</p>
-          <p onClick={() => handleQuickLinkClick("/about")}>About Us</p>
+          <p onClick={() => handleQuickLinkClick("/about-us")}>About Us</p>
           <p onClick={() => handleQuickLinkClick("/services")}>Services</p>
-          <p onClick={() => handleQuickLinkClick("/career")}>Career</p>
+          <p onClick={() => handleQuickLinkClick("/careers")}>Career</p>
           <p onClick={() => handleQuickLinkClick("/contact")}>Contact</p>
         </div>
 

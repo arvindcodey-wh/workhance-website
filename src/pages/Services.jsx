@@ -1,7 +1,6 @@
-import servicesBanner from "../assets/services-banner.png";
-import servicesBanner2 from "../assets/services-banner-2.png";
+import Banner from "../components/Banner";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   FaLaptopCode,
   FaUsers,
@@ -11,21 +10,12 @@ import {
 
 function Services() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [activeService, setActiveService] = useState(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const banners = [servicesBanner, servicesBanner2];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % banners.length);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, [banners.length]);
 
   const services = [
     {
+      id: "it",
       title: "IT Services",
       icon: FaLaptopCode,
       intro:
@@ -75,6 +65,7 @@ function Services() {
       ],
     },
     {
+      id: "rpo",
       title: "Staffing & RPO Services",
       icon: FaUsers,
       intro:
@@ -124,6 +115,7 @@ function Services() {
       ],
     },
     {
+      id: "finance",
       title: "Finance & Accounting Services",
       icon: FaMoneyCheckDollar,
       intro:
@@ -173,6 +165,7 @@ function Services() {
       ],
     },
     {
+      id: "marketing",
       title: "Digital Marketing Services",
       icon: FaChartLine,
       intro:
@@ -223,24 +216,21 @@ function Services() {
     },
   ];
 
+  useEffect(() => {
+    if (location.state?.openService) {
+      const matchedService = services.find(
+        (service) => service.id === location.state.openService
+      );
+
+      if (matchedService) {
+        setActiveService(matchedService);
+      }
+    }
+  }, [location.state]);
+
   return (
     <div className="services-container">
-      <section className="services-banner">
-        <img
-          src={banners[currentSlide]}
-          alt="Services banner"
-          className="services-banner-img"
-        />
-
-        <div className="services-banner-overlay">
-          <div className="services-banner-content">
-            <h1>Our Services</h1>
-            <p>
-              One partner for technology, talent, finance, and marketing solutions.
-            </p>
-          </div>
-        </div>
-      </section>
+      <Banner type="services" />
 
       <div className="container">
         {services.map((service, index) => {
@@ -343,8 +333,7 @@ function Services() {
                 </ul>
               </div>
 
-              <div className="service-detail-section
-              why-section">
+              <div className="service-detail-section why-section">
                 <h3>Why It Matters</h3>
                 <p className="modal-description">{activeService.whyItMatters}</p>
               </div>
@@ -360,6 +349,20 @@ function Services() {
                   ))}
                 </div>
               </div>
+              
+              <div className="modal-cta">
+                <button
+                className="primary-btn"
+                onClick={() => navigate("/contact", {
+                  state: {
+                    service: activeService.title,
+                  },
+                })
+                }
+                >
+                  Talk to an Expert
+                  </button>
+                  </div>
             </div>
           </div>
         )}

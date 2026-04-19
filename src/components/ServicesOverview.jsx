@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaLaptopCode, FaUsers, FaChartLine, FaMoneyCheckDollar } from "react-icons/fa6";
+import {
+  FaLaptopCode,
+  FaUsers,
+  FaChartLine,
+  FaMoneyCheckDollar,
+} from "react-icons/fa6";
 
 function ServicesOverview({ initialOpenService }) {
   const [selectedService, setSelectedService] = useState(null);
@@ -8,18 +13,25 @@ function ServicesOverview({ initialOpenService }) {
 
   const services = {
     it: {
+      key: "it",
       icon: <FaLaptopCode />,
       title: "IT Services",
       description:
-        "Our IT services are designed to help businesses build, improve, and scale their digital operations with reliable technology support and smart solutions.",
+        "Our IT services help businesses strengthen digital operations through reliable technology support, smarter systems, and scalable development solutions.",
       focus: "What we help with",
       points: [
         "Improving digital efficiency",
         "Strengthening business systems",
         "Supporting long-term scalability",
       ],
+      highlights: [
+        "Business-focused technology support",
+        "Scalable digital development",
+        "Reliable execution and improvement",
+      ],
     },
     rpo: {
+      key: "rpo",
       icon: <FaUsers />,
       title: "RPO & Staffing",
       description:
@@ -30,8 +42,14 @@ function ServicesOverview({ initialOpenService }) {
         "Streamlining hiring processes",
         "Supporting workforce growth",
       ],
+      highlights: [
+        "Structured hiring support",
+        "Better candidate alignment",
+        "Faster recruitment coordination",
+      ],
     },
     finance: {
+      key: "finance",
       icon: <FaMoneyCheckDollar />,
       title: "US Finance & Accounting",
       description:
@@ -42,8 +60,14 @@ function ServicesOverview({ initialOpenService }) {
         "Supporting organized operations",
         "Maintaining reliable processes",
       ],
+      highlights: [
+        "Consistent finance process support",
+        "Improved operational clarity",
+        "Reliable reporting assistance",
+      ],
     },
     marketing: {
+      key: "marketing",
       icon: <FaChartLine />,
       title: "Digital Marketing",
       description:
@@ -54,6 +78,11 @@ function ServicesOverview({ initialOpenService }) {
         "Reaching the right audience",
         "Generating quality growth opportunities",
       ],
+      highlights: [
+        "Better online visibility",
+        "Audience-focused promotion",
+        "Growth-driven campaign support",
+      ],
     },
   };
 
@@ -62,6 +91,16 @@ function ServicesOverview({ initialOpenService }) {
       setSelectedService(services[initialOpenService]);
     }
   }, [initialOpenService]);
+
+  const openFullDetails = () => {
+    if (!selectedService) return;
+
+    navigate("/services", {
+      state: {
+        openService: selectedService.key,
+      },
+    });
+  };
 
   return (
     <section className="services-overview" id="core-services">
@@ -115,7 +154,10 @@ function ServicesOverview({ initialOpenService }) {
             <FaChartLine />
           </div>
           <h3>Digital Marketing</h3>
-          <p>Digital marketing solutions to improve online visibility and engagement.</p>
+          <p>
+            Digital marketing solutions to improve online visibility and
+            engagement.
+          </p>
           <span
             className="card-link"
             onClick={() => setSelectedService(services.marketing)}
@@ -144,19 +186,24 @@ function ServicesOverview({ initialOpenService }) {
             <p className="modal-description">{selectedService.description}</p>
 
             <h4 className="modal-subtitle">{selectedService.focus}</h4>
-
             <ul className="modal-points">
               {selectedService.points.map((point, index) => (
                 <li key={index}>{point}</li>
               ))}
             </ul>
 
-            <button
-              className="primary-btn"
-              onClick={() => navigate("/contact")}
-            >
-              Contact Us
+            <h4 className="modal-subtitle">Key Highlights</h4>
+            <ul className="modal-points">
+              {selectedService.highlights.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+
+            <div className="learn-more-btn-wrapper">
+            <button className="primary-btn" onClick={openFullDetails}>
+              View Full Details
             </button>
+            </div>
           </div>
         </div>
       )}

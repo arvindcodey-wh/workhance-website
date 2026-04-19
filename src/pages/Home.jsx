@@ -1,12 +1,49 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ServicesOverview from "../components/ServicesOverview";
 import GlobalClients from "../components/GlobalClients";
-import heroImg from "../assets/hero.png";
+import hero1 from "../assets/hero1.png";
+import hero2 from "../assets/hero2.jpg";
 
 function Home() {
+
+  const images = [hero1, hero2];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 6000); // 4 sec
+    return () => clearInterval(interval);
+  }, []);
+
   const navigate = useNavigate();
   const location = useLocation();
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  const testimonials = [
+    {
+      text: "Work Hance has been instrumental in helping us scale our operations. Their team understands our requirements deeply and delivers high-quality solutions consistently. Highly recommended!",
+      highlight: "high-quality solutions",
+    },
+    {
+      text: "We partnered with Work Hance for staffing and were impressed by the quality of talent they provided. The entire process was smooth, fast, and professional.",
+      highlight: "smooth, fast, and professional",
+    },
+    {
+      text: "The IT solutions provided were well-planned and aligned with our business needs. The team ensured smooth implementation and reliable performance throughout.",
+      highlight: "smooth implementation and reliable performance",
+    },
+    {
+      text: "Work Hance helped us streamline our financial processes with accuracy and efficiency. Their support team is reliable and always responsive.",
+      highlight: "accuracy and efficiency",
+    },
+    {
+      text: "Their digital marketing approach was practical and well-structured. We saw steady improvement in engagement and overall online presence within a short time.",
+      highlight: "steady improvement in engagement",
+    },
+  ];
 
   useEffect(() => {
     if (location.state?.scrollToServices) {
@@ -18,28 +55,65 @@ function Home() {
     }
   }, [location]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial(
+        (prev) => (prev + 1) % testimonials.length
+      );
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
+  const renderHighlightedText = (text, highlight) => {
+    const parts = text.split(highlight);
+
+    return (
+      <>
+        {parts[0]}
+        <span>{highlight}</span>
+        {parts[1]}
+      </>
+    );
+  };
+
   return (
     <div className="home-container">
 
       {/* Hero Section */}
       <section className="hero-section">
-        <img src={heroImg} alt="Hero banner" className="hero-img" />
+        
+        <div className="hero-slider">
+          {images.map((img, index) => (
+            <img
+            key={index}
+            src={img}
+            className={`hero-slide ${
+              index === currentIndex ? "active" : ""
+            }`}
+            alt="hero"
+            />
+            ))}
+            </div>
 
         <div className="hero-overlay">
           <div className="hero-content">
-            <h1>Empowering Global Businesses</h1>
+            <h1>Smart Solutions for Growing Businesses</h1>
 
             <p>
-              Work Hance LLP provides IT Services, RPO & Staffing, and US Finance &
-              Accounting solutions to clients worldwide.
+              Work Hance delivers reliable support across technology,
+              talent, finance, and marketing—helping businesses operate
+              smarter,scale faster, and grow with confidence.
             </p>
 
-            <button
-              className="primary-btn"
-              onClick={() => navigate("/services")}
-            >
-              Explore Services
-            </button>
+            <div className="hero-buttons">
+              <button
+                className="primary-btn"
+                onClick={() => navigate("/services")}
+              >
+                Explore Services
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -53,77 +127,54 @@ function Home() {
         />
 
         {/* Testimonials Section */}
-<section className="testimonials-section">
-  <h2>What Our Clients Say</h2>
+        <section className="testimonials-section">
+          <h2>What Our Clients Say</h2>
 
-  <div className="testimonials-cards">
-    <div className="testimonial-card">
+          <div className="testimonial-slider">
 
-      <div className="stars">
-    ⭐ ⭐ ⭐ ⭐ ⭐
-  </div>
-      <p>
-        “Work Hance has been instrumental in helping us scale our operations. Their team understands our requirements deeply and delivers <span>high-quality solutions</span> consistently. Highly recommended!”
-      </p>
-    </div>
+            <div className="testimonial-card testimonial-slider-card">
+              <div className="stars">⭐⭐⭐⭐⭐</div>
 
-    <div className="testimonial-card">
-      
-      <div className="stars">
-    ⭐ ⭐ ⭐ ⭐ ⭐
-  </div>
-      <p>
-        “We partnered with Work Hance for staffing and were impressed by the quality of talent they provided. The entire process was <span>smooth, fast, and professional</span>.”
-      </p>
-    </div>
+              <p>
+                {renderHighlightedText(
+                  testimonials[currentTestimonial].text,
+                  testimonials[currentTestimonial].highlight
+                )}
+              </p>
+            </div>
 
-    <div className="testimonial-card">
-      
-      <div className="stars">
-    ⭐ ⭐ ⭐ ⭐ ⭐
-  </div>
-      <p>
-        “The IT solutions provided were well-planned and aligned with our business needs. The team ensured <span>smooth implementation and reliable performance</span> throughout.”
-      </p>
-    </div>
+            <div className="testimonial-dots">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  className={`testimonial-dot ${
+                    currentTestimonial === index ? "active-dot" : ""
+                  }`}
+                  onClick={() => setCurrentTestimonial(index)}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                ></button>
+              ))}
+            </div>
 
-    <div className="testimonial-card">
-      
-      <div className="stars">
-    ⭐ ⭐ ⭐ ⭐ ⭐
-  </div>
-      <p>
-        “Work Hance helped us streamline our financial processes with <span>accuracy and efficiency</span>. Their support team is reliable and always responsive.”
-      </p>
-    </div>
-
-    <div className="testimonial-card
-    testimonial-card-center">
-      
-      <div className="stars">
-    ⭐ ⭐ ⭐ ⭐ ⭐
-  </div>
-      <p>
-        “Their digital marketing approach was practical and well-structured. We saw <span>steady improvement in engagement</span> and overall online presence within a short time.”
-      </p>
-    </div>
-  </div>
-</section>
+          </div>
+        </section>
 
         {/* CTA Section */}
         <section className="home-cta">
-          <h2>Looking for reliable business support solutions?</h2>
+          <h2>Let’s Talk</h2>
 
           <p>
-            Explore our services and connect with us for the right support.
+            Connect with us to discuss the right support for your business.
           </p>
 
-          <button
-            className="primary-btn"
-            onClick={() => navigate("/contact")}
-          >
-            Get in Touch
-          </button>
+          <div className="cta-buttons">
+            <button
+              className="primary-btn"
+              onClick={() => navigate("/contact")}
+            >
+              Get in Touch
+            </button>
+          </div>
         </section>
 
       </div>

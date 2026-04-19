@@ -151,6 +151,27 @@ function Contact() {
           Have a question or want to connect with us? Fill out the form below
           and our team will get back to you.
         </p>
+        <section className="contact-quick">
+          <a href="tel:+13322871906" className="quick-card quick-card-link">
+    <span>📞 Speak to our team</span>
+    <p>+1 332 287 1906</p>
+    </a>
+    
+    <a
+    href="https://mail.google.com/mail/?view=cm&fs=1&to=info@workhance.in"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="quick-card quick-card-link"
+  >
+    <span>✉️ Drop us an email</span>
+    <p>info@workhance.in</p>
+    </a>
+    
+    <div className="quick-card">
+      <span>⏱️ Response Time</span>
+      <p>Within 24 Hours</p>
+      </div>
+      </section>
 
         {/* Contact Form */}
         <section className="contact-form-section">
@@ -282,9 +303,11 @@ function Contact() {
               )}
             </div>
 
+            <div className="form-submit">
             <button type="submit" className="primary-btn">
               Submit
             </button>
+            </div>
           </form>
         </section>
 
