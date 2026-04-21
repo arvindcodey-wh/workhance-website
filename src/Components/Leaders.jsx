@@ -13,7 +13,7 @@ function Leaders() {
     {
       name: "Jay Prakash",
       role: "Chief Executive Officer (CEO)",
-      url:'https://i.ibb.co/WWLHPNQ4/jay-sir.jpg',
+      url:'https://i.ibb.co/xqsSMmn2/jay-sir.jpg',
       // image: jayImg,
       
       exp: "15+ Years",
@@ -52,7 +52,7 @@ function Leaders() {
 
   return (
     <section className="py-24 bg-white">
-      <div className="w-[90%] max-w-7xl mx-auto relative">
+      <div className="w-[95%] max-w-7xl mx-auto relative">
         
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -61,7 +61,7 @@ function Leaders() {
         </div>
 
         {/* Leaders Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4 gap-10">
           { 
           leaders.map((leader, index) => (
             <div
@@ -77,7 +77,7 @@ function Leaders() {
 
              
               <div className="relative z-10 w-40 h-40 rounded-full border-4 border-white shadow-xl overflow-hidden mb-6 group-hover:border-sky-100 transition-colors">
-                <img src={leader.url} alt="" />
+                <img src={leader.url}  className=" " alt="" />
               </div>
 
               {/* Leader Info */}

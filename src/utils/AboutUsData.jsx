@@ -1,7 +1,9 @@
 import {
   Award,
+  BadgeDollarSign,
   BarChart,
   BarChart3,
+  Layers,
   Monitor,
   Rocket,
   ShieldCheck,
@@ -23,7 +25,7 @@ const sections = [
       "Global vision for operational excellence"
     ],
     icon: <Award className="w-8 h-8 text-sky-500" />,
-    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80",
+    img: "https://plus.unsplash.com/premium_photo-1663040543387-cb7c78c4f012?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 2,
@@ -120,4 +122,32 @@ const services = [
   },
 ];
 
-export { sections, services };
+  const features = [
+    {
+      title: "Experienced Leadership",
+      description: "Guiding projects with decades of collective industry wisdom and strategic foresight.",
+      icon: <ShieldCheck className="w-6 h-6" />,
+    },
+    {
+      title: "Multi-domain Expertise",
+      description: "Versatile technical proficiency across diverse sectors to solve complex challenges.",
+      icon: <Layers className="w-6 h-6" />,
+    },
+    {
+      title: "Cost-effective Solutions",
+      description: "Optimizing resources to deliver premium quality results within your budget constraints.",
+      icon: <BadgeDollarSign className="w-6 h-6" />,
+    },
+    {
+      title: "Performance Driven",
+      description: "Focused on high-speed execution and measurable outcomes that scale with your needs.",
+      icon: <Rocket className="w-6 h-6" />,
+    },
+    {
+      title: "Client Focused",
+      description: "Building lasting partnerships through transparent communication and dedicated support.",
+      icon: <Users className="w-6 h-6" />,
+    },
+  ];
+
+export { sections, services,features };

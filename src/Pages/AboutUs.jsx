@@ -8,121 +8,282 @@ import {
   Award,
   ShieldCheck,
   BarChart,
+  Eye,
+  Globe,
+  Lightbulb,
+  HeartHandshake,
+  ArrowUpRight,
   Monitor,
   BarChart3,
   Rocket,
 } from "lucide-react";
 import Leaders from "../Components/Leaders";
 import AboutUsDetail from "../Components/AboutUsDetail";
-import { sections,services } from "../utils/AboutUsData";
+import { sections, services, features } from "../utils/AboutUsData";
 function AboutUs() {
-  
   return (
     <div className="min-h-screen bg-white">
       <Banner type={"about us"} />
 
-      {/* Main Content Sections */}
-      {/* <div className="py-20 flex flex-col gap-24 md:gap-32">
-        {
-      
-        sections.map((item, index) => (
-         <AboutUsDetail index={index} item={sections[index]}></AboutUsDetail>
-        ))
-        
-        }
-      </div> */}
       <div>
-        <section className="max-w-4xl mx-auto py-16 px-6 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Who We Are</h2>
-          <div className="space-y-4 text-gray-600 leading-relaxed text-lg">
-            <p>
-              Work Hance is a fast-growing global business solutions and
-              outsourcing company, built with a vision to empower organizations
-              through high-quality, reliable, and scalable services.
-            </p>
-            <p>
-              We specialize in Staffing & RPO, IT Services, US Finance &
-              Accounting, and Digital Marketing, helping businesses streamline
-              operations, reduce costs, and achieve sustainable growth.
-            </p>
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern
+                id="grid"
+                width="40"
+                height="40"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 40 0 L 0 0 0 40"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+        </div>
+
+        
+        <section className="relative overflow-hidden bg-gray-50 py-24 px-6">
+      {/* Background Decorative Element */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-40 pointer-events-none">
+        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-50 rounded-full blur-3xl" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-50 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto bg-white rounded-[2.5rem] shadow-2xl shadow-blue-900/5 flex flex-col items-center py-16 px-8 md:px-16 border border-gray-100">
+        
+        {/* Minimalist Header */}
+        <div className="text-center mb-16">
+          <span className="text-xs font-bold uppercase tracking-[0.4em] text-blue-600 mb-4 block">
+            Our Identity
+          </span>
+          <h2 className="text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
+            Who We Are
+          </h2>
+          <div className="mt-6 h-1.5 w-20 bg-blue-600 mx-auto rounded-full"></div>
+        </div>
+
+        {/* Hero Quote */}
+        <div className="w-full mb-20">
+          <p className="text-3xl md:text-4xl text-gray-800 text-center font-semibold leading-snug max-w-4xl mx-auto">
+            "Empowering businesses with <span className="text-blue-600">intelligent solutions</span>, global expertise, and an unwavering commitment to excellence."
+          </p>
+        </div>
+
+        {/* Content Area with Icons */}
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 w-full border-t border-gray-100 pt-16">
+          
+          {/* Left Column */}
+          <div className="space-y-10">
+            <div className="flex gap-5">
+              <div className="flex-shrink-0">
+                <div className="p-3 bg-blue-50 rounded-xl text-blue-600">
+                  <Globe className="w-6 h-6" />
+                </div>
+              </div>
+              <div>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  <strong className="text-gray-900 uppercase tracking-wide">Work Hance</strong> is a premier global business solutions provider, built on a foundation of 
+                  <span className="font-bold text-blue-600 italic mx-1">trust</span>, 
+                  <span className="font-bold text-blue-600 italic mx-1">innovation</span>, 
+                  and <span className="font-bold text-blue-600 italic mx-1">scalability</span>.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-5">
+              <div className="flex-shrink-0">
+                <div className="p-3 bg-blue-50 rounded-xl text-blue-600">
+                  <Lightbulb className="w-6 h-6" />
+                </div>
+              </div>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Our expertise spans across <strong>Staffing & RPO</strong>, <strong>IT Services</strong>, and <strong>Finance</strong>. We integrate deep knowledge with technology to help partners optimize workflows.
+              </p>
+            </div>
           </div>
-        </section>
+
+          {/* Right Column */}
+          <div className="space-y-10">
+            <div className="flex gap-5">
+              <div className="flex-shrink-0">
+                <div className="p-3 bg-blue-50 rounded-xl text-blue-600">
+                  <TrendingUp className="w-6 h-6" />
+                </div>
+              </div>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                In a shifting digital landscape, we prioritize <strong>future-ready solutions</strong>. We don't just solve today's problems; we anticipate tomorrow's challenges with a data-driven approach.
+              </p>
+            </div>
+
+            <div className="flex gap-5">
+              <div className="flex-shrink-0">
+                <div className="p-3 bg-blue-50 rounded-xl text-blue-600">
+                  <HeartHandshake className="w-6 h-6" />
+                </div>
+              </div>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                We believe in a <strong>client-first mindset</strong>. Whether scaling a startup or transforming an enterprise, we provide the global reach required to unlock your potential.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Strategic Partner Section */}
+        <div className="mt-20 flex flex-col items-center">
+          <p className="text-gray-400 text-sm uppercase tracking-[0.3em] font-bold mb-2">
+            The Result
+          </p>
+          <p className="text-gray-900 text-4xl font-black tracking-tight">
+            Strategic Growth Partner
+          </p>
+        </div>
+      </div>
+    </section>
         <AboutUsDetail index={0} item={sections[0]}></AboutUsDetail>
-        <section className="bg-slate-50/50 py-24 px-6">
-          <div className="max-w-7xl mx-auto flex items-center flex-col gap-5">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              What we do
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <section className="bg-slate-50 py-32 px-6">
+          <div className="max-w-7xl mx-auto flex items-center flex-col gap-12">
+            <div className="text-center space-y-4">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+                What we do
+              </h2>
+              <div className="h-1.5 w-24 bg-blue-600 mx-auto rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {services.map((s, i) => (
                 <div
                   key={i}
-                  className="group relative bg-white p-10 rounded-2xl border border-slate-200 transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl hover:shadow-slate-200/50 overflow-hidden"
+                  className="group relative bg-white p-12 rounded-[2.5rem] border border-slate-100 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] overflow-hidden"
                 >
-                  {/* Subtle accent line on top that appears on hover */}
+                  {/* Decorative Background Element */}
+                  <div className="absolute -right-8 -top-8 w-32 h-32 bg-blue-50 rounded-full transition-all duration-500 group-hover:bg-blue-600 group-hover:scale-[3.5] group-hover:opacity-10 opacity-50" />
 
-                  {/* Icon Container */}
-                  <div className=" text-blue-500 transition-colors duration-300 mb-6">
+                  {/* Icon Container - Floating Style */}
+                  <div className="relative z-10 w-16 h-16 flex items-center justify-center rounded-2xl bg-blue-50 text-blue-600 mb-8 transition-all duration-500 group-hover:bg-blue-600 group-hover:text-white group-hover:rotate-[10deg] group-hover:shadow-lg group-hover:shadow-blue-200">
                     {s.icon}
                   </div>
 
                   {/* Text Content */}
-                  <h3 className="text-xl font-bold tracking-tight  mb-3 text-blue-500 transition-colors duration-300">
-                    {s.title}
-                  </h3>
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold tracking-tight mb-4 text-slate-800 transition-colors duration-300 group-hover:text-blue-600">
+                      {s.title}
+                    </h3>
 
-                  <p className="text-slate-500 text-[15px] leading-relaxed font-normal">
-                    {s.desc}
-                  </p>
+                    <p className="text-slate-500 text-lg leading-relaxed font-medium opacity-90">
+                      {s.desc}
+                    </p>
+                  </div>
+
+                  {/* Bottom Accent Line */}
+                  <div className="absolute bottom-0 left-0 h-1.5 bg-blue-600 transition-all duration-500 w-0 group-hover:w-full" />
                 </div>
               ))}
             </div>
           </div>
         </section>
-        <AboutUsDetail index={1} item={sections[1]}></AboutUsDetail>
+        <AboutUsDetail index={4} item={sections[4]}></AboutUsDetail>
         <section className=" py-24 px-6">
           <div className="max-w-7xl mx-auto flex items-center flex-col gap-5">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
               Why to choose Work Hance
             </h2>
-            <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-4">
-              {[
-                "Experienced Leadership",
-                "Multi-domain Expertise",
-                "Cost-effective Solutions",
-                "Performance Driven",
-                "Client Focused",
-              ].map((text, i) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+              {features.map((feature, i) => (
                 <div
                   key={i}
-                  className="p-4 bg-gray-50 rounded-lg text-center text-sm font-medium text-gray-700 transition-transform hover:-translate-y-1 hover:bg-blue-50 hover:text-blue-700 cursor-default shadow-sm hover:shadow-md"
+                  className="group relative p-6 bg-white border border-gray-100 rounded-xl transition-all duration-300 
+                     hover:border-blue-200 hover:shadow-xl hover:-translate-y-2 cursor-default"
                 >
-                  {text}
+                  {/* Icon Wrapper */}
+                  <div
+                    className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-blue-50 text-blue-600 
+                          group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300"
+                  >
+                    {feature.icon}
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-gray-600">
+                    {feature.description}
+                  </p>
+
+                  {/* Subtle Accent Bar */}
+                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full rounded-b-xl" />
                 </div>
               ))}
             </div>
           </div>
         </section>
-        <AboutUsDetail index={2} item={sections[2]}></AboutUsDetail>
+
         <section className="py-20 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
-          <div className="p-10 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-shadow">
-            <h3 className="text-2xl font-bold text-blue-600 mb-4">
-              Our Vision
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              To establish Work Hance as a globally recognized leader in
-              business solutions and outsourcing, delivering innovative and
-              high-performance services.
-            </p>
+          {/* Vision Card */}
+          <div className="group relative p-10 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:border-blue-100 transition-all duration-500 overflow-hidden">
+            {/* Decorative background element */}
+            <div className="absolute -right-8 -top-8 w-32 h-32 bg-blue-50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110" />
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 bg-blue-600 rounded-2xl text-white shadow-lg shadow-blue-200">
+                  <Eye className="w-8 h-8" />
+                </div>
+                <h3 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+                  Our <span className="text-blue-600">Vision</span>
+                </h3>
+              </div>
+
+              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                To establish{" "}
+                <span className="font-semibold text-gray-800">Work Hance</span>{" "}
+                as a globally recognized leader in business solutions and
+                outsourcing, delivering innovative and high-performance services
+                that redefine industry standards.
+              </p>
+
+              <div className="flex items-center text-blue-600 font-medium text-sm group-hover:translate-x-2 transition-transform">
+                Future-Ready Strategy <ArrowUpRight className="ml-2 w-4 h-4" />
+              </div>
+            </div>
           </div>
-          <div className="p-10 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-shadow">
-            <h3 className="text-2xl font-bold text-blue-600 mb-4">
-              Our Mission
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              To empower businesses by providing reliable, cost-effective, and
-              result-driven solutions across Staffing, Technology, and Finance.
-            </p>
+
+          {/* Mission Card */}
+          <div className="group relative p-10 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:border-blue-100 transition-all duration-500 overflow-hidden">
+            {/* Decorative background element */}
+            <div className="absolute -right-8 -top-8 w-32 h-32 bg-blue-50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110" />
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 bg-blue-600 rounded-2xl text-white shadow-lg shadow-blue-200">
+                  <Target className="w-8 h-8" />
+                </div>
+                <h3 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+                  Our <span className="text-blue-600">Mission</span>
+                </h3>
+              </div>
+
+              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                To empower businesses by providing reliable, cost-effective, and
+                result-driven solutions across{" "}
+                <span className="font-semibold text-gray-800">
+                  Staffing, Technology, and Finance
+                </span>
+                , ensuring our clients achieve sustainable growth.
+              </p>
+
+              <div className="flex items-center text-blue-600 font-medium text-sm group-hover:translate-x-2 transition-transform">
+                Results-Driven Approach{" "}
+                <ArrowUpRight className="ml-2 w-4 h-4" />
+              </div>
+            </div>
           </div>
         </section>
         <AboutUsDetail index={3} item={sections[3]}></AboutUsDetail>

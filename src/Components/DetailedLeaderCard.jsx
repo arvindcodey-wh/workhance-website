@@ -29,14 +29,14 @@ function DetailedLeaderCard({ data, setIsDetail, isDetail }) {
           <div className="relative w-full md:w-2/5 bg-gradient-to-br from-blue-50 to-indigo-50 p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-gray-100">
             <div className="relative">
               {/* Decorative Ring */}
-              <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-blue-400 to-indigo-600 opacity-20 blur-sm"></div>
-              <div className="relative h-48 w-48 overflow-hidden rounded-2xl border-4 border-white shadow-xl">
+              <div className="relative h-48 w-48 overflow-hidden rounded-2xl border-4  shadow-xl">
                 <img 
                   src={data.url} 
                   alt={data.name} 
-                  className=""
+                  className="object-cover"
                 />
               </div>
+              {/* <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-blue-400 to-indigo-600 opacity-20 blur-sm"></div> */}
             </div>
 
             <div className="mt-6 text-center">

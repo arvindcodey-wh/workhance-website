@@ -286,7 +286,7 @@ function DetailedJob() {
       <div className="h-screen flex flex-col items-center justify-center">
         <h2 className="text-2xl font-bold text-gray-800">Job not found</h2>
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('..')}
           className="mt-4 text-sky-600 font-medium flex items-center gap-2"
         >
           <ChevronLeft size={20} /> Go Back
@@ -296,10 +296,10 @@ function DetailedJob() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50/50 pb-20 relative">
+    <div className="min-h-screen bg-gray-50/50 pb-20 relative overflow-y-scroll">
       {/* Navigation Header */}
-      <div className="bg-white border-b sticky top-0 z-10">
-        <div className="w-[90%] max-w-7xl mx-auto py-4 flex items-center justify-between">
+      <div className="bg-white border-b ">
+        <div className="w-[90%] max-w-7xl mx-auto py-4 flex items-center justify-between ">
           <button
             onClick={() => navigate(-1)}
             className="flex items-center text-gray-600 hover:text-sky-600 transition-colors font-medium gap-1"
@@ -317,7 +317,7 @@ function DetailedJob() {
         </div>
       </div>
 
-      <div className="w-[90%] max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <div className="w-[90%] sticky top-0 z-10 max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* Left Column: Job Details */}
         <div className="lg:col-span-2 space-y-8">
           {/* Header Info */}
@@ -411,11 +411,17 @@ function DetailedJob() {
               </div>
             )}
           </div>
+             <button
+            onClick={() => navigate(-1)}
+            className="flex items-center text-gray-600 hover:text-sky-600 transition-colors font-medium gap-1"
+          >
+            <ChevronLeft size={20} /> Back to Openings
+          </button>
         </div>
 
         {/* Right Column: Sticky Sidebar Info */}
         <div className="lg:col-span-1">
-          <div className="sticky top-28 space-y-6">
+          <div className=" top-28 space-y-6">
             {/* Benefits Card */}
             {job.benefits?.length > 0 && (
               <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">

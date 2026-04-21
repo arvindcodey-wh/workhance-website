@@ -52,7 +52,7 @@ function AboutUsDetail({ index, item }) {
               <img
                 src={item.img}
                 alt={item.title}
-                className="w-full aspect-[4/5] object-cover transition-scale duration-700 group-hover:scale-110"
+                className="w-full aspect-square object-cover  transition-scale duration-700 group-hover:scale-110"
               />
               {/* Subtle Overlay Gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent"></div>
