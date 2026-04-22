@@ -26,7 +26,7 @@ function DetailedBenefitCard({ data, setIsDetail, isDetail }) {
         <div className="flex flex-col">
           {/* Header Section: Icon & Title */}
           <div className="flex items-center gap-4 mb-6">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-50 shadow-sm">
+            <div className="flex h-14 w-14 items-center text-white justify-center rounded-2xl bg-blue-600 shadow-sm">
               {data.icon}
             </div>
             <div>

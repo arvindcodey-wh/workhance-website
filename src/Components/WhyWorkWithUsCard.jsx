@@ -27,7 +27,7 @@ const WhyWorkWithUsCard = () => {
       ],
       cultureInsight:
         "85% of our leadership team started in entry-level positions within the company.",
-      icon: <TrendingUp className="w-6 h-6 text-indigo-600" />,
+      icon: <TrendingUp className="w-6 h-6 " />,
     },
     {
       title: "Flexible Work Style",
@@ -41,7 +41,7 @@ const WhyWorkWithUsCard = () => {
       ],
       cultureInsight:
         "We trust our experts to manage their own schedules because results speak louder than punch-clocks.",
-      icon: <Clock className="w-6 h-6 text-indigo-600" />,
+      icon: <Clock className="w-6 h-6 " />,
     },
     {
       title: "Room to Innovate",
@@ -55,7 +55,7 @@ const WhyWorkWithUsCard = () => {
       ],
       cultureInsight:
         "Some of our most successful internal tools started as side projects from our junior developers.",
-      icon: <Sparkles className="w-6 h-6 text-indigo-600" />,
+      icon: <Sparkles className="w-6 h-6 " />,
     },
     {
       title: "Collaborative Culture",
@@ -69,7 +69,7 @@ const WhyWorkWithUsCard = () => {
       ],
       cultureInsight:
         "We use collaborative tools and transparent documentation so no one ever works in a silo.",
-      icon: <Users className="w-6 h-6 text-indigo-600" />,
+      icon: <Users className="w-6 h-6 " />,
     },
     {
       title: "Meaningful Impact",
@@ -83,7 +83,7 @@ const WhyWorkWithUsCard = () => {
       ],
       cultureInsight:
         "Every Friday, we share 'Success Stories' showing how our work helped a real-world client.",
-      icon: <Target className="w-6 h-6 text-indigo-600" />,
+      icon: <Target className="w-6 h-6 " />,
     },
     {
       title: "Recognition & Growth",
@@ -97,7 +97,7 @@ const WhyWorkWithUsCard = () => {
       ],
       cultureInsight:
         "We celebrate work anniversaries and project launches with the same energy as a championship win.",
-      icon: <Trophy className="w-6 h-6 text-indigo-600" />,
+      icon: <Trophy className="w-6 h-6 " />,
     },
   ];
 
