@@ -4,248 +4,265 @@ function InsightDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const insightsDetails = [
-    {
-      id: 1,
-      title: "How Digital Transformation is Reshaping Modern Businesses?",
-      summary:
-        "Digital transformation is no longer optional for businesses that want to stay competitive. It is changing how companies operate, serve customers, and improve internal efficiency.",
-      content: {
-        introduction:
-          "Digital transformation is helping businesses move beyond traditional working models and adopt technology-driven solutions that improve speed, accuracy, and customer satisfaction. From automating routine operations to improving communication and decision-making, modern organizations are using digital tools to stay competitive in a rapidly changing business environment.",
-        sections: [
-          {
-            heading: "Why Digital Transformation Matters?",
-            paragraph:
-              "In today's fast-moving market, businesses are expected to respond quickly to customer needs, market shifts, and operational challenges. Digital transformation helps organizations become more agile, efficient, and data-driven.",
-            points: [
-              "It improves business efficiency by automating repetitive and time-consuming tasks.",
-              "It supports faster communication and collaboration across teams and departments.",
-              "It helps organizations make smarter decisions using real-time data and analytics.",
-              "It enhances customer experience by making services faster, smoother, and more personalized.",
-            ],
-          },
-          {
-            heading: "Key Areas Where Businesses Are Transforming",
-            paragraph:
-              "Digital transformation impacts the complete business ecosystem and helps create a more connected and effective work environment.",
-            points: [
-              "Operations are becoming faster through workflow automation.",
-              "Customer support is improving with AI tools and CRM systems.",
-              "Recruitment is becoming more efficient through digital hiring platforms.",
-              "Finance processes are becoming more accurate with cloud-based tools.",
-            ],
-          },
-        ],
-        keyTakeaways: [
-          "Improves efficiency and speed.",
-          "Supports better decision-making.",
-          "Enhances customer experience.",
-          "Helps businesses stay competitive.",
-        ],
-      },
+const insightsDetails = [
+  {
+    id: 1,
+    title: "Top Hiring Trends in 2026",
+    summary:
+      "Hiring in 2026 is shifting towards skills, speed, and smarter decision-making. Companies are focusing on quality talent over traditional hiring methods.",
+    content: {
+      introduction:
+        "The hiring landscape is evolving rapidly. Companies are no longer relying only on degrees — they are prioritizing real skills, adaptability, and cultural fit. Faster hiring processes and smarter tools are becoming essential to stay competitive.",
+
+      sections: [
+        {
+          heading: "Key Hiring Shifts in 2026",
+          paragraph:
+            "Businesses are redefining how they hire to stay ahead in a competitive talent market.",
+          points: [
+            "Skill-based hiring is replacing degree-based filtering.",
+            "AI tools are speeding up resume screening and candidate selection.",
+            "Companies prefer candidates who can adapt quickly.",
+            "Remote and hybrid hiring is becoming the norm.",
+          ],
+        },
+        {
+          heading: "What This Means for Businesses",
+          paragraph:
+            "Organizations need to rethink their hiring strategies to attract better talent faster.",
+          points: [
+            "Faster hiring cycles reduce loss of good candidates.",
+            "Better hiring decisions improve team performance.",
+            "Flexible hiring increases talent pool access.",
+            "Strong employer branding attracts top candidates.",
+          ],
+        },
+      ],
+
+      keyTakeaways: [
+        "Hiring is becoming skill-focused.",
+        "Speed matters more than ever.",
+        "Better hiring = better teams.",
+        "Adaptability is key.",
+      ],
     },
-    {
-      id: 2,
-      title: "The Growing Importance of Strategic Staffing Solutions",
-      summary:
-        "Strategic staffing has become essential for businesses that want to attract the right talent, reduce hiring delays, and build stronger teams.",
-      content: {
-        introduction:
-          "Hiring the right people at the right time is one of the most important factors in business growth. Strategic staffing helps organizations reduce recruitment challenges and build high-performing teams.",
-        sections: [
-          {
-            heading: "What Strategic Staffing Means?",
-            paragraph:
-              "Strategic staffing is a planned approach that aligns hiring with business goals and future growth.",
-            points: [
-              "Focuses on skill and cultural fit.",
-              "Builds a strong talent pipeline.",
-              "Reduces hiring gaps.",
-              "Supports long-term workforce planning.",
-            ],
-          },
-          {
-            heading: "Common Hiring Challenges",
-            paragraph:
-              "Many organizations face delays and inefficiencies in hiring.",
-            points: [
-              "Difficulty finding qualified candidates.",
-              "Long hiring cycles.",
-              "Skill mismatch.",
-              "High employee turnover.",
-            ],
-          },
-        ],
-        keyTakeaways: [
-          "Improves hiring quality.",
-          "Reduces delays.",
-          "Supports business growth.",
-          "Builds stronger teams.",
-        ],
-      },
+  },
+
+  {
+    id: 2,
+    title: "Why IT Strategy Drives Business Growth",
+    summary:
+      "A strong IT strategy helps businesses scale efficiently, improve performance, and stay ahead in a digital-first world.",
+    content: {
+      introduction:
+        "Technology is no longer just support — it is a growth driver. A well-planned IT strategy helps businesses improve efficiency, reduce risks, and scale operations smoothly.",
+
+      sections: [
+        {
+          heading: "Role of IT Strategy",
+          paragraph:
+            "A strong IT foundation ensures smooth operations and long-term growth.",
+          points: [
+            "Improves system performance and reliability.",
+            "Supports business scalability.",
+            "Enhances data security.",
+            "Enables faster decision-making.",
+          ],
+        },
+        {
+          heading: "Business Impact",
+          paragraph:
+            "Companies with strong IT strategies outperform competitors.",
+          points: [
+            "Better productivity across teams.",
+            "Reduced downtime and technical issues.",
+            "Improved customer experience.",
+            "Stronger digital presence.",
+          ],
+        },
+      ],
+
+      keyTakeaways: [
+        "IT drives growth, not just support.",
+        "Strong systems = better performance.",
+        "Technology improves efficiency.",
+        "Scalability depends on IT.",
+      ],
     },
-    {
-      id: 3,
-      title: "Why IT Services Are Essential for Scalable Business Operations?",
-      summary:
-        "Reliable IT services help businesses streamline operations, improve security, and support scalable growth.",
-      content: {
-        introduction:
-          "Technology is a core part of modern business. IT services ensure smooth operations, reduce technical issues, and support growth.",
-        sections: [
-          {
-            heading: "Role of IT Services",
-            paragraph:
-              "IT services provide the backbone for business operations.",
-            points: [
-              "Ensure system stability.",
-              "Improve team productivity.",
-              "Support data security.",
-              "Reduce downtime.",
-            ],
-          },
-          {
-            heading: "Key Benefits",
-            paragraph:
-              "Strong IT support improves efficiency and reliability.",
-            points: [
-              "Better performance.",
-              "Stronger cybersecurity.",
-              "Faster issue resolution.",
-              "Easy scalability.",
-            ],
-          },
-        ],
-        keyTakeaways: [
-          "Improves efficiency.",
-          "Strengthens security.",
-          "Reduces downtime.",
-          "Supports scalability.",
-        ],
-      },
+  },
+
+  {
+    id: 3,
+    title: "The Future of RPO & Staffing",
+    summary:
+      "Staffing is becoming smarter, faster, and more data-driven, helping businesses hire better talent with less delay.",
+    content: {
+      introduction:
+        "Recruitment is evolving beyond traditional hiring. Businesses now expect faster, more accurate, and more strategic staffing solutions.",
+
+      sections: [
+        {
+          heading: "Modern Staffing Approach",
+          paragraph:
+            "Recruitment is becoming more strategic and aligned with business goals.",
+          points: [
+            "Focus on quality over quantity.",
+            "Use of data-driven hiring decisions.",
+            "Better candidate matching.",
+            "Faster recruitment cycles.",
+          ],
+        },
+        {
+          heading: "Challenges Solved",
+          paragraph:
+            "Modern staffing solutions address common hiring problems.",
+          points: [
+            "Reduces hiring delays.",
+            "Minimizes skill mismatch.",
+            "Improves employee retention.",
+            "Enhances hiring accuracy.",
+          ],
+        },
+      ],
+
+      keyTakeaways: [
+        "Smarter hiring improves results.",
+        "Speed is critical in hiring.",
+        "Better fit = long-term success.",
+        "Data-driven hiring is the future.",
+      ],
     },
-    {
-      id: 4,
-      title: "How Data-Driven Decision Making Improves Business Performance?",
-      summary:
-        "Data-driven decision making helps businesses improve planning, reduce guesswork, and make smarter strategic decisions.",
-      content: {
-        introduction:
-          "Using data helps organizations make better decisions based on facts instead of assumptions.",
-        sections: [
-          {
-            heading: "Why Data Matters?",
-            paragraph:
-              "Data provides clarity and insights for better decision-making.",
-            points: [
-              "Identifies trends.",
-              "Improves planning.",
-              "Reduces guesswork.",
-              "Enhances visibility.",
-            ],
-          },
-          {
-            heading: "Business Impact",
-            paragraph:
-              "Data improves performance across departments.",
-            points: [
-              "Better marketing decisions.",
-              "Improved HR strategies.",
-              "Accurate financial planning.",
-              "Efficient operations.",
-            ],
-          },
-        ],
-        keyTakeaways: [
-          "Improves decision quality.",
-          "Supports planning.",
-          "Enhances efficiency.",
-          "Drives growth.",
-        ],
-      },
+  },
+
+  {
+    id: 4,
+    title: "Why Financial Accuracy Matters",
+    summary:
+      "Accurate financial systems help businesses make better decisions, manage risks, and maintain stability.",
+    content: {
+      introduction:
+        "Financial clarity is essential for business growth. Without accurate financial data, companies struggle to plan, invest, and scale effectively.",
+
+      sections: [
+        {
+          heading: "Importance of Financial Accuracy",
+          paragraph:
+            "Strong financial systems provide stability and control.",
+          points: [
+            "Improves cash flow visibility.",
+            "Supports better budgeting.",
+            "Ensures compliance with regulations.",
+            "Reduces financial risks.",
+          ],
+        },
+        {
+          heading: "Business Benefits",
+          paragraph:
+            "Accurate finance directly impacts decision-making.",
+          points: [
+            "Better investment decisions.",
+            "Improved profitability tracking.",
+            "Stronger financial planning.",
+            "Reduced errors and losses.",
+          ],
+        },
+      ],
+
+      keyTakeaways: [
+        "Accuracy builds trust and control.",
+        "Better data = better decisions.",
+        "Finance impacts every business area.",
+        "Clarity reduces risk.",
+      ],
     },
-    {
-      id: 5,
-      title: "The Role of Automation in Improving Business Efficiency",
-      summary:
-        "Automation helps businesses reduce manual work, improve accuracy, and increase productivity.",
-      content: {
-        introduction:
-          "Automation reduces repetitive manual tasks and allows businesses to focus on strategic work.",
-        sections: [
-          {
-            heading: "What is Business Automation?",
-            paragraph:
-              "Automation uses technology to perform tasks with minimal human effort.",
-            points: [
-              "Reduces manual work.",
-              "Improves accuracy.",
-              "Enhances workflow efficiency.",
-              "Saves time.",
-            ],
-          },
-          {
-            heading: "Where Automation is Used?",
-            paragraph:
-              "Automation is applied across various business functions.",
-            points: [
-              "Customer support through chatbots and automated responses.",
-              "HR processes such as resume screening and onboarding workflows.",
-              "Finance tasks like invoicing, billing, and reporting.",
-              "Marketing automation for campaigns and engagement tracking.",
-            ],
-          },
-        ],
-        keyTakeaways: [
-          "Improves productivity.",
-          "Reduces errors.",
-          "Saves time.",
-          "Supports scalability.",
-        ],
-      },
+  },
+
+  {
+    id: 5,
+    title: "Scalable Support for Growing Teams",
+    summary:
+      "As businesses grow, scalable systems help maintain efficiency without slowing down operations.",
+    content: {
+      introduction:
+        "Growth brings challenges. Without scalable support systems, businesses face delays, inefficiencies, and operational pressure.",
+
+      sections: [
+        {
+          heading: "Why Scalability Matters",
+          paragraph:
+            "Systems should grow with the business, not limit it.",
+          points: [
+            "Handles increased workload smoothly.",
+            "Prevents operational bottlenecks.",
+            "Maintains service quality.",
+            "Supports team expansion.",
+          ],
+        },
+        {
+          heading: "Operational Impact",
+          paragraph:
+            "Scalable support improves overall business performance.",
+          points: [
+            "Better workflow management.",
+            "Reduced pressure on teams.",
+            "Improved efficiency.",
+            "Faster response times.",
+          ],
+        },
+      ],
+
+      keyTakeaways: [
+        "Scalability supports growth.",
+        "Efficiency increases with systems.",
+        "Reduces operational stress.",
+        "Improves long-term performance.",
+      ],
     },
-    {
-      id: 6,
-      title: "The Importance of Customer Experience in Business Success",
-      summary:
-        "Customer experience plays a major role in satisfaction, loyalty, and long-term business success.",
-      content: {
-        introduction:
-          "Customer experience has become a key factor in business success, especially in competitive markets.",
-        sections: [
-          {
-            heading: "What Defines Customer Experience?",
-            paragraph:
-              "Customer experience is based on interactions across all touchpoints.",
-            points: [
-              "Includes all customer interactions.",
-              "Depends on service quality.",
-              "Reflects business understanding.",
-              "Builds trust.",
-            ],
-          },
-          {
-            heading: "Why It Matters?",
-            paragraph:
-              "Good customer experience drives growth.",
-            points: [
-              "Increases retention.",
-              "Builds loyalty.",
-              "Improves reputation.",
-              "Attracts new customers.",
-            ],
-          },
-        ],
-        keyTakeaways: [
-          "Improves customer loyalty.",
-          "Builds strong relationships.",
-          "Enhances brand value.",
-          "Supports long-term growth.",
-        ],
-      },
+  },
+
+  {
+    id: 6,
+    title: "Data-Driven Marketing Creates Impact",
+    summary:
+      "Modern marketing uses data to improve targeting, engagement, and overall campaign performance.",
+    content: {
+      introduction:
+        "Marketing today is not guesswork. Businesses rely on data to understand customers, improve campaigns, and maximize results.",
+
+      sections: [
+        {
+          heading: "Why Data Matters in Marketing",
+          paragraph:
+            "Data helps businesses make smarter marketing decisions.",
+          points: [
+            "Tracks customer behavior.",
+            "Improves targeting accuracy.",
+            "Measures campaign performance.",
+            "Optimizes marketing strategies.",
+          ],
+        },
+        {
+          heading: "Business Benefits",
+          paragraph:
+            "Data-driven marketing leads to better outcomes.",
+          points: [
+            "Higher engagement rates.",
+            "Better ROI on campaigns.",
+            "Improved customer understanding.",
+            "Stronger brand positioning.",
+          ],
+        },
+      ],
+
+      keyTakeaways: [
+        "Data improves marketing results.",
+        "Better targeting = better engagement.",
+        "Decisions become smarter.",
+        "Marketing becomes measurable.",
+      ],
     },
-  ];
+  },
+];
 
   const insight = insightsDetails.find((item) => item.id === parseInt(id, 10));
 
