@@ -45,7 +45,6 @@ function InsightDetail() {
         ],
       },
     },
-
     {
       id: 2,
       title: "The Growing Importance of Strategic Staffing Solutions",
@@ -86,7 +85,6 @@ function InsightDetail() {
         ],
       },
     },
-
     {
       id: 3,
       title: "Why IT Services Are Essential for Scalable Business Operations?",
@@ -127,7 +125,6 @@ function InsightDetail() {
         ],
       },
     },
-
     {
       id: 4,
       title: "How Data-Driven Decision Making Improves Business Performance?",
@@ -168,7 +165,6 @@ function InsightDetail() {
         ],
       },
     },
-
     {
       id: 5,
       title: "The Role of Automation in Improving Business Efficiency",
@@ -209,7 +205,6 @@ function InsightDetail() {
         ],
       },
     },
-
     {
       id: 6,
       title: "The Importance of Customer Experience in Business Success",
@@ -252,7 +247,13 @@ function InsightDetail() {
     },
   ];
 
-  const insight = insightsDetails.find((item) => item.id === parseInt(id));
+  const insight = insightsDetails.find((item) => item.id === parseInt(id, 10));
+
+  const handleBackToHome = () => {
+    navigate("/", {
+      state: { scrollToInsights: true },
+    });
+  };
 
   if (!insight) {
     return (
@@ -262,11 +263,7 @@ function InsightDetail() {
           <p className="insight-detail-summary">
             The insight you are looking for does not exist.
           </p>
-          <button className="back-btn" onClick={() =>
-            navigate("/", {
-              state: { scrollToInsights: true },
-            })
-            }>
+          <button className="back-btn" onClick={handleBackToHome}>
             ← Back to Home
           </button>
         </div>
@@ -312,11 +309,7 @@ function InsightDetail() {
           </div>
         </div>
 
-        <button className="back-btn" onClick={() =>
-            navigate("/", {
-              state: { scrollToInsights: true },
-            })
-            }>
+        <button className="back-btn" onClick={handleBackToHome}>
           ← Back to Home
         </button>
       </div>

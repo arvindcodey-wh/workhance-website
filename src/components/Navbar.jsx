@@ -1,11 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/workhance_logo.png";
+import { useState } from "react";
+import GetStartedModal from "./GetStartedModal";
 
 function Navbar() {
   const location = useLocation();
-  const navigate = useNavigate();
-
   const isActive = (path) => location.pathname === path;
+  const [showGetStartedModal, setShowGetStartedModal] = useState(false);
 
   return (
     <nav className="navbar">
@@ -22,13 +23,19 @@ function Navbar() {
           <Link to="/careers" className={isActive("/careers") ? "active" : ""}>Careers</Link>
           <Link to="/contact" className={isActive("/contact") ? "active" : ""}>Contact</Link>
         </div>
-
+        
         <button
           className="nav-btn"
-          onClick={() => navigate("/services")}
+          onClick={() => setShowGetStartedModal(true)}
         >
           Get Started
         </button>
+        
+        <GetStartedModal
+        isOpen={showGetStartedModal}
+        onClose={() => setShowGetStartedModal(false)}
+        />
+
       </div>
     </nav>
   );

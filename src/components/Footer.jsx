@@ -6,14 +6,13 @@ function Footer() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleServiceClick = (serviceId) => {
-    navigate("/", {
-      state: {
-        scrollToServices: true,
-        openService: serviceId,
-      },
-    });
-  };
+const handleServiceClick = (serviceId) => {
+  navigate("/services", {
+    state: {
+      openService: serviceId,
+    },
+  });
+};
 
   const handleQuickLinkClick = (path) => {
     if (location.pathname === path) {

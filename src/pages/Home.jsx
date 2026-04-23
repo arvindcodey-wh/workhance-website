@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ServicesOverview from "../components/ServicesOverview";
-import GlobalClients from "../components/GlobalClients";
 import hero1 from "../assets/hero1.png";
 import hero2 from "../assets/hero2.jpg";
+import GlobalReach from "../components/GlobalReach";
 
 function Home() {
   const images = [hero1, hero2];
@@ -13,7 +13,10 @@ function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
-  const [currentInsightPage, setCurrentInsightPage] = useState(0);
+
+  // ✅ UPDATED INSIGHTS STATE
+  const [currentInsightIndex, setCurrentInsightIndex] = useState(1);
+  const [isInsightTransitioning, setIsInsightTransitioning] = useState(true);
 
   const testimonials = [
     {
@@ -78,14 +81,15 @@ function Home() {
   ];
 
   const loopedTestimonials = [...testimonials, testimonials[0]];
-  const insightsPerPage = 3;
-  const totalInsightPages = Math.ceil(insights.length / insightsPerPage);
 
-  const visibleInsights = insights.slice(
-    currentInsightPage * insightsPerPage,
-    currentInsightPage * insightsPerPage + insightsPerPage
-  );
+  // ✅ NEW LOOPED INSIGHTS
+  const loopedInsights = [
+    insights[insights.length - 1],
+    ...insights,
+    insights[0],
+  ];
 
+  // ---------------- HERO ----------------
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -94,21 +98,25 @@ function Home() {
     return () => clearInterval(interval);
   }, [images.length]);
 
+  // ---------------- SCROLL ----------------
   useEffect(() => {
-  if (location.state?.scrollToInsights) {
-    const section = document.getElementById("industry-insights");
-
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+    if (location.state?.scrollToInsights) {
+      document.getElementById("industry-insights")?.scrollIntoView({ behavior: "smooth" });
     }
-  }
-}, [location]);
+  }, [location]);
 
+  useEffect(() => {
+    if (location.state?.scrollToServices) {
+      document.getElementById("core-services")?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [location]);
+
+  // ---------------- TESTIMONIALS ----------------
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => prev + 1);
       setIsTransitioning(true);
-    }, 6000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, []);
@@ -126,39 +134,50 @@ function Home() {
 
   useEffect(() => {
     if (!isTransitioning) {
-      const id = setTimeout(() => {
-        setIsTransitioning(true);
-      }, 50);
-
+      const id = setTimeout(() => setIsTransitioning(true), 50);
       return () => clearTimeout(id);
     }
   }, [isTransitioning]);
 
+  // ---------------- INSIGHTS ARROWS ----------------
+  const handleNextInsight = () => {
+    if (!isInsightTransitioning) return;
+    setCurrentInsightIndex((prev) => prev + 1);
+  };
+
+  const handlePrevInsight = () => {
+    if (!isInsightTransitioning) return;
+    setCurrentInsightIndex((prev) => prev - 1);
+  };
+
   useEffect(() => {
-    if (location.state?.scrollToServices) {
-      const section = document.getElementById("core-services");
-
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
+    if (currentInsightIndex === loopedInsights.length - 1) {
+      const timeout = setTimeout(() => {
+        setIsInsightTransitioning(false);
+        setCurrentInsightIndex(1);
+      }, 600);
+      return () => clearTimeout(timeout);
     }
-  }, [location]);
 
-  const handleNextInsights = () => {
-    if (currentInsightPage < totalInsightPages - 1) {
-      setCurrentInsightPage((prev) => prev + 1);
+    if (currentInsightIndex === 0) {
+      const timeout = setTimeout(() => {
+        setIsInsightTransitioning(false);
+        setCurrentInsightIndex(insights.length);
+      }, 600);
+      return () => clearTimeout(timeout);
     }
-  };
+  }, [currentInsightIndex, loopedInsights.length, insights.length]);
 
-  const handlePrevInsights = () => {
-    if (currentInsightPage > 0) {
-      setCurrentInsightPage((prev) => prev - 1);
+  useEffect(() => {
+    if (!isInsightTransitioning) {
+      const id = setTimeout(() => setIsInsightTransitioning(true), 50);
+      return () => clearTimeout(id);
     }
-  };
+  }, [isInsightTransitioning]);
 
+  // ---------------- HELPER ----------------
   const renderHighlightedText = (text, highlight) => {
     const parts = text.split(highlight);
-
     return (
       <>
         {parts[0]}
@@ -170,7 +189,7 @@ function Home() {
 
   return (
     <div className="home-container">
-      {/* Hero Banner Img */}
+      {/* HERO */}
       <section className="hero-section">
         <div className="hero-slider">
           {images.map((img, index) => (
@@ -183,86 +202,47 @@ function Home() {
           ))}
         </div>
 
-        <div className="hero-overlay">
-          <div className="hero-content">
-            <h1>Smart Solutions for Growing Businesses</h1>
+        <div className="hero-content">
+          <div className="hero-overlay"></div>
+          <h1>Smart Solutions for Growing Businesses</h1>
 
-            <p>
-              Work Hance delivers reliable support across technology,
-              talent, finance, and marketing—helping businesses operate
-              smarter, scale faster, and grow with confidence.
-            </p>
+          <p>
+            Work Hance delivers reliable support across technology,
+            talent, finance, and marketing—helping businesses operate
+            smarter, scale faster, and grow with confidence.
+          </p>
 
-            <div className="hero-buttons">
-              <button
-                className="primary-btn"
-                onClick={() =>
-                  document
-                    .getElementById("core-services")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-              >
-                Explore Services
-              </button>
+          <div className="hero-buttons">
+            <button
+              className="primary-btn"
+              onClick={() =>
+                document.getElementById("core-services")?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              Explore Services
+            </button>
 
-              <a
-                href="workhance-brochure.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="secondary-btn"
-              >
-                Download Brochure
-              </a>
-            </div>
+            <a
+              href="workhance-brochure.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="secondary-btn"
+            >
+              Download Brochure
+            </a>
           </div>
         </div>
       </section>
 
       <div className="container">
-        {/* Global Section */}
-        <GlobalClients />
+        <GlobalReach />
 
-        {/* Services Overview */}
         <div id="core-services">
           <ServicesOverview initialOpenService={location.state?.openService} />
         </div>
 
-        {/* Dashboard Content */}
-        <section className="dashboard-section">
-          <div className="section-heading">
-            <h2>Our Impact in Numbers</h2>
-          </div>
-
-          <div className="dashboard-grid">
-            <div className="dashboard-card">
-              <h3>120+</h3>
-              <h4>Clients Served</h4>
-              <p>Trusted by businesses across multiple sectors with reliable support.</p>
-            </div>
-
-            <div className="dashboard-card">
-              <h3>300+</h3>
-              <h4>Successful Placements</h4>
-              <p>Helping organizations build stronger teams with the right talent.</p>
-            </div>
-
-            <div className="dashboard-card">
-              <h3>95%</h3>
-              <h4>Client Satisfaction</h4>
-              <p>Focused on quality delivery, responsiveness, and long-term value.</p>
-            </div>
-
-            <div className="dashboard-card">
-              <h3>10+</h3>
-              <h4>Countries Reached</h4>
-              <p>Supporting global clients with scalable and dependable services.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Insight Outside Content */}
-        <section className="insights-section"
-        id="industry-insights">
+        {/* INSIGHTS */}
+        <section className="insights-section" id="industry-insights">
           <div className="section-heading no-line">
             <h2>Industry Insights</h2>
             <p>
@@ -270,46 +250,45 @@ function Home() {
             </p>
           </div>
 
-          {/* Insight Details Inside Content */}
-          <div className="insights-slider-wrapper">
-            <button
-              className="insight-arrow left-arrow"
-              onClick={handlePrevInsights}
-              disabled={currentInsightPage === 0}
-              aria-label="Previous insights"
-            >
+          <div className="insight-slider-wrapper-single">
+            <button className="insight-arrow-single" onClick={handlePrevInsight}>
               &#10094;
             </button>
 
-            <div className="insights-grid">
-              {visibleInsights.map((insight) => (
-                <div className="insight-card" key={insight.id}>
-                  <span className="insight-tag">{insight.tag}</span>
-                  <h3>{insight.title}</h3>
-                  <p>{insight.text}</p>
+            <div className="insight-slider-single">
+              <div
+                className="insight-slider-track-single"
+                style={{
+                  transform: `translateX(-${currentInsightIndex * 100}%)`,
+                  transition: isInsightTransitioning ? "transform 0.6s ease-in-out" : "none",
+                }}
+              >
+                {loopedInsights.map((insight, index) => (
+                  <div className="insight-slide-single" key={`${insight.id}-${index}`}>
+                    <div className="insight-card">
+                      <span className="insight-tag">{insight.tag}</span>
+                      <h3>{insight.title}</h3>
+                      <p>{insight.text}</p>
 
-                  <button
-                    className="insight-link-btn"
-                    onClick={() => navigate(`/insights/${insight.id}`)}
-                  >
-                    Read More
-                  </button>
-                </div>
-              ))}
+                      <button
+                        className="insight-link-btn"
+                        onClick={() => navigate(`/insights/${insight.id}`)}
+                      >
+                        Read More
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <button
-              className="insight-arrow right-arrow"
-              onClick={handleNextInsights}
-              disabled={currentInsightPage === totalInsightPages - 1}
-              aria-label="Next insights"
-            >
+            <button className="insight-arrow-single" onClick={handleNextInsight}>
               &#10095;
             </button>
           </div>
         </section>
 
-        {/* Testimonials */}
+        {/* TESTIMONIALS */}
         <section className="testimonials-section">
           <h2>What Our Clients Say</h2>
 
@@ -325,13 +304,7 @@ function Home() {
                 <div className="testimonial-slide" key={index}>
                   <div className="testimonial-card testimonial-slider-card">
                     <div className="stars">⭐⭐⭐⭐⭐</div>
-
-                    <p>
-                      {renderHighlightedText(
-                        testimonial.text,
-                        testimonial.highlight
-                      )}
-                    </p>
+                    <p>{renderHighlightedText(testimonial.text, testimonial.highlight)}</p>
                   </div>
                 </div>
               ))}
@@ -342,15 +315,12 @@ function Home() {
                 <button
                   key={index}
                   className={`testimonial-dot ${
-                    currentTestimonial % testimonials.length === index
-                      ? "active-dot"
-                      : ""
+                    currentTestimonial % testimonials.length === index ? "active-dot" : ""
                   }`}
                   onClick={() => {
                     setIsTransitioning(true);
                     setCurrentTestimonial(index);
                   }}
-                  aria-label={`Go to testimonial ${index + 1}`}
                 ></button>
               ))}
             </div>
@@ -359,17 +329,10 @@ function Home() {
 
         {/* CTA */}
         <section className="home-cta">
-          <h2>Let’s Talk</h2>
-
-          <p>
-            Connect with us to discuss the right support for your business.
-          </p>
-
+          <h2>Let's Talk</h2>
+          <p>Connect with us to discuss the right support for your business.</p>
           <div className="cta-buttons">
-            <button
-              className="primary-btn"
-              onClick={() => navigate("/contact")}
-            >
+            <button className="primary-btn" onClick={() => navigate("/contact")}>
               Get in Touch
             </button>
           </div>
