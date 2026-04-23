@@ -1,4 +1,5 @@
 import { useState } from "react";
+import contactBannerImg from "../assets/contact-banner.png";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -144,13 +145,21 @@ function Contact() {
 
   return (
     <div className="contact-container">
-      <div className="container">
-        <h1 className="contact-title">Contact Us</h1>
+        
+        <section className="contact-banner"
+        style={{ backgroundImage: `url(${contactBannerImg})` }}
+>
+  <div className="contact-banner-overlay">
+    <h1>Contact Us</h1>
+    <p>
+      Have a question or want to connect with us? Fill out the form below
+      and our team will get back to you.
+    </p>
+  </div>
+</section>
 
-        <p className="contact-subtitle">
-          Have a question or want to connect with us? Fill out the form below
-          and our team will get back to you.
-        </p>
+      <div className="container">
+        
         <section className="contact-quick">
           <a href="tel:+13322871906" className="quick-card quick-card-link">
     <span>📞 Speak to our team</span>

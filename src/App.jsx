@@ -7,6 +7,7 @@ import About from "./pages/About Us";
 import Services from "./pages/Services";
 import Career from "./pages/Career";
 import Contact from "./pages/Contact";
+import InsightDetail from "./pages/InsightDetail";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/career" element={<Career />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/insights/:id" element={<InsightDetail />} />
+
       </Routes>
       <Footer />
     </BrowserRouter>
