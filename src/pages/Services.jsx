@@ -68,12 +68,6 @@ function Services() {
         {activeService && (
           <div className="modal-overlay">
             <div className="modal-content large">
-              <button
-                className="modal-close"
-                onClick={() => setActiveService(null)}
-              >
-                ✕
-              </button>
 
               {(() => {
                 const PopupIcon = activeService.icon;
@@ -152,21 +146,25 @@ function Services() {
                   ))}
                 </div>
               </div>
-
+              
               <div className="modal-cta">
-                <button
-                  className="primary-btn"
-                  onClick={() =>
-                    navigate("/contact", {
-                      state: {
-                        service: activeService.title,
-                      },
-                    })
-                  }
-                >
-                  Talk to an Expert
+                <button className="primary-btn"
+                onClick={() => navigate("/contact", {
+                  state: {
+                    service: activeService.title,
+                  },
+                })
+              }
+              >
+                Talk to an Expert
                 </button>
-              </div>
+                
+                <button className="secondary-btn-outline"
+                onClick={() => setActiveService(null)}
+                >
+                  Close
+                  </button>
+                  </div>
             </div>
           </div>
         )}

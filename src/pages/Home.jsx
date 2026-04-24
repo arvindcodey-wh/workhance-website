@@ -14,10 +14,6 @@ function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
 
-  // ✅ UPDATED INSIGHTS STATE
-  const [currentInsightIndex, setCurrentInsightIndex] = useState(1);
-  const [isInsightTransitioning, setIsInsightTransitioning] = useState(true);
-
   const testimonials = [
     {
       text: "Work Hance has been instrumental in helping us scale our operations. Their team understands our requirements deeply and delivers high-quality solutions consistently. Highly recommended!",
@@ -81,15 +77,8 @@ function Home() {
   ];
 
   const loopedTestimonials = [...testimonials, testimonials[0]];
+  const loopedInsights = [...insights, ...insights];
 
-  // ✅ NEW LOOPED INSIGHTS
-  const loopedInsights = [
-    insights[insights.length - 1],
-    ...insights,
-    insights[0],
-  ];
-
-  // ---------------- HERO ----------------
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -98,20 +87,22 @@ function Home() {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // ---------------- SCROLL ----------------
   useEffect(() => {
     if (location.state?.scrollToInsights) {
-      document.getElementById("industry-insights")?.scrollIntoView({ behavior: "smooth" });
+      document
+        .getElementById("industry-insights")
+        ?.scrollIntoView({ behavior: "smooth" });
     }
   }, [location]);
 
   useEffect(() => {
     if (location.state?.scrollToServices) {
-      document.getElementById("core-services")?.scrollIntoView({ behavior: "smooth" });
+      document
+        .getElementById("core-services")
+        ?.scrollIntoView({ behavior: "smooth" });
     }
   }, [location]);
 
-  // ---------------- TESTIMONIALS ----------------
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => prev + 1);
@@ -139,43 +130,6 @@ function Home() {
     }
   }, [isTransitioning]);
 
-  // ---------------- INSIGHTS ARROWS ----------------
-  const handleNextInsight = () => {
-    if (!isInsightTransitioning) return;
-    setCurrentInsightIndex((prev) => prev + 1);
-  };
-
-  const handlePrevInsight = () => {
-    if (!isInsightTransitioning) return;
-    setCurrentInsightIndex((prev) => prev - 1);
-  };
-
-  useEffect(() => {
-    if (currentInsightIndex === loopedInsights.length - 1) {
-      const timeout = setTimeout(() => {
-        setIsInsightTransitioning(false);
-        setCurrentInsightIndex(1);
-      }, 600);
-      return () => clearTimeout(timeout);
-    }
-
-    if (currentInsightIndex === 0) {
-      const timeout = setTimeout(() => {
-        setIsInsightTransitioning(false);
-        setCurrentInsightIndex(insights.length);
-      }, 600);
-      return () => clearTimeout(timeout);
-    }
-  }, [currentInsightIndex, loopedInsights.length, insights.length]);
-
-  useEffect(() => {
-    if (!isInsightTransitioning) {
-      const id = setTimeout(() => setIsInsightTransitioning(true), 50);
-      return () => clearTimeout(id);
-    }
-  }, [isInsightTransitioning]);
-
-  // ---------------- HELPER ----------------
   const renderHighlightedText = (text, highlight) => {
     const parts = text.split(highlight);
     return (
@@ -189,7 +143,6 @@ function Home() {
 
   return (
     <div className="home-container">
-      {/* HERO */}
       <section className="hero-section">
         <div className="hero-slider">
           {images.map((img, index) => (
@@ -216,32 +169,33 @@ function Home() {
             <button
               className="primary-btn"
               onClick={() =>
-                document.getElementById("core-services")?.scrollIntoView({ behavior: "smooth" })
+                document
+                  .getElementById("core-services")
+                  ?.scrollIntoView({ behavior: "smooth" })
               }
             >
               Explore Services
             </button>
-
+            
             <a
-              href="workhance-brochure.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="secondary-btn"
+            href="/WorkHance-Brochure.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="secondary-btn"
             >
               Download Brochure
-            </a>
+              </a>
           </div>
         </div>
       </section>
 
-      <div className="container">
+           <div className="container">
         <GlobalReach />
 
         <div id="core-services">
           <ServicesOverview initialOpenService={location.state?.openService} />
         </div>
 
-        {/* INSIGHTS */}
         <section className="insights-section" id="industry-insights">
           <div className="section-heading no-line">
             <h2>Industry Insights</h2>
@@ -250,45 +204,28 @@ function Home() {
             </p>
           </div>
 
-          <div className="insight-slider-wrapper-single">
-            <button className="insight-arrow-single" onClick={handlePrevInsight}>
-              &#10094;
-            </button>
+          <div className="insight-slider-multi">
+            <div className="insight-slider-track-multi">
+              {loopedInsights.map((insight, index) => (
+                <div className="insight-slide-multi" key={`${insight.id}-${index}`}>
+                  <div className="insight-card">
+                    <span className="insight-tag">{insight.tag}</span>
+                    <h3>{insight.title}</h3>
+                    <p>{insight.text}</p>
 
-            <div className="insight-slider-single">
-              <div
-                className="insight-slider-track-single"
-                style={{
-                  transform: `translateX(-${currentInsightIndex * 100}%)`,
-                  transition: isInsightTransitioning ? "transform 0.6s ease-in-out" : "none",
-                }}
-              >
-                {loopedInsights.map((insight, index) => (
-                  <div className="insight-slide-single" key={`${insight.id}-${index}`}>
-                    <div className="insight-card">
-                      <span className="insight-tag">{insight.tag}</span>
-                      <h3>{insight.title}</h3>
-                      <p>{insight.text}</p>
-
-                      <button
-                        className="insight-link-btn"
-                        onClick={() => navigate(`/insights/${insight.id}`)}
-                      >
-                        Read More
-                      </button>
-                    </div>
+                    <button
+                      className="insight-link-btn"
+                      onClick={() => navigate(`/insights/${insight.id}`)}
+                    >
+                      Read More
+                    </button>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-
-            <button className="insight-arrow-single" onClick={handleNextInsight}>
-              &#10095;
-            </button>
           </div>
         </section>
 
-        {/* TESTIMONIALS */}
         <section className="testimonials-section">
           <h2>What Our Clients Say</h2>
 
@@ -304,7 +241,12 @@ function Home() {
                 <div className="testimonial-slide" key={index}>
                   <div className="testimonial-card testimonial-slider-card">
                     <div className="stars">⭐⭐⭐⭐⭐</div>
-                    <p>{renderHighlightedText(testimonial.text, testimonial.highlight)}</p>
+                    <p>
+                      {renderHighlightedText(
+                        testimonial.text,
+                        testimonial.highlight
+                      )}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -315,7 +257,9 @@ function Home() {
                 <button
                   key={index}
                   className={`testimonial-dot ${
-                    currentTestimonial % testimonials.length === index ? "active-dot" : ""
+                    currentTestimonial % testimonials.length === index
+                      ? "active-dot"
+                      : ""
                   }`}
                   onClick={() => {
                     setIsTransitioning(true);
@@ -327,7 +271,6 @@ function Home() {
           </div>
         </section>
 
-        {/* CTA */}
         <section className="home-cta">
           <h2>Let's Talk</h2>
           <p>Connect with us to discuss the right support for your business.</p>

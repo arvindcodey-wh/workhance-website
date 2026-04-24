@@ -67,7 +67,10 @@ function GetStartedModal({ isOpen, onClose }) {
 
         <div className="get-started-services-list">
           {services.map((service, index) => (
-            <div className="get-started-service-item" key={index}>
+            <div className="get-started-service-item" key={index}
+            onClick={() =>
+              handleOpenSpecificService(service.key)}
+            >
               <div className="get-started-service-content">
                 <div className="get-started-service-title">
                   <span className="get-started-service-icon">{service.icon}</span>
