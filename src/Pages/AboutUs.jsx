@@ -20,6 +20,7 @@ import {
 import Leaders from "../Components/Leaders";
 import AboutUsDetail from "../Components/AboutUsDetail";
 import { sections, services, features } from "../utils/AboutUsData";
+import VisionMissionCard from "../Components/VisionMissionCard";
 function AboutUs() {
   return (
     <div className="min-h-screen bg-white">
@@ -225,67 +226,7 @@ function AboutUs() {
           </div>
         </section>
 
-        <section className="py-20 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
-          {/* Vision Card */}
-          <div className="group relative p-10 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:border-blue-100 transition-all duration-500 overflow-hidden">
-            {/* Decorative background element */}
-            <div className="absolute -right-8 -top-8 w-32 h-32 bg-blue-50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110" />
-
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 bg-blue-600 rounded-2xl text-white shadow-lg shadow-blue-200">
-                  <Eye className="w-8 h-8" />
-                </div>
-                <h3 className="text-3xl font-extrabold text-gray-900 tracking-tight">
-                  Our <span className="text-blue-600">Vision</span>
-                </h3>
-              </div>
-
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                To establish{" "}
-                <span className="font-semibold text-gray-800">Work Hance</span>{" "}
-                as a globally recognized leader in business solutions and
-                outsourcing, delivering innovative and high-performance services
-                that redefine industry standards.
-              </p>
-
-              <div className="flex items-center text-blue-600 font-medium text-sm group-hover:translate-x-2 transition-transform">
-                Future-Ready Strategy <ArrowUpRight className="ml-2 w-4 h-4" />
-              </div>
-            </div>
-          </div>
-
-          {/* Mission Card */}
-          <div className="group relative p-10 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:border-blue-100 transition-all duration-500 overflow-hidden">
-            {/* Decorative background element */}
-            <div className="absolute -right-8 -top-8 w-32 h-32 bg-blue-50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110" />
-
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 bg-blue-600 rounded-2xl text-white shadow-lg shadow-blue-200">
-                  <Target className="w-8 h-8" />
-                </div>
-                <h3 className="text-3xl font-extrabold text-gray-900 tracking-tight">
-                  Our <span className="text-blue-600">Mission</span>
-                </h3>
-              </div>
-
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                To empower businesses by providing reliable, cost-effective, and
-                result-driven solutions across{" "}
-                <span className="font-semibold text-gray-800">
-                  Staffing, Technology, and Finance
-                </span>
-                , ensuring our clients achieve sustainable growth.
-              </p>
-
-              <div className="flex items-center text-blue-600 font-medium text-sm group-hover:translate-x-2 transition-transform">
-                Results-Driven Approach{" "}
-                <ArrowUpRight className="ml-2 w-4 h-4" />
-              </div>
-            </div>
-          </div>
-        </section>
+        <VisionMissionCard></VisionMissionCard>
         <AboutUsDetail index={3} item={sections[3]}></AboutUsDetail>
       </div>
       <Leaders></Leaders>

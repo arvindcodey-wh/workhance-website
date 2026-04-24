@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { sections } from "../utils/AboutUsData";
+import DetailedStory from "./DetailedStory";
 function AboutUsDetail({ index, item }) {
-  
+  const [isLearnMore,setIsLearnMore]=useState(false)
   return (
     <div
       key={item.id}
@@ -35,6 +36,13 @@ function AboutUsDetail({ index, item }) {
           <p className="text-lg text-slate-600 leading-relaxed font-light">
             {item.content}
           </p>
+          {index==0 && <button onClick={()=>{
+            setIsLearnMore(true)
+          }} className="bg-sky-600 text-white px-4 py-2 rounded-xl active:scale-90 transition-all duration-500 font-medium ease-in-out"
+          >
+            Learn More
+          </button>
+          }
 
           {/* Decorative Divider */}
           <div className="w-12 h-1 bg-sky-500/20 rounded-full"></div>
@@ -69,7 +77,7 @@ function AboutUsDetail({ index, item }) {
             <div className="flex flex-col items-start gap-2 mt-2">
             {sections[index]?.cardContent?.map((one, ind) => {
               return (
-                <div className="flex  items-center gap-2">
+                <div key={ind} className="flex  items-center gap-2">
                   <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-black group-hover:bg-peach-500 transition-colors inline-block" />
 
                   {/* The Text Content */}
@@ -84,6 +92,7 @@ function AboutUsDetail({ index, item }) {
           </div>
         </div>
       </div>
+      <DetailedStory isLearnMore={isLearnMore} setIsLearnMore={setIsLearnMore}></DetailedStory>
     </div>
   );
 }

@@ -18,7 +18,7 @@ const sections = [
     title: "Our Story",
     tagline: "Bridging Ambition and Opportunity",
     content:
-      "Incorporated in August 2025, Work Hance LLP was established with a mission to redefine professional service standards in India. From our headquarters in New York, we began as a vision to simplify complex business processes, growing rapidly into a trusted partner for firms seeking operational excellence and strategic growth.",
+      "Work Hance was founded with a clear vision — to simplify complex business challenges and elevate professional service standards.Incorporated in August 2025, Work Hance LLP was established with a mission to redefine professional service standards in India. From our headquarters in New York, we began as a vision to simplify complex business processes, growing rapidly into a trusted partner for firms seeking operational excellence and strategic growth.Today, Work Hance has evolved into a multi-service organization delivering integrated solutions across Staffing, Technology, Finance, and Digital Marketing — helping businesses achieve efficient operations and scalable success.",
     cardContent: [
       "Founded in August 2025",
       "Headquartered in New York",

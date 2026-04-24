@@ -242,7 +242,7 @@ function ApplicationForm() {
                 type="text"
               />
               {errors.last_name && (
-                <p className="text-red-500 text-sm mt-1">{errors.first_name}</p>
+                <p className="text-red-500 text-sm mt-1">{errors.last_name}</p>
               )}
             </div>
           </div>
@@ -276,10 +276,14 @@ function ApplicationForm() {
                 country={"in"}
                 value={applicantData.phone}
                 onChange={(phone) =>
+                 {
+                  console.log(phone);
                   setApplicantData((prev) => ({
+                    
                     ...prev,
                     phone: "+" + phone, // ✅ ADD +
                   }))
+                 }
                 }
                 inputClass="!w-full !py-3 !pl-14 !rounded-xl"
                 containerClass="w-full"
