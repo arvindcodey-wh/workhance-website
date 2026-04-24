@@ -42,31 +42,31 @@ function Home() {
       id: 1,
       tag: "Hiring Trends",
       title: "Top Hiring Trends in 2026",
-      text: "Businesses are prioritizing agility, skill-based hiring, and faster recruitment processes to stay competitive.",
+      text: "Businesses are prioritizing agility, skill-based hiring, and faster recruitment processes to stay competitive, while also building teams that can adapt to changing market demands."
     },
     {
       id: 2,
       tag: "IT Strategy",
-      title: "Why IT Solutions Drive Business Growth",
+      title: "Why IT Solutions Drive Business Growth?",
       text: "Modern IT support enables smoother operations, stronger digital presence, and better long-term scalability.",
     },
     {
       id: 3,
       tag: "Staffing",
       title: "The Future of RPO & Staffing",
-      text: "Recruitment support is evolving toward smarter sourcing, better candidate quality, and faster turnaround.",
+      text: "Recruitment support is evolving toward smarter sourcing, better candidate quality, and faster turnaround, helping organizations build stronger teams with improved hiring efficiency.",
     },
     {
       id: 4,
       tag: "Finance",
-      title: "Why Financial Accuracy Matters",
+      title: "Why Financial Accuracy Matters?",
       text: "Strong finance and accounting support helps businesses improve compliance, cash flow visibility, and decision-making.",
     },
     {
       id: 5,
       tag: "Operations",
       title: "Scalable Support for Growing Teams",
-      text: "As companies expand, flexible support systems help maintain efficiency without slowing down daily operations.",
+      text: "As companies expand, flexible support systems help maintain efficiency without slowing down operations, ensuring smoother workflows and better coordination across teams.",
     },
     {
       id: 6,

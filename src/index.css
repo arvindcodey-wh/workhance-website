@@ -889,7 +889,8 @@ body {
 
 .insight-slider-track-multi {
   display: flex;
-  gap: 20px;
+  align-items: stretch;
+  gap: 24px;
   width: max-content;
   animation: insightSlide 28s linear infinite;
 }
@@ -908,25 +909,27 @@ body {
 }
 
 .insight-slide-multi {
-  min-width: 340px;
+  width: 360px;
+  min-width: 360px;
   flex-shrink: 0;
+  display: flex;
 }
 
 .insight-card {
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   border: 1px solid rgba(30, 60, 114, 0.08);
   border-radius: 22px;
-  padding: 30px 30px;
+  padding: 34px 30px;
   box-shadow: 0 10px 30px rgba(15, 35, 75, 0.06);
   transition: all 0.45s ease;
-  height: auto;
-  min-height: 220px;
-
+  height: 450px;
+  min-height: 450px;
   width: 100%;
-  max-width: 350px;
-  margin: 0 auto;
 }
 
 .insight-card:hover {
@@ -951,7 +954,9 @@ body {
 }
 
 .insight-tag {
-  display: inline-block;
+  display: inline-flex;
+  width: fit-content;
+  max-width: fit-content;
   margin-bottom: 16px;
   padding: 6px 12px;
   font-size: 12px;
@@ -966,7 +971,7 @@ body {
   font-size: 27px;
   font-weight: 700;
   color: #1f2d3d;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
   line-height: 1.35;
   transition: color 0.3s ease;
 }
@@ -979,7 +984,7 @@ body {
   font-size: 15px;
   line-height: 1.75;
   color: #64748b;
-  margin-bottom: 16px;
+  margin-bottom: 22px;
 }
 
 .insight-link {
@@ -995,6 +1000,7 @@ body {
 }
 
 .insight-link-btn {
+  margin-top: auto;
   background: none;
   border: none;
   display: inline-flex;
@@ -1005,6 +1011,7 @@ body {
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
+  align-self: flex-start;
 }
 
 .insight-link-btn:hover {

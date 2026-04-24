@@ -27,7 +27,7 @@ const insightsDetails = [
           ],
         },
         {
-          heading: "What This Means for Businesses",
+          heading: "What This Means for Businesses?",
           paragraph:
             "Organizations need to rethink their hiring strategies to attract better talent faster.",
           points: [
@@ -50,7 +50,7 @@ const insightsDetails = [
 
   {
     id: 2,
-    title: "Why IT Strategy Drives Business Growth",
+    title: "Why IT Strategy Drives Business Growth?",
     summary:
       "A strong IT strategy helps businesses scale efficiently, improve performance, and stay ahead in a digital-first world.",
     content: {
@@ -136,7 +136,7 @@ const insightsDetails = [
 
   {
     id: 4,
-    title: "Why Financial Accuracy Matters",
+    title: "Why Financial Accuracy Matters?",
     summary:
       "Accurate financial systems help businesses make better decisions, manage risks, and maintain stability.",
     content: {
@@ -188,7 +188,7 @@ const insightsDetails = [
 
       sections: [
         {
-          heading: "Why Scalability Matters",
+          heading: "Why Scalability Matters?",
           paragraph:
             "Systems should grow with the business, not limit it.",
           points: [
@@ -231,7 +231,7 @@ const insightsDetails = [
 
       sections: [
         {
-          heading: "Why Data Matters in Marketing",
+          heading: "Why Data Matters in Marketing?",
           paragraph:
             "Data helps businesses make smarter marketing decisions.",
           points: [
