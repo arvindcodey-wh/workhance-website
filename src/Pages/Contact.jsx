@@ -125,7 +125,7 @@ function Contact() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log("Submitted form data:", formData);
+      
 
       setShowPopup(true);
 
