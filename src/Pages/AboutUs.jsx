@@ -1,5 +1,6 @@
-import React from "react";
+import React, { act, useState } from "react";
 import Banner from "../Components/Banner";
+import {Link, Navigate, useNavigate} from 'react-router-dom'
 import {
   Users,
   Target,
@@ -21,7 +22,12 @@ import Leaders from "../Components/Leaders";
 import AboutUsDetail from "../Components/AboutUsDetail";
 import { sections, services, features } from "../utils/AboutUsData";
 import VisionMissionCard from "../Components/VisionMissionCard";
+import { servicesData } from "../data/servicesData";
+import ServiceModal from "../Components/ServiceModal";
+
 function AboutUs() {
+  let [activeService,setActiveService]=useState(null)
+  const Navigate=useNavigate()
   return (
     <div className="min-h-screen bg-white">
       <Banner type={"about us"} />
@@ -159,7 +165,15 @@ function AboutUs() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {services.map((s, i) => (
-                <div
+
+                     <div
+                   onClick={()=>{
+                     
+                    setActiveService(servicesData[i])
+                    
+
+                   }}
+                 
                   key={i}
                   className="group relative bg-white p-12 rounded-[2.5rem] border border-slate-100 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] overflow-hidden"
                 >
@@ -184,7 +198,9 @@ function AboutUs() {
 
                   {/* Bottom Accent Line */}
                   <div className="absolute bottom-0 left-0 h-1.5 bg-blue-600 transition-all duration-500 w-0 group-hover:w-full" />
-                </div>
+                </div>  
+                
+              
               ))}
             </div>
           </div>
@@ -254,6 +270,7 @@ function AboutUs() {
           </div>
         </div>
       </div>
+      <ServiceModal activeService={activeService} setActiveService={setActiveService}></ServiceModal>
     </div>
   );
 }
