@@ -40,7 +40,7 @@ function ApplicationForm() {
     const { name, value } = e.target;
     if (name === "first_name" || name === "last_name") {
       const sanitizedValue = value.replace(/[^A-Za-z\s]/g, "");
-      // console.log(sanitizedValue);
+     
 
       setApplicantData({
         ...applicantData,
@@ -65,7 +65,7 @@ function ApplicationForm() {
       last_name: applicantData.last_name.trim(),
     };
 
-    console.log("Submitting Data:", finalData);
+
 
     setIsSubmitted(true);
 
@@ -277,7 +277,7 @@ function ApplicationForm() {
                 value={applicantData.phone}
                 onChange={(phone) =>
                  {
-                  console.log(phone);
+                
                   setApplicantData((prev) => ({
                     
                     ...prev,

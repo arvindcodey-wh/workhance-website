@@ -29,9 +29,9 @@ function JobCard() {
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {jobs.map((job, index) => (
-          <Link to={`/jobs/${index}`}>
+          <Link to={`/jobs/${index}`}  key={index}>
             <div
-              key={index}
+             
               className="group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-sky-100 hover:-translate-y-2 flex flex-col justify-between"
             >
               <div>

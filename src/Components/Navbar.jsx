@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import GetStartedModal from "./GetStartedModal";
 
 function Navbar() {
   const location = useLocation();
 
   const isActive = (path) => location.pathname === path;
-
+  const [showGetStartedModal, setShowGetStartedModal] = useState(false);
   return (
     <>
       <nav className="bg-white border-b border-gray-100 px-6 py-4 md:px-12 flex justify-between items-center sticky top-0 z-50">
@@ -58,9 +59,17 @@ function Navbar() {
           </ul>
 
           {/* Action Button */}
-          <button className="bg-sky-500 text-white px-7 py-2.5 rounded-lg font-bold text-sm hover:bg-sky-600 shadow-md shadow-sky-100 transition-all active:scale-95">
-            Get Started
-          </button>
+          <button
+          className="nav-btn"
+          onClick={() => setShowGetStartedModal(true)}
+        >
+          Get Started
+        </button>
+        
+        <GetStartedModal
+        isOpen={showGetStartedModal}
+        onClose={() => setShowGetStartedModal(false)}
+        />
         </div>
 
         {/* Mobile Toggle */}
