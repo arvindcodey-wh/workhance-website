@@ -1,37 +1,51 @@
+const { appendApplication } = require("../utils/googleSheetsApplications");
 const applicationModel = require("../models/Application");
 const jobs = require("../data/jobsData");
 
 // POST /api/applications
 const applyJob = async (req, res) => {
   try {
-    const { userId, jobId, resumeLink } = req.body;
-
-    const parsedUserId = Number(userId);
+    const { name, email, phone, jobId, resumeLink } = req.body;
     const parsedJobId = Number(jobId);
 
     // required check
     if (
-      userId == null ||
+      !name?.trim() ||
+      !email?.trim() ||
+      !phone?.trim() ||
       jobId == null ||
       !resumeLink?.trim()
     ) {
       return res.status(400).json({
         success: false,
-        message: "userId, jobId and resumeLink are required"
+        message: "name, email, phone, jobId and resumeLink are required"
       });
     }
 
-    // type check
-    if (!Number.isInteger(parsedUserId) || !Number.isInteger(parsedJobId)) {
+    if (!email.includes("@")) {
       return res.status(400).json({
         success: false,
-        message: "userId and jobId must be valid numbers"
+        message: "Invalid email"
+      });
+    }
+    const cleanPhone = phone.replace(/\D/g, "");
+
+    if (cleanPhone.length < 10) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid phone"
+      });
+    }
+
+    if (!Number.isInteger(parsedJobId)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid jobId"
       });
     }
 
     // check job
-    // check job
-    const jobExists = jobs.find(j => j.id === parsedJobId);
+    const jobExists = await applicationModel.checkJobExists(parsedJobId);
 
     if (!jobExists) {
       return res.status(400).json({
@@ -39,21 +53,37 @@ const applyJob = async (req, res) => {
         message: "Invalid jobId"
       });
     }
-
-    // check user
-    const userExists = await applicationModel.checkUserExists(parsedUserId);
-    if (!userExists) {
-      return res.status(400).json({
+    const job = jobs.find(j => j.id === parsedJobId);
+    if (!job) {
+      return res.status(500).json({
         success: false,
-        message: "Invalid userId"
+        message: "Job data mismatch"
       });
     }
+    const userId = await applicationModel.createOrGetUser({
+      name,
+      email,
+      phone : cleanPhone
+    });
 
     await applicationModel.createApplication({
-      userId: parsedUserId,
+      userId,
       jobId: parsedJobId,
       resumeLink
     });
+
+    try {
+      await appendApplication({
+        name,
+        email,
+        phone: cleanPhone,
+        jobTitle: job.title,
+        resumeLink
+      });
+    } catch (err) {
+      console.error("Sheets error:", err.message);
+    }
+
 
     res.status(201).json({
       success: true,

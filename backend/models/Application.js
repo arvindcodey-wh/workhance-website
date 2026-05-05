@@ -1,19 +1,39 @@
 const db = require("../config/db");
 
 const checkJobExists = async (jobId) => {
-    const [rows] = await db.execute(
-        "SELECT id FROM jobs WHERE id = ?",
-        [jobId]
-    );
-    return rows.length > 0;
+  const [rows] = await db.execute(
+    "SELECT id FROM jobs WHERE id = ?",
+    [jobId]
+  );
+  return rows.length > 0;
 };
 
 const checkUserExists = async (userId) => {
-    const [rows] = await db.execute(
-        "SELECT id FROM users WHERE id = ?",
-        [userId]
-    );
-    return rows.length > 0;
+  const [rows] = await db.execute(
+    "SELECT id FROM users WHERE id = ?",
+    [userId]
+  );
+  return rows.length > 0;
+};
+
+const createOrGetUser = async ({ name, email, phone }) => {
+  // check existing
+  const [existing] = await db.execute(
+    "SELECT id FROM users WHERE email = ?",
+    [email]
+  );
+
+  if (existing.length > 0) {
+    return existing[0].id;
+  }
+
+  // create new
+  const [result] = await db.execute(
+    "INSERT INTO users (name, email, phone) VALUES (?, ?, ?)",
+    [name, email, phone]
+  );
+
+  return result.insertId;
 };
 
 const createApplication = async ({ userId, jobId, resumeLink }) => {
@@ -58,9 +78,20 @@ const getApplications = async ({ jobId, limit, offset }) => {
   return rows;
 };
 
+const getUserDetails = async (userId) => {
+  const [rows] = await db.execute(
+    "SELECT name, email, phone FROM users WHERE id = ?",
+    [userId]
+  );
+  return rows[0];
+};
+
+
 module.exports = {
-    checkJobExists,
-    checkUserExists,
-    createApplication,
-    getApplications   // 🔥 THIS was missing earlier
+  checkJobExists,
+  checkUserExists,
+  createApplication,
+  getApplications,
+  createOrGetUser,
+  getUserDetails
 };

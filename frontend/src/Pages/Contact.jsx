@@ -14,6 +14,7 @@ function Contact() {
 
   const [errors, setErrors] = useState({});
   const [showPopup, setShowPopup] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -81,8 +82,12 @@ function Contact() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (loading) return; // 🚫 STOP DOUBLE CLICK
+
+    setLoading(true);
 
     let newErrors = {};
 
@@ -103,8 +108,9 @@ function Contact() {
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone number is required";
     } else if (!/^\d+$/.test(formData.phone)) {
-      newErrors.phone = "Only numbers are allowed";
-    } else if (formData.phone.length !== 10) {
+  newErrors.phone = "Only phone numbers allowed (no alphabets or special characters)";
+} 
+  else if (formData.phone.length !== 10) {
       newErrors.phone = "Enter 10 digit phone number";
     } else if (/^(\d)\1{9}$/.test(formData.phone)) {
       newErrors.phone = "Enter a valid phone number";
@@ -124,63 +130,100 @@ function Contact() {
 
     setErrors(newErrors);
 
+    const payload = {
+      name: formData.fullName,
+      email: formData.email,
+      phone: formData.countryCode + formData.phone,
+      company: formData.company,
+      service: formData.service,
+      message: formData.message,
+    };
+
+    console.log("SENDING:", payload);
+
+
+
     if (Object.keys(newErrors).length === 0) {
-      
+      try {
+        const res = await fetch("http://localhost:5000/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
 
-      setShowPopup(true);
+        const data = await res.json();
 
-      setFormData({
-        fullName: "",
-        email: "",
-        countryCode: "+91",
-        phone: "",
-        company: "",
-        service: "",
-        message: "",
-      });
+        if (data.success) {
+          setShowPopup(true);
 
-      setErrors({});
+          // ✅ RESET FORM HERE
+          setFormData({
+            fullName: "",
+            email: "",
+            countryCode: "+91",
+            phone: "",
+            company: "",
+            service: "",
+            message: "",
+          });
+
+          setErrors({});
+        } else {
+          alert("Submission failed");
+        }
+
+      } catch (err) {
+        console.error("ERROR:", err);
+        alert("Server error");
+      } finally {
+        console.log("FINALLY RUNNING");
+        setLoading(false);
+      }
+    } else {
+      setLoading(false); // ✅ if validation fails
     }
   };
 
   return (
     <div className="contact-container">
-        
-        <section className="contact-banner"
+
+      <section className="contact-banner"
         style={{ backgroundImage: `url(${contactBannerImg})` }}
->
-  <div className="contact-banner-overlay">
-    <h1>Contact Us</h1>
-    <p>
-      Have a question or want to connect with us? Fill out the form below
-      and our team will get back to you.
-    </p>
-  </div>
-</section>
+      >
+        <div className="contact-banner-overlay">
+          <h1>Contact Us</h1>
+          <p>
+            Have a question or want to connect with us? Fill out the form below
+            and our team will get back to you.
+          </p>
+        </div>
+      </section>
 
       <div className="container">
-        
+
         <section className="contact-quick">
           <a href="tel:+13322871906" className="quick-card quick-card-link">
-    <span>📞 Speak to our team</span>
-    <p>+1 332 287 1906</p>
-    </a>
-    
-    <a
-    href="https://mail.google.com/mail/?view=cm&fs=1&to=info@workhance.in"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="quick-card quick-card-link"
-  >
-    <span>✉️ Drop us an email</span>
-    <p>info@workhance.in</p>
-    </a>
-    
-    <div className="quick-card">
-      <span>⏱️ Response Time</span>
-      <p>Within 24 Hours</p>
-      </div>
-      </section>
+            <span>📞 Speak to our team</span>
+            <p>+1 332 287 1906</p>
+          </a>
+
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=info@workhance.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="quick-card quick-card-link"
+          >
+            <span>✉️ Drop us an email</span>
+            <p>info@workhance.in</p>
+          </a>
+
+          <div className="quick-card">
+            <span>⏱️ Response Time</span>
+            <p>Within 24 Hours</p>
+          </div>
+        </section>
 
         {/* Contact Form */}
         <section className="contact-form-section">
@@ -248,13 +291,36 @@ function Contact() {
                   </select>
 
                   <input
-                    type="text"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Enter phone number"
-                    required
-                  />
+  type="tel"
+  name="phone"
+  value={formData.phone}
+  onChange={(e) => {
+  const raw = e.target.value;
+
+  // 🔴 detect invalid input BEFORE cleaning
+  if (/\D/.test(raw)) {
+    setErrors((prev) => ({
+      ...prev,
+      phone: "Only phone numbers allowed (no alphabets or special characters)",
+    }));
+  } else {
+    // clear error if valid
+    setErrors((prev) => ({
+      ...prev,
+      phone: "",
+    }));
+  }
+
+  // ✅ then clean
+  const value = raw.replace(/\D/g, "");
+
+  setFormData((prev) => ({
+    ...prev,
+    phone: value,
+  }));
+}}
+  maxLength={10}
+/>
                 </div>
                 {errors.phone && (
                   <span className="form-error">{errors.phone}</span>
@@ -313,9 +379,9 @@ function Contact() {
             </div>
 
             <div className="form-submit">
-            <button type="submit" className="primary-btn">
-              Submit
-            </button>
+              <button type="submit" className="primary-btn" disabled={loading}>
+                {loading ? "Submitting..." : "Submit"}
+              </button>
             </div>
           </form>
         </section>

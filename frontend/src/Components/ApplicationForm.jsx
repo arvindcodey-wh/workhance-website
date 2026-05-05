@@ -71,14 +71,6 @@ function ApplicationForm() {
 
     if (!validate()) return;
 
-    const finalData = {
-      ...applicantData,
-      first_name: applicantData.first_name.trim(),
-      last_name: applicantData.last_name.trim(),
-    };
-
-
-
     try {
       const res = await fetch("http://localhost:5000/api/applications", {
         method: "POST",
@@ -86,7 +78,9 @@ function ApplicationForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: 1, // temp
+          name: `${applicantData.first_name} ${applicantData.last_name}`,
+          email: applicantData.email,
+          phone: applicantData.phone,
           jobId: Number(id),
           resumeLink: applicantData.resume?.name || "resume.pdf"
         }),
@@ -317,7 +311,7 @@ function ApplicationForm() {
                   setApplicantData((prev) => ({
 
                     ...prev,
-                    phone: "+" + phone, // ✅ ADD +
+                    phone: phone.startsWith("+") ? phone : "+" + phone, // ✅ ADD +
                   }))
                 }
                 }

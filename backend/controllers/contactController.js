@@ -1,11 +1,22 @@
-const getContact = (req, res) => {
-  res.json({
-    success: true,
-    data: {
-      email: "support@workhance.com",
-      phone: "+91-9876543210"
-    }
-  });
-};
+const { appendToSheet } = require("../utils/googleSheets");
+const db = require("../config/db");
 
-module.exports = { getContact };
+exports.createContact = async (req, res) => {
+  try {
+    console.log("CONTACT HIT:", req.body); // DEBUG
+
+    const { name, email, phone, company, service, message } = req.body;
+
+    await db.execute(
+      "INSERT INTO contacts (name, email, phone, company, service, message) VALUES (?, ?, ?, ?, ?, ?)",
+      [name, email, phone, company, service, message]
+    );
+
+      await appendToSheet(req.body);
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false });
+  }
+};
