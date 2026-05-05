@@ -6,7 +6,11 @@ import { isValidPhoneNumber } from "libphonenumber-js";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+
 function ApplicationForm() {
+
+  const [file, setFile] = useState(null);
+
   const { id } = useParams();
   const [job, setJob] = useState(null);
 
@@ -71,19 +75,30 @@ function ApplicationForm() {
 
     if (!validate()) return;
 
+    if (!file) {
+      alert("Resume file required");
+      return;
+    }
+
+    console.log("FILE:", file);
+
     try {
+      // ✅ formData MUST be outside fetch
+      const formData = new FormData();
+
+      formData.append(
+        "name",
+        `${applicantData.first_name} ${applicantData.last_name}`
+      );
+      formData.append("email", applicantData.email);
+      formData.append("phone", applicantData.phone);
+      formData.append("jobId", Number(id));
+      formData.append("resume", file);
+
+      // ✅ ONLY ONE fetch
       const res = await fetch("http://localhost:5000/api/applications", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: `${applicantData.first_name} ${applicantData.last_name}`,
-          email: applicantData.email,
-          phone: applicantData.phone,
-          jobId: Number(id),
-          resumeLink: applicantData.resume?.name || "resume.pdf"
-        }),
+        body: formData,
       });
 
       const result = await res.json();
@@ -111,9 +126,11 @@ function ApplicationForm() {
     });
 
     setErrors({});
+    setFile(null);
 
     setTimeout(() => setIsSubmitted(false), 5000);
   }
+
   function validate() {
     let newErrors = {};
 
@@ -149,16 +166,14 @@ function ApplicationForm() {
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .docx
     ];
 
-    if (!applicantData.resume) {
+    if (!file) {
       newErrors.resume = "Resume is required";
     } else {
-      // Check if the file type is in our allowed list
-      if (!allowedTypes.includes(applicantData.resume.type)) {
-        newErrors.resume = "Only PDF and Word documents allowed";
+      if (file.type !== "application/pdf") {
+        newErrors.resume = "Only PDF allowed";
       }
 
-      // Size check (keeping your 2MB limit)
-      if (applicantData.resume.size > 2 * 1024 * 1024) {
+      if (file.size > 2 * 1024 * 1024) {
         newErrors.resume = "File size must be less than 2MB";
       }
     }
@@ -355,7 +370,7 @@ function ApplicationForm() {
                 type="file"
                 id="resume"
                 name="resume"
-                onChange={handleFileChange}
+                onChange={(e) => setFile(e.target.files[0])}
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
               />
               {errors.resume && (
@@ -364,9 +379,9 @@ function ApplicationForm() {
               <div className="border-2 border-dashed border-gray-200 group-hover:border-sky-400 group-hover:bg-sky-50 rounded-2xl p-8 transition-all flex flex-col items-center justify-center gap-2">
                 <Upload className="w-8 h-8 text-gray-400 group-hover:text-sky-500" />
                 <p className="text-sm text-gray-500">
-                  {applicantData.resume ? (
+                  {file ? (
                     <span className="text-sky-600 font-medium">
-                      {applicantData.resume.name}
+                      {file.name}
                     </span>
                   ) : (
                     "Click to upload or drag and drop"

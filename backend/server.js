@@ -14,6 +14,10 @@ const app = express(); // ✅ MUST come before app.use
 
 app.use(cors());
 app.use(express.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/uploads", express.static("uploads"));
 
 // routes
 app.use("/api/services", serviceRoutes);
