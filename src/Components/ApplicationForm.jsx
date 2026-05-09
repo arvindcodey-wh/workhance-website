@@ -64,6 +64,7 @@ function ApplicationForm() {
       first_name: applicantData.first_name.trim(),
       last_name: applicantData.last_name.trim(),
     };
+    console.log(finalData);
 
 
 
@@ -81,7 +82,7 @@ function ApplicationForm() {
 
     setErrors({});
 
-    setTimeout(() => setIsSubmitted(false), 5000);
+    setTimeout(() => setIsSubmitted(false), 10000);
   }
   function validate() {
     let newErrors = {};
@@ -126,18 +127,13 @@ function ApplicationForm() {
         newErrors.resume = "Only PDF and Word documents allowed";
       }
 
-      // Size check (keeping your 2MB limit)
-      if (applicantData.resume.size > 2 * 1024 * 1024) {
-        newErrors.resume = "File size must be less than 2MB";
-      }
+     
     }
 
     // Message
     if (!applicantData.message.trim()) {
       newErrors.message = "Message is required";
-    } else if (applicantData.message.length < 20) {
-      newErrors.message = "Message must be at least 20 characters";
-    }
+    } 
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -145,7 +141,7 @@ function ApplicationForm() {
 
   if (isSubmitted) {
     return (
-      <div className="flex w-[90%] md:w-[60%] lg:w-[40%] items-center flex-col mx-auto py-24 bg-white rounded-3xl shadow-xl border border-sky-100 text-center px-10 mt-10">
+      <div className="flex w-[90%] md:w-[60%] lg:w-[40%] items-center flex-col mx-auto  py-10 bg-white rounded-3xl shadow-xl border border-sky-100 text-center px-10 my-10">
         <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
           <CheckCircle className="w-12 h-12" />
         </div>

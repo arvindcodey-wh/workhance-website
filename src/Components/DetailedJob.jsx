@@ -296,12 +296,12 @@ function DetailedJob() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50/50 pb-20 relative overflow-y-scroll">
+    <div className="min-h-screen bg-gray-50/50 pb-20 relative ">
       {/* Navigation Header */}
       <div className="bg-white border-b ">
         <div className="w-[90%] max-w-7xl mx-auto py-4 flex items-center justify-between ">
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => navigate('/careers',{  state: { jobId: jobIndex }})}
             className="flex items-center text-gray-600 hover:text-sky-600 transition-colors font-medium gap-1"
           >
             <ChevronLeft size={20} /> Back to Openings
@@ -317,7 +317,7 @@ function DetailedJob() {
         </div>
       </div>
 
-      <div className="w-[90%] sticky top-0 z-10 max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <div className="w-[90%]  top-0 z-10 max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* Left Column: Job Details */}
         <div className="lg:col-span-2 space-y-8">
           {/* Header Info */}
@@ -412,7 +412,7 @@ function DetailedJob() {
             )}
           </div>
              <button
-            onClick={() => navigate(-1)}
+            onClick={() => navigate('/careers',{  state: { jobId: jobIndex }})}
             className="flex items-center text-gray-600 hover:text-sky-600 transition-colors font-medium gap-1"
           >
             <ChevronLeft size={20} /> Back to Openings
@@ -451,7 +451,9 @@ function DetailedJob() {
                 generation of AI platforms.
               </p>
               <button
-                onClick={() => navigate("/apply")}
+                onClick={() => navigate("/apply")
+                  
+                }
                 className="w-full bg-white text-sky-700 py-4 rounded-2xl font-bold hover:bg-sky-50 transition-all flex items-center justify-center gap-2"
               >
                 Apply Now <ArrowRight size={20} />

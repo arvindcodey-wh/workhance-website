@@ -26,9 +26,9 @@ function App() {
         <Route path="/" element={<MainLayout></MainLayout>}>
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="about-us" element={<AboutUs></AboutUs>}></Route>
-          <Route path="/services" element={<Services />} />
+          <Route path="services" element={<Services />} />
           <Route path="careers" element={<Career></Career>}></Route>
-          <Route path="/contact" element={<Contact />} />
+          <Route path="contact" element={<Contact />} />
           <Route
             path="apply"
             element={<ApplicationForm></ApplicationForm>}
@@ -37,7 +37,7 @@ function App() {
             path="jobs/:index"
             element={<DetailedJob></DetailedJob>}
           ></Route>
-          <Route path="/insights/:id" element={<InsightDetail />} />
+          <Route path="insights/:id" element={<InsightDetail />} />
         </Route>
       </Routes>
     </div>

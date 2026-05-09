@@ -72,24 +72,7 @@ function AboutUsDetail({ index, item }) {
               } hidden lg:block w-20 h-20 bg-sky-50 rounded-full -z-10`}
             ></div>
           </div>
-          <div className="w-[90%] absolute left-[50%] bottom-0 translate-x-[-50%]  bg-gray-200/90 py-5 px-3 rounded-2xl">
-            {/* <p>{sections[index]?.content}</p> */}
-            <div className="flex flex-col items-start gap-2 mt-2">
-            {sections[index]?.cardContent?.map((one, ind) => {
-              return (
-                <div key={ind} className="flex  items-center gap-2">
-                  <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-black group-hover:bg-peach-500 transition-colors inline-block" />
-
-                  {/* The Text Content */}
-                  <p className="text-gray-700 leading-relaxed font-medium tracking-tight">
-                    {one}
-                  </p>
-                </div>
-              );
-            })}
-            </div>
-            
-          </div>
+         
         </div>
       </div>
       <DetailedStory isLearnMore={isLearnMore} setIsLearnMore={setIsLearnMore}></DetailedStory>

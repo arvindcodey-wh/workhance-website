@@ -12,7 +12,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="bg-white border-b border-gray-100 px-6 py-4 md:px-12 flex justify-between items-center sticky top-0 z-50">
+      <nav className="bg-white border-b border-gray-100 px-6 py-1 md:px-12 flex justify-between items-center sticky top-0 z-50">
         
         {/* Brand & Tagline */}
         <Link to={'/'} className="flex items-center gap-3 group">
@@ -22,7 +22,7 @@ function Navbar() {
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-WmK2dNVlt1ol7M3pXbugkRMtLV7hWh.png" 
           />
           <div className="flex flex-col">
-            <span className="text-2xl font-bold text-slate-800 leading-tight tracking-tight">
+            <span className="text-xl font-bold text-slate-800 leading-tight tracking-tight">
               Work Hance
             </span>
           </div>
