@@ -34,32 +34,35 @@ function Services() {
             <section className="services-page-card" key={index}>
               <div className="service-card-layout">
 
-              <div className="service-image">
-                <img src={service.image} alt={service.title} />
-              </div>
+                <div className="service-image">
+                  <img src={service.image} alt={service.title} />
+                </div>
 
-              <div className="service-content">
-              <h2 className="service-heading">
-                <Icon className="service-heading-icon" />
-                {service.title}
-              </h2>
+                <div className="service-content">
+                  <h2 className="service-heading">
+                    <Icon className="service-heading-icon" />
+                    {service.title}
+                  </h2>
 
-              <p className="service-card-intro">{service.intro}</p>
+                  <p className="service-card-intro">
+                    {service.intro}
+                  </p>
 
-              <ul>
-                {service.points.map((point, i) => (
-                  <li key={i}>{point}</li>
-                ))}
-              </ul>
+                  <ul>
+                    {service.points.map((point, i) => (
+                      <li key={i}>{point}</li>
+                    ))}
+                  </ul>
 
-              <button
-                className="secondary-btn"
-                onClick={() => setActiveService(service)}
-                style={{ marginTop: "16px" }}
-              >
-                View Details
-              </button>
-              </div>
+                  <button
+                    className="secondary-btn"
+                    onClick={() => setActiveService(service)}
+                    style={{ marginTop: "16px" }}
+                  >
+                    View Details
+                  </button>
+                </div>
+
               </div>
             </section>
           );
@@ -69,8 +72,17 @@ function Services() {
           <div className="modal-overlay">
             <div className="modal-content large">
 
+              {/* Close Icon */}
+              <button
+                className="close-btn"
+                onClick={() => setActiveService(null)}
+              >
+                ×
+              </button>
+
               {(() => {
                 const PopupIcon = activeService.icon;
+
                 return (
                   <h2 className="service-popup-heading">
                     <PopupIcon className="service-popup-icon" />
@@ -81,11 +93,15 @@ function Services() {
 
               <div className="service-detail-section">
                 <h3>Overview</h3>
-                <p className="modal-description">{activeService.overview}</p>
+
+                <p className="modal-description">
+                  {activeService.overview}
+                </p>
               </div>
 
               <div className="service-detail-section">
                 <h3>Sub-Services</h3>
+
                 <div className="service-box-grid">
                   {activeService.subServices.map((item, i) => (
                     <div className="service-box" key={i}>
@@ -93,6 +109,7 @@ function Services() {
                     </div>
                   ))}
                 </div>
+
                 <p className="modal-description">
                   {activeService.subServicesNote}
                 </p>
@@ -100,6 +117,7 @@ function Services() {
 
               <div className="service-detail-section">
                 <h3>What's Included</h3>
+
                 <div className="service-box-grid">
                   {activeService.included.map((item, i) => (
                     <div className="service-box" key={i}>
@@ -111,6 +129,7 @@ function Services() {
 
               <div className="service-detail-section">
                 <h3>How We Deliver</h3>
+
                 <div className="service-process">
                   {activeService.delivery.map((step, i) => (
                     <div className="process-card" key={i}>
@@ -123,6 +142,7 @@ function Services() {
 
               <div className="service-detail-section">
                 <h3>Business Value</h3>
+
                 <ul className="service-value-list">
                   {activeService.value.map((item, i) => (
                     <li key={i}>{item}</li>
@@ -132,11 +152,15 @@ function Services() {
 
               <div className="service-detail-section why-section">
                 <h3>Why It Matters</h3>
-                <p className="modal-description">{activeService.whyItMatters}</p>
+
+                <p className="modal-description">
+                  {activeService.whyItMatters}
+                </p>
               </div>
 
               <div className="service-detail-section">
                 <h3>Service Impact</h3>
+
                 <div className="service-stats">
                   {activeService.stats.map((stat, i) => (
                     <div className="stat-card" key={i}>
@@ -146,25 +170,29 @@ function Services() {
                   ))}
                 </div>
               </div>
-              
+
               <div className="modal-cta">
-                <button className="primary-btn"
-                onClick={() => navigate("/contact", {
-                  state: {
-                    service: activeService.title,
-                  },
-                })
-              }
-              >
-                Talk to an Expert
+                <button
+                  className="primary-btn"
+                  onClick={() =>
+                    navigate("/contact", {
+                      state: {
+                        service: activeService.title,
+                      },
+                    })
+                  }
+                >
+                  Talk to an Expert
                 </button>
-                
-                <button className="secondary-btn-outline"
-                onClick={() => setActiveService(null)}
+
+                <button
+                  className="secondary-btn-outline"
+                  onClick={() => setActiveService(null)}
                 >
                   Close
-                  </button>
-                  </div>
+                </button>
+              </div>
+
             </div>
           </div>
         )}
@@ -182,9 +210,12 @@ function Services() {
               >
                 <button
                   className="faq-question"
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  onClick={() =>
+                    setOpenFaq(openFaq === index ? null : index)
+                  }
                 >
                   <span>{faq.question}</span>
+
                   <span className="faq-icon">
                     {openFaq === index ? "−" : "+"}
                   </span>
@@ -195,7 +226,9 @@ function Services() {
                     openFaq === index ? "open" : ""
                   }`}
                 >
-                  <p className="faq-answer">{faq.answer}</p>
+                  <p className="faq-answer">
+                    {faq.answer}
+                  </p>
                 </div>
               </div>
             ))}
@@ -204,7 +237,11 @@ function Services() {
 
         <section className="services-cta">
           <h2>Need support in any of these areas?</h2>
-          <p>Connect with us to find the right solution for your business.</p>
+
+          <p>
+            Connect with us to find the right solution for your business.
+          </p>
+
           <button
             className="primary-btn"
             onClick={() => navigate("/contact")}

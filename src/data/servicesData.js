@@ -1,5 +1,5 @@
 import itImg from "../assets/service-it.jpg";
-import staffImg from "../assets/service-staffing.jpg";
+import staffImg from "../assets/service-staffing.png";
 import financeImg from "../assets/service-finance.jpg";
 import marketImg from "../assets/service-marketing.jpg";
 
