@@ -1,24 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body {
+body{
+
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   overflow-x: hidden;
+
 }
 
 .container {
-  max-width: 1300px;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 0 50px;
+  padding: 0 24px;
 }
-
-/* =========================
-     NAVBAR
-  ========================= */
 
 .navbar {
   background: #ffffff;
@@ -28,7 +26,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 6px 20px;
+  padding: 2px 18px;
 }
 
 .navbar-content {
@@ -112,10 +110,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* =========================
-     GET STARTED MODAL
-  ========================= */
-
 .get-started-modal-overlay {
   position: fixed;
   inset: 0;
@@ -190,12 +184,8 @@ body {
   border: 2px solid #dbeafe;
   border-radius: 16px;
   padding: 14px 16px;
-  background: #fff;
-  transition: all 0.25s ease;
-}
-
-.get-started-service-item {
   background: #f8fbff;
+  transition: all 0.25s ease;
   cursor: pointer;
 }
 
@@ -267,7 +257,8 @@ body {
   padding: 10px 16px;
 }
 
-@keyframes fadeUpModal {
+@keyframes fadeUpModal{
+
   from {
     opacity: 0;
     transform: translateY(16px);
@@ -276,45 +267,8 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+
 }
-
-@media (max-width: 768px) {
-  .get-started-modal {
-    padding: 24px 18px 20px;
-    border-radius: 20px;
-  }
-
-  .get-started-modal h2 {
-    font-size: 24px;
-  }
-
-  .get-started-service-item {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .get-started-service-title h3 {
-    font-size: 20px;
-  }
-
-  .get-started-service-btn {
-    width: 100%;
-  }
-
-  .get-started-actions {
-    flex-direction: column;
-  }
-
-  .get-started-actions .secondary-btn,
-  .get-started-actions .primary-btn {
-    width: 100%;
-    min-width: 0;
-  }
-}
-
-/* =========================
-     HOME
-  ========================= */
 
 .home-container {
   padding: 0;
@@ -379,7 +333,7 @@ body {
   font-size: 42px;
   margin-bottom: 18px;
   color: #ffffff;
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 600;
   line-height: 1.15;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
@@ -530,25 +484,6 @@ body {
   box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .global-reach-container {
-    padding: 25px 18px;
-  }
-
-  .global-reach-container h2 {
-    font-size: 28px;
-  }
-
-  .global-line {
-    font-size: 15px;
-  }
-
-  .global-reach-container p {
-    font-size: 14px;
-  }
-}
-
 .services-overview {
   padding: 50px 20px 80px;
 }
@@ -624,23 +559,28 @@ body {
 
 .services-cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 50px;
-  max-width: 960px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1140px;
   margin: 0 auto;
   margin-top: 5px;
+  align-items: stretch;
 }
 
 .service-card {
-  background: #f1f0ee;
+  background: #ffffff;
   border: 1px solid #e5e5e5;
   border-radius: 16px;
   width: 100%;
   max-width: 500px;
-  padding: 16px;
+  padding: 14px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .service-focus-block {
@@ -680,7 +620,7 @@ body {
 }
 
 .card-detail-btn {
-  margin-top: 12px;
+  margin-top: auto;
   padding: 8px 14px;
   background: linear-gradient(135deg, #3ba3e0, #2563eb);
   color: #ffffff;
@@ -704,9 +644,16 @@ body {
   box-shadow: none;
 }
 
-/* Title hover effect */
 .service-card h3 {
   transition: color 0.3s ease;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #0d1b2a;
+  font-size: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 72px;
 }
 
 .service-card:hover h3 {
@@ -728,7 +675,7 @@ body {
 
 .service-card img {
   width: 100%;
-  height: 160px;
+  height: 170px;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 18px;
@@ -751,18 +698,13 @@ body {
   border-radius: 5px;
 }
 
-.service-card h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  color: #0d1b2a;
-  font-size: 21px;
-}
-
 .service-card p {
   margin: 0 0 12px;
   color: #555;
-  line-height: 1.7;
+  line-height: 1.6;
   margin-bottom: 10px;
+  font-size: 14px;
+  min-height: 110px;
 }
 
 .service-title {
@@ -777,7 +719,6 @@ body {
   flex-shrink: 0;
 }
 
-/* ---------- Shared Section Heading ---------- */
 .section-heading {
   text-align: center;
   max-width: 760px;
@@ -810,7 +751,6 @@ body {
   margin-top: 20px;
 }
 
-/* ---------- Dashboard Section ---------- */
 .dashboard-section {
   padding: 60px 20px 50px;
   background: linear-gradient(to bottom, #ffffff, #f7fbff);
@@ -863,7 +803,6 @@ body {
   margin-top: 30px;
 }
 
-/* ---------- Insights Section ---------- */
 .insights-section {
   padding: 50px 20px 30px;
   padding-top: 20px;
@@ -874,7 +813,6 @@ body {
   display: none;
 }
 
-/* Multi-card auto slider */
 .insight-slider-multi {
   width: 100%;
   max-width: 1150px;
@@ -892,13 +830,15 @@ body {
   animation: insightSlide 28s linear infinite;
 }
 
-@keyframes insightSlide {
+@keyframes insightSlide{
+
   from {
     transform: translateX(0);
   }
   to {
     transform: translateX(-50%);
   }
+
 }
 
 .insight-slider-multi:hover .insight-slider-track-multi {
@@ -1016,7 +956,6 @@ body {
   transform: translateX(4px);
 }
 
-/* ---------- Insight Detail Page ---------- */
 .insight-detail-page {
   width: 100%;
   min-height: 100vh;
@@ -1163,120 +1102,6 @@ body {
   box-shadow: 0 12px 22px rgba(15, 23, 42, 0.16);
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 768px) {
-  .insights-section {
-    padding: 50px 14px 60px;
-    padding-top: 10px;
-  }
-
-  .insight-slider-multi {
-    padding: 0 8px;
-    margin-top: 28px;
-  }
-
-  .insight-slide-multi {
-    min-width: 280px;
-  }
-
-  .insight-card {
-    max-width: 280px;
-    padding: 24px 18px;
-    min-height: auto;
-  }
-
-  .insight-card h3 {
-    font-size: 22px;
-  }
-
-  .insight-card p {
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .insight-link-btn {
-    font-size: 15px;
-  }
-
-  .insight-detail-page {
-    padding: 20px 14px 40px;
-  }
-
-  .insight-detail-container {
-    padding: 24px 18px;
-    border-radius: 18px;
-  }
-
-  .insight-detail-title {
-    font-size: 2rem;
-  }
-
-  .insight-detail-summary {
-    padding: 16px 16px;
-    font-size: 0.96rem;
-  }
-
-  .insight-detail-section {
-    padding: 20px 18px 18px;
-    border-radius: 16px;
-  }
-
-  .insight-detail-section h2 {
-    font-size: 1.25rem;
-  }
-
-  .insight-detail-section p,
-  .insight-detail-list li {
-    font-size: 0.95rem;
-  }
-
-  .back-btn {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-@media (max-width: 768px) {
-  .dashboard-section,
-  .insights-section {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .dashboard-card,
-  .insight-card {
-    padding: 24px 20px;
-  }
-
-  .section-heading {
-    margin-bottom: 36px;
-  }
-
-  .section-heading h2 {
-    font-size: 28px;
-  }
-
-  .section-heading p {
-    font-size: 15px;
-  }
-
-  .dashboard-card h3 {
-    font-size: 30px;
-  }
-
-  .dashboard-card h4 {
-    font-size: 18px;
-  }
-
-  .insight-card h3 {
-    font-size: 20px;
-  }
-}
-
 .testimonials-section {
   padding: 60px 20px;
   text-align: center;
@@ -1329,7 +1154,6 @@ body {
   padding: 30px;
   border-radius: 16px;
   min-height: 200px;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1433,20 +1257,19 @@ body {
   flex-wrap: wrap;
 }
 
-/* Home modal from ServicesOverview */
-
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(13, 27, 42, 0.75);
+  background: rgba(15, 23, 42, 0.72);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1100;
-  padding: 20px;
+  padding: 24px;
+  inset: 0;
 }
 
 .modal-content {
@@ -1494,9 +1317,11 @@ body {
 
 .modal-description {
   color: #475569;
-  line-height: 1.7;
+  line-height: 1.85;
   margin-bottom: 28px;
-  font-size: 15px;
+  font-size: 15.5px;
+  margin: 0;
+  margin-top: 6px;
 }
 
 .modal-subtitle {
@@ -1530,17 +1355,13 @@ body {
   line-height: 1.6;
 }
 
-/* =========================
-     FOOTER
-  ========================= */
-
 .footer {
   background: #0d1b2a;
   color: #3ba3e0;
   padding: 40px 20px 20px;
-  /* margin-top: 40px; */
   border-top: 4px solid #3ba3e0;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+ 
 }
 
 .footer-container {
@@ -1661,66 +1482,6 @@ body {
   color: #3ba3e0;
 }
 
-/* =========================
-     RESPONSIVE
-  ========================= */
-
-@media (max-width: 768px) {
-  .navbar-content {
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 18px;
-  }
-
-  .nav-btn {
-    margin-top: 8px;
-  }
-
-  .hero-section {
-    height: 440px;
-  }
-
-  .hero-content h1 {
-    font-size: 32px;
-  }
-
-  .hero-content p {
-    font-size: 16px;
-  }
-
-  .global-layout {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .services-cards,
-  .footer-container {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-container {
-    text-align: center;
-  }
-
-  .footer-brand,
-  .social-icons {
-    justify-content: center;
-  }
-
-  .modal-content {
-    padding: 24px;
-  }
-}
-
-/* =========================
-     CUSTOM BANNER
-  ========================= */
-
 .custom-banner {
   width: 100%;
   height: 450px;
@@ -1803,29 +1564,6 @@ body {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
-@media (max-width: 768px) {
-  .custom-banner {
-    height: 380px;
-  }
-
-  .custom-banner-content h1 {
-    font-size: 34px;
-  }
-
-  .custom-banner-description {
-    font-size: 14px;
-  }
-
-  .custom-banner-subtitle {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-  }
-}
-
-/* =========================
-     SERVICES CARDS
-  ========================= */
-
 .services-container {
   width: 100%;
   display: block;
@@ -1881,7 +1619,7 @@ body {
 
 .service-image {
   width: 40%;
-  height: 220px;
+  height: 270px;
   border-radius: 12px;
   overflow: hidden;
   flex-shrink: 0;
@@ -1900,21 +1638,6 @@ body {
 
 .service-content {
   width: 60%;
-}
-
-@media (max-width: 768px) {
-  .service-card-layout {
-    flex-direction: column;
-  }
-
-  .service-image {
-    width: 100%;
-    height: 180px;
-  }
-
-  .service-content {
-    width: 100%;
-  }
 }
 
 .service-card-intro {
@@ -1941,21 +1664,6 @@ body {
   margin-top: 22px !important;
 }
 
-/* =========================
-     SERVICES MODAL
-  ========================= */
-
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.72);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  z-index: 1100;
-}
-
 .modal-content.large {
   width: 100%;
   max-width: 900px;
@@ -1963,12 +1671,13 @@ body {
   overflow-y: auto;
   background: #ffffff;
   border-radius: 22px;
-  padding: 34px;
+  padding: 40px 42px;
   box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
   position: relative;
   animation: modalFadeUp 0.28s ease;
   scrollbar-width: thin;
   scrollbar-color: #94a3b8 #f8fafc;
+  line-height: 1.7;
 }
 
 .modal-content.large::-webkit-scrollbar {
@@ -1991,10 +1700,12 @@ body {
   gap: 14px;
   margin: 0 0 28px;
   color: #0f172a;
-  font-size: 34px;
+  font-size: 36px;
   font-weight: 800;
   line-height: 1.2;
   padding-right: 40px;
+  margin-bottom: 32px;
+  letter-spacing: -0.3px;
 }
 
 .service-popup-icon {
@@ -2015,7 +1726,7 @@ body {
 }
 
 .service-detail-section {
-  margin-bottom: 34px;
+  margin-bottom: 38px;
 }
 
 .service-detail-section h3 {
@@ -2025,6 +1736,7 @@ body {
   font-weight: 700;
   position: relative;
   display: inline-block;
+  margin-bottom: 14px;
 }
 
 .service-detail-section h3::after {
@@ -2037,18 +1749,13 @@ body {
   background: #38bdf8;
 }
 
-.modal-description {
-  margin: 0;
-  color: #475569;
-  font-size: 15.5px;
-  line-height: 1.85;
-}
-
 .service-box-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
   margin: 10px 0 18px;
+  margin-top: 12px;
+  margin-bottom: 14px;
 }
 
 .service-box {
@@ -2060,8 +1767,7 @@ body {
   font-size: 14.5px;
   font-weight: 600;
   line-height: 1.6;
-  transition: transform 0.25s ease, box-shadow 0.25s ease,
-    border-color 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   position: relative;
   overflow: hidden;
 }
@@ -2084,17 +1790,8 @@ body {
 
 .service-process {
   display: grid;
-  gap: 14px;
-}
-
-/* =========================
-     SERVICE PROCESS (UPGRADED)
-  ========================= */
-
-.service-process {
-  display: grid;
   gap: 16px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .process-card {
@@ -2115,7 +1812,6 @@ body {
   border-color: #cbd5f5;
 }
 
-/* Step Number Circle */
 .process-card span {
   width: 40px;
   height: 40px;
@@ -2131,7 +1827,6 @@ body {
   box-shadow: 0 6px 14px rgba(2, 132, 199, 0.2);
 }
 
-/* Text */
 .process-card p {
   margin: 4px 0 0;
   color: #475569;
@@ -2175,6 +1870,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+  margin-top: 14px;
 }
 
 .stat-card {
@@ -2213,10 +1909,6 @@ body {
   font-weight: 600;
   line-height: 1.5;
 }
-
-/* =========================
-     SERVICES FAQ SECTION
-  ========================= */
 
 .services-faq {
   margin-top: 80px;
@@ -2292,32 +1984,12 @@ body {
   color: #475569;
 }
 
-@media (max-width: 768px) {
-  .services-faq {
-    margin-top: 60px;
-  }
-
-  .faq-question {
-    padding: 18px 18px;
-    font-size: 16px;
-  }
-
-  .faq-answer {
-    padding: 0 18px 18px;
-    font-size: 14.5px;
-  }
-
-  .faq-icon {
-    font-size: 24px;
-  }
-}
-
 .modal-cta {
   display: flex;
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
-  margin-top: 25px;
+  margin-top: 34px;
   text-align: center;
 }
 
@@ -2346,7 +2018,8 @@ body {
   background: rgba(37, 99, 235, 0.08);
 }
 
-@keyframes modalFadeUp {
+@keyframes modalFadeUp{
+
   from {
     opacity: 0;
     transform: translateY(18px);
@@ -2355,124 +2028,8 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+
 }
-
-@media (max-width: 768px) {
-  .modal-overlay {
-    padding: 16px;
-  }
-
-  .modal-content.large {
-    max-width: 100%;
-    max-height: 90vh;
-    padding: 24px 20px;
-    border-radius: 18px;
-  }
-
-  .service-popup-heading {
-    font-size: 28px;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-
-  .service-popup-icon {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    padding: 10px;
-  }
-
-  .service-detail-section h3 {
-    font-size: 20px;
-  }
-
-  .service-box-grid,
-  .service-stats {
-    grid-template-columns: 1fr;
-  }
-
-  .process-card {
-    padding: 16px;
-  }
-
-  .modal-cta .primary-btn {
-    width: 100%;
-    min-width: 0;
-    background: #0f172a;
-    color: #ffffff;
-    border: none;
-  }
-}
-
-/* =========================
-     MODAL SPACING & TYPOGRAPHY (PREMIUM)
-  ========================= */
-
-/* Overall breathing space */
-.modal-content.large {
-  padding: 40px 42px;
-  line-height: 1.7;
-}
-
-/* Main heading */
-.service-popup-heading {
-  font-size: 36px;
-  font-weight: 800;
-  margin-bottom: 32px;
-  letter-spacing: -0.3px;
-}
-
-/* Section spacing */
-.service-detail-section {
-  margin-bottom: 38px;
-}
-
-/* Section headings */
-.service-detail-section h3 {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 14px;
-  color: #0f172a;
-}
-
-/* Description text */
-.modal-description {
-  font-size: 15.5px;
-  line-height: 1.85;
-  color: #475569;
-  margin-top: 6px;
-}
-
-/* Sub-services spacing */
-.service-box-grid {
-  margin-top: 12px;
-  margin-bottom: 14px;
-}
-
-/* Value list spacing */
-.service-value-list li {
-  margin-bottom: 14px;
-  line-height: 1.7;
-}
-
-/* Process spacing */
-.service-process {
-  margin-top: 12px;
-}
-
-/* Stats spacing */
-.service-stats {
-  margin-top: 14px;
-}
-
-/* CTA spacing */
-.modal-cta {
-  margin-top: 34px;
-}
-
-/* =========================
-     SERVICES CTA SECTION
-  ========================= */
 
 .services-cta {
   margin-top: 80px;
@@ -2504,10 +2061,6 @@ body {
   font-weight: 600;
 }
 
-/* =========================
-     CONTACT PAGE
-  ========================= */
-
 .contact-banner {
   width: 100%;
   height: 450px;
@@ -2523,7 +2076,10 @@ body {
 .contact-banner-overlay {
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.62));
+  background: linear-gradient(
+    rgba(15, 23, 42, 0.45),
+    rgba(15, 23, 42, 0.62)
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2549,7 +2105,7 @@ body {
 
 .contact-quick {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   justify-content: center;
   margin-bottom: 40px;
   flex-wrap: wrap;
@@ -2558,8 +2114,8 @@ body {
 
 .quick-card {
   background: #f0f9ff;
-  padding: 18px 28px;
-  border-radius: 12px;
+  padding: 18px 20px;
+  border-radius: 14px;
   text-align: center;
   min-width: 180px;
   transition: all 0.3s ease;
@@ -2579,7 +2135,7 @@ body {
 
 .quick-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 .quick-card-link {
@@ -2635,8 +2191,9 @@ body {
 .contact-form input:focus,
 .contact-form textarea:focus,
 .contact-form select:focus {
-  border-color: #4da6ff;
-  box-shadow: 0 0 0 3px rgba(77, 166, 255, 0.15);
+  border-color: #3ba3e0;
+  box-shadow: 0 0 0 3px rgba(59, 163, 224, 0.15);
+  outline: none;
 }
 
 .form-row {
@@ -2678,7 +2235,8 @@ body {
 
 .phone-input-group {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  align-items: center;
 }
 
 .country-code-select {
@@ -2692,6 +2250,7 @@ body {
   cursor: pointer;
   outline: none;
   transition: border 0.2s ease, box-shadow 0.2s ease;
+  height: 50px;
 }
 
 .country-code-select:focus {
@@ -2702,13 +2261,16 @@ body {
 .form-error {
   color: #dc2626;
   font-size: 12px;
-  margin-top: 4px;
+  margin-top: 6px;
+  display: block;
+  font-weight: 500;
 }
 
 .form-submit {
   display: flex;
   justify-content: center;
-  margin-top: 16px;
+  margin-top: 24px;
+  text-align: center;
 }
 
 .contact-form .primary-btn {
@@ -2812,7 +2374,7 @@ body {
   border-radius: 16px;
   text-align: center;
   max-width: 400px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
 .success-popup h3 {
@@ -2826,39 +2388,787 @@ body {
   color: #475569;
 }
 
+body {
+  margin: 0;
+  font-family: 'Poppins' , sans-serif;
+  background-color: #f8f9fb;
+  color: #222;
+  padding-top: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@keyframes fadeUpModal{
+
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+.service-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+@keyframes insightSlide{
+
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+
+}
+
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  border: none;
+  background: transparent;
+  font-size: 32px;
+  cursor: pointer;
+  color: #666;
+  z-index: 100;
+  transition: 0.3s ease;
+}
+
+@keyframes modalFadeUp{
+
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+.contact-form input.error,
+.contact-form textarea.error,
+.contact-form select.error {
+  border-color: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .get-started-modal {
+    padding: 24px 18px 20px;
+    border-radius: 20px;
+  }
+  
+  .get-started-modal h2 {
+    font-size: 24px;
+  }
+  
+  .get-started-service-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .get-started-service-title h3 {
+    font-size: 20px;
+  }
+  
+  .get-started-service-btn {
+    width: 100%;
+  }
+  
+  .get-started-actions {
+    flex-direction: column;
+  }
+  
+  .get-started-actions .secondary-btn,
+    .get-started-actions .primary-btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .global-reach-container {
+    padding: 25px 18px;
+  }
+  
+  .global-reach-container h2 {
+    font-size: 28px;
+  }
+  
+  .global-line {
+    font-size: 15px;
+  }
+  
+  .global-reach-container p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .insights-section {
+    padding: 50px 14px 60px;
+    padding-top: 10px;
+  }
+  
+  .insight-slider-multi {
+    padding: 0 8px;
+    margin-top: 28px;
+  }
+  
+  .insight-slide-multi {
+    min-width: 280px;
+  }
+  
+  .insight-card {
+    max-width: 280px;
+    padding: 24px 18px;
+    min-height: auto;
+  }
+  
+  .insight-card h3 {
+    font-size: 22px;
+  }
+  
+  .insight-card p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  
+  .insight-link-btn {
+    font-size: 15px;
+  }
+  
+  .insight-detail-page {
+    padding: 20px 14px 40px;
+  }
+  
+  .insight-detail-container {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+  
+  .insight-detail-title {
+    font-size: 2rem;
+  }
+  
+  .insight-detail-summary {
+    padding: 16px 16px;
+    font-size: 0.96rem;
+  }
+  
+  .insight-detail-section {
+    padding: 20px 18px 18px;
+    border-radius: 16px;
+  }
+  
+  .insight-detail-section h2 {
+    font-size: 1.25rem;
+  }
+  
+  .insight-detail-section p,
+    .insight-detail-list li {
+    font-size: 0.95rem;
+  }
+  
+  .back-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-section,
+    .insights-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-card,
+    .insight-card {
+    padding: 24px 20px;
+  }
+  
+  .section-heading {
+    margin-bottom: 36px;
+  }
+  
+  .section-heading h2 {
+    font-size: 28px;
+  }
+  
+  .section-heading p {
+    font-size: 15px;
+  }
+  
+  .dashboard-card h3 {
+    font-size: 30px;
+  }
+  
+  .dashboard-card h4 {
+    font-size: 18px;
+  }
+  
+  .insight-card h3 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-content {
+    flex-direction: column;
+    gap: 14px;
+  }
+  
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+  }
+  
+  .nav-btn {
+    margin-top: 8px;
+  }
+  
+  .hero-section {
+    height: 440px;
+  }
+  
+  .hero-content h1 {
+    font-size: 32px;
+  }
+  
+  .hero-content p {
+    font-size: 16px;
+  }
+  
+  .global-layout {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .services-cards,
+    .footer-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-container {
+    text-align: center;
+  }
+  
+  .footer-brand,
+    .social-icons {
+    justify-content: center;
+  }
+  
+  .modal-content {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-banner {
+    height: 380px;
+  }
+  
+  .custom-banner-content h1 {
+    font-size: 34px;
+  }
+  
+  .custom-banner-description {
+    font-size: 14px;
+  }
+  
+  .custom-banner-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-card-layout {
+    flex-direction: column;
+  }
+  
+  .service-image {
+    width: 100%;
+    height: 180px;
+  }
+  
+  .service-content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-faq {
+    margin-top: 60px;
+  }
+  
+  .faq-question {
+    padding: 18px 18px;
+    font-size: 16px;
+  }
+  
+  .faq-answer {
+    padding: 0 18px 18px;
+    font-size: 14.5px;
+  }
+  
+  .faq-icon {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 16px;
+  }
+  
+  .modal-content.large {
+    max-width: 100%;
+    max-height: 90vh;
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+  
+  .service-popup-heading {
+    font-size: 28px;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  
+  .service-popup-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    padding: 10px;
+  }
+  
+  .service-detail-section h3 {
+    font-size: 20px;
+  }
+  
+  .service-box-grid,
+    .service-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .process-card {
+    padding: 16px;
+  }
+  
+  .modal-cta .primary-btn {
+    width: 100%;
+    min-width: 0;
+    background: #0f172a;
+    color: #ffffff;
+    border: none;
+  }
+}
+
 @media (max-width: 768px) {
   .contact-banner {
     height: 260px;
   }
-
+  
   .contact-banner-overlay h1 {
     font-size: 30px;
   }
-
+  
   .contact-banner-overlay p {
     font-size: 14px;
   }
-
+  
   .contact-container > .container {
     margin-top: 30px;
   }
-
+  
   .form-row {
     flex-direction: column;
   }
-
+  
   .location-card {
     flex-direction: column;
   }
-
+  
   .location-map iframe {
     height: 200px;
   }
-
+  
   .contact-form-section {
     padding: 24px;
   }
+  
+  .contact-title {
+    font-size: 30px;
+  }
+}
 
+@media (max-width: 768px) {
+  .get-started-modal {
+    padding: 24px 18px 20px;
+    border-radius: 20px;
+  }
+  
+  .get-started-modal h2 {
+    font-size: 24px;
+  }
+  
+  .get-started-service-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .get-started-service-title h3 {
+    font-size: 20px;
+  }
+  
+  .get-started-service-btn {
+    width: 100%;
+  }
+  
+  .get-started-actions {
+    flex-direction: column;
+  }
+  
+  .get-started-actions .secondary-btn,
+    .get-started-actions .primary-btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .global-reach-container {
+    padding: 25px 18px;
+  }
+  
+  .global-reach-container h2 {
+    font-size: 28px;
+  }
+  
+  .global-line {
+    font-size: 15px;
+  }
+  
+  .global-reach-container p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .insights-section {
+    padding: 50px 14px 60px;
+    padding-top: 10px;
+  }
+  
+  .insight-slider-multi {
+    padding: 0 8px;
+    margin-top: 28px;
+  }
+  
+  .insight-slide-multi {
+    min-width: 280px;
+  }
+  
+  .insight-card {
+    max-width: 280px;
+    padding: 24px 18px;
+    min-height: auto;
+  }
+  
+  .insight-card h3 {
+    font-size: 22px;
+  }
+  
+  .insight-card p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  
+  .insight-link-btn {
+    font-size: 15px;
+  }
+  
+  .insight-detail-page {
+    padding: 20px 14px 40px;
+  }
+  
+  .insight-detail-container {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+  
+  .insight-detail-title {
+    font-size: 2rem;
+  }
+  
+  .insight-detail-summary {
+    padding: 16px 16px;
+    font-size: 0.96rem;
+  }
+  
+  .insight-detail-section {
+    padding: 20px 18px 18px;
+    border-radius: 16px;
+  }
+  
+  .insight-detail-section h2 {
+    font-size: 1.25rem;
+  }
+  
+  .insight-detail-section p,
+    .insight-detail-list li {
+    font-size: 0.95rem;
+  }
+  
+  .back-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-section,
+    .insights-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-card,
+    .insight-card {
+    padding: 24px 20px;
+  }
+  
+  .section-heading {
+    margin-bottom: 36px;
+  }
+  
+  .section-heading h2 {
+    font-size: 28px;
+  }
+  
+  .section-heading p {
+    font-size: 15px;
+  }
+  
+  .dashboard-card h3 {
+    font-size: 30px;
+  }
+  
+  .dashboard-card h4 {
+    font-size: 18px;
+  }
+  
+  .insight-card h3 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-content {
+    flex-direction: column;
+    gap: 14px;
+  }
+  
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+  }
+  
+  .nav-btn {
+    margin-top: 8px;
+  }
+  
+  .hero-section {
+    height: 440px;
+  }
+  
+  .hero-content h1 {
+    font-size: 32px;
+  }
+  
+  .hero-content p {
+    font-size: 16px;
+  }
+  
+  .global-layout {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .services-cards,
+    .footer-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-container {
+    text-align: center;
+  }
+  
+  .footer-brand,
+    .social-icons {
+    justify-content: center;
+  }
+  
+  .modal-content {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-banner {
+    height: 380px;
+  }
+  
+  .custom-banner-content h1 {
+    font-size: 34px;
+  }
+  
+  .custom-banner-description {
+    font-size: 14px;
+  }
+  
+  .custom-banner-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-card-layout {
+    flex-direction: column;
+  }
+  
+  .service-image {
+    width: 100%;
+    height: 180px;
+  }
+  
+  .service-content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-faq {
+    margin-top: 60px;
+  }
+  
+  .faq-question {
+    padding: 18px 18px;
+    font-size: 16px;
+  }
+  
+  .faq-answer {
+    padding: 0 18px 18px;
+    font-size: 14.5px;
+  }
+  
+  .faq-icon {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 16px;
+  }
+  
+  .modal-content.large {
+    max-width: 100%;
+    max-height: 90vh;
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+  
+  .service-popup-heading {
+    font-size: 28px;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  
+  .service-popup-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    padding: 10px;
+  }
+  
+  .service-detail-section h3 {
+    font-size: 20px;
+  }
+  
+  .service-box-grid,
+    .service-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .process-card {
+    padding: 16px;
+  }
+  
+  .modal-cta .primary-btn {
+    width: 100%;
+    min-width: 0;
+    background: #0f172a;
+    color: #ffffff;
+    border: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-banner {
+    height: 260px;
+  }
+  
+  .contact-banner-overlay h1 {
+    font-size: 30px;
+  }
+  
+  .contact-banner-overlay p {
+    font-size: 14px;
+  }
+  
+  .contact-container > .container {
+    margin-top: 30px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+  }
+  
+  .location-card {
+    flex-direction: column;
+  }
+  
+  .location-map iframe {
+    height: 200px;
+  }
+  
+  .contact-form-section {
+    padding: 24px;
+  }
+  
   .contact-title {
     font-size: 30px;
   }
