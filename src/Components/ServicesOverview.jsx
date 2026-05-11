@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import itImg from "../assets/service-it.jpg";
-import staffImg from "../assets/service-staffing.jpg";
+import staffImg from "../assets/service-staffing.png";
 import financeImg from "../assets/service-finance.jpg";
 import marketImg from "../assets/service-marketing.jpg";
 
@@ -19,7 +19,6 @@ function ServicesOverview() {
     {
       key: "it",
       image: itImg,
-      tag: "IT",
       icon: <FaLaptopCode className="service-title-icon" />,
       title: "IT Services",
       intro: "Our IT services help businesses strengthen digital operations through reliable technology support, smarter systems, and scalable development solutions.",
@@ -33,7 +32,6 @@ function ServicesOverview() {
     {
       key: "rpo",
       image: staffImg,
-      tag: "Staffing",
       icon: <FaUsers className="service-title-icon" />,
       title: "RPO & Staffing Services",
       intro: "We support organizations in finding the right talent through structured recruitment solutions and efficient hiring support tailored to business needs.",
@@ -47,7 +45,6 @@ function ServicesOverview() {
     {
       key: "finance",
       image: financeImg,
-      tag: "Finance",
       icon: <FaMoneyCheckDollar className="service-title-icon" />,
       title: "Finance & Accounting Services",
       intro: "Our finance and accounting support helps businesses manage financial processes with greater accuracy, consistency, and efficiency.",
@@ -61,7 +58,6 @@ function ServicesOverview() {
     {
       key: "marketing",
       image: marketImg,
-      tag: "Marketing",
       icon: <FaChartLine className="service-title-icon" />,
       title: "Digital Marketing Services",
       intro:
@@ -84,50 +80,69 @@ function ServicesOverview() {
   };
 
   return (
-    <section className="services-overview" id="core-services">
-      <div className="services-header">
-        <h2 className="services-heading">Our Core Services</h2>
-      </div>
+  <section className="services-overview" id="core-services">
+    
+    <div className="services-header">
+      <h2 className="services-heading">Our Core Services</h2>
+    </div>
+
+    <div className="services-section">
 
       <div className="services-cards">
+
         {services.map((service) => (
+
           <div
             key={service.key}
             className="service-card services-overview-card"
           >
+
             <div className="image-wrapper">
               <img src={service.image} alt={service.title} />
-              <div className="card-tag">{service.tag}</div>
             </div>
 
-            <h3 className="service-title">
-              {service.icon}
-              {service.title}
-            </h3>
+            <div className="service-card-content">
 
-            <p>{service.intro}</p>
+              <h3 className="service-title">
+                {service.icon}
+                {service.title}
+              </h3>
 
-            <div className="service-focus-block">
-              <h4 className="service-focus-title">{service.focus}</h4>
+              <p>{service.intro}</p>
 
-              <ul className="service-focus-points">
-                {service.points.map((point, index) => (
-                  <li key={index}>{point}</li>
-                ))}
-              </ul>
+              <div className="service-focus-block">
+
+                <h4 className="service-focus-title">
+                  {service.focus}
+                </h4>
+
+                <ul className="service-focus-points">
+                  {service.points.map((point, index) => (
+                    <li key={index}>{point}</li>
+                  ))}
+                </ul>
+
+              </div>
+
+              <button
+                className="card-detail-btn"
+                onClick={() => handleViewFullDetails(service.key)}
+              >
+                View Full Details
+              </button>
+
             </div>
 
-            <button
-              className="card-detail-btn"
-              onClick={() => handleViewFullDetails(service.key)}
-            >
-              View Full Details
-            </button>
           </div>
+
         ))}
+
       </div>
-    </section>
-  );
+
+    </div>
+
+  </section>
+);
 }
 
 export default ServicesOverview;

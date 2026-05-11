@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import ServicesOverview from "../Components/ServicesOverView";
+import ServicesOverview from "../components/ServicesOverview";
 import hero1 from "../assets/hero1.png";
 import hero2 from "../assets/hero2.jpg";
-import GlobalReach from "../Components/GlobalReach";
+import GlobalReach from "../components/GlobalReach";
 
 function Home() {
   const images = [hero1, hero2];
