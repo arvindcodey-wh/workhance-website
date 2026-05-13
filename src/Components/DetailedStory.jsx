@@ -8,7 +8,7 @@ const DetailedStory = ({ isLearnMore, setIsLearnMore }) => {
     {
       title: "The Vision",
       icon: <Rocket className="w-6 h-6" />,
-      content: "Incorporated in August 2025, Work Hance LLP was founded with a mission to redefine professional service standards in India. From our headquarters in New York, we started with a simple yet powerful idea — to simplify complex business processes."
+      content: "Incorporated in August 2025, Work Hance  was founded with a mission to redefine professional service standards in India. From our headquarters in New York, we started with a simple yet powerful idea — to simplify complex business processes."
     },
     {
       title: "The Foundation",
@@ -64,7 +64,7 @@ const DetailedStory = ({ isLearnMore, setIsLearnMore }) => {
             </p>
           </div>
           <div className="text-sm opacity-50 relative z-10">
-            © 2026 Work Hance LLP
+            © 2026 Work Hance 
           </div>
           {/* Decorative Circle */}
           <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-sky-500 rounded-full blur-3xl opacity-50" />
