@@ -1,13 +1,11 @@
-import Footer from "./components/Footer";
+import Footer from "./Components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ScrollToTop from "./components/ScrollToTop";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import About from "./pages/About Us";
-import Services from "./pages/Services";
-import Career from "./pages/Career";
-import Contact from "./pages/Contact";
-import InsightDetail from "./pages/InsightDetail";
+import ScrollToTop from "./Components/ScrollToTop";
+import Navbar from "./Components/Navbar";
+import Home from "./Pages/Home";
+import Services from "./Pages/Services";
+import Contact from "./Pages/Contact";
+import InsightDetail from "./Pages/InsightDetail";
 
 function App() {
   return (
@@ -17,9 +15,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/career" element={<Career />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/insights/:id" element={<InsightDetail />} />
 

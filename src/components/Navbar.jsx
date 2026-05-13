@@ -20,7 +20,7 @@ function Navbar() {
           <Link to="/" className={isActive("/") ? "active" : ""}>Home</Link>
           <Link to="/about-us" className={isActive("/about-us") ? "active" : ""}>About</Link>
           <Link to="/services" className={isActive("/services") ? "active" : ""}>Services</Link>
-          <Link to="/careers" className={isActive("/careers") ? "active" : ""}>Careers</Link>
+          <Link to="/career" className={isActive("/career") ? "active" : ""}>Career</Link>
           <Link to="/contact" className={isActive("/contact") ? "active" : ""}>Contact</Link>
         </div>
         
