@@ -39,7 +39,7 @@ function Banner({ type }) {
         return {
           label: "Careers",
           title: "Grow With Us",
-          description: "Join our team of passionate professionals shaping the future. Grow, innovate, and make an impact with Work Hance LLP.",
+          description: "Join our team of passionate professionals shaping the future. Grow, innovate, and make an impact with Work Hance.",
           icon: <Rocket className="w-10 h-10 text-white mb-6" />,
         };
     }
