@@ -170,7 +170,7 @@ function AboutUs() {
 
                      <div
                    onClick={()=>{
-                    console.log("inside fun");
+                    
                      
                     Navigate("/services", {
                       state: {

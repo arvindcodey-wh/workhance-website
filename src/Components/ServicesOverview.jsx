@@ -72,7 +72,7 @@ function ServicesOverview() {
   ];
 
   function handleViewFullDetails(serviceKey){
-    console.log("hello");
+    
     navigate("/services", {
       state: {
         openService: serviceKey,
