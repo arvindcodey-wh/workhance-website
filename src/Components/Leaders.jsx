@@ -32,7 +32,7 @@ function Leaders() {
     {
       name: "Anand Prakash",
       role: "Vice President",
-      url:'https://i.ibb.co/yB4NY67b/Anand-sir.jpg',
+      url:'https://i.ibb.co/TDQ4S1zW/Anand-sir.jpg',
       // image: anandImg,
       exp: "5+ Years",
       desc:"Overseeing operations and end-to-end client delivery, Anand manages key projects across Staffing, RPO, Accounting, and Digital Marketing. He ensures efficient execution, performance-driven results, and high client satisfaction while maintaining strong control over operational workflows.",

@@ -1,5 +1,5 @@
 import React, { act, useState } from "react";
-import Banner from "../Components/Banner";
+import Banner from "../Components/Banner.jsx";
 import {Link, Navigate, useNavigate} from 'react-router-dom'
 import {
   Users,

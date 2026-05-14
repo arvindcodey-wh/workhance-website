@@ -7,16 +7,16 @@ function VisionMissionCard() {
   const [index,setIndex]=useState(0)
 
   return (
-    <section className="py-20 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+    <section className="py-20 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-stretch">
       {/* Vision Card */}
       <div
         
-        className="group relative p-10 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:border-blue-100 transition-all duration-500 overflow-hidden"
+        className="group h-full relative p-10 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:border-blue-100 transition-all duration-500 overflow-hidden"
       >
         {/* Decorative background element */}
         <div className="absolute -right-8 -top-8 w-32 h-32 bg-blue-50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110" />
 
-        <div className="relative z-10">
+        <div className="relative z-10 h-full">
           <div className="flex items-center gap-4 mb-6">
             <div className="p-3 bg-blue-600 rounded-2xl text-white shadow-lg shadow-blue-200">
               <Eye className="w-8 h-8" />
@@ -47,12 +47,12 @@ function VisionMissionCard() {
       {/* Mission Card */}
       <div
       
-        className="group relative p-10 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:border-blue-100 transition-all duration-500 overflow-hidden"
+        className=" h-full group relative p-10 bg-white rounded-3xl shadow-sm border border-gray-100 hover:shadow-2xl hover:border-blue-100 transition-all duration-500 overflow-hidden"
       >
         {/* Decorative background element */}
         <div className="absolute -right-8 -top-8 w-32 h-32 bg-blue-50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110" />
 
-        <div className="relative z-10">
+        <div className="relative z-10 h-full">
           <div className="flex items-center gap-4 mb-6">
             <div className="p-3 bg-blue-600 rounded-2xl text-white shadow-lg shadow-blue-200">
               <Target className="w-8 h-8" />

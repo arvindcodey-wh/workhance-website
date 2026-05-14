@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Brain,
   Briefcase,
@@ -7,10 +7,32 @@ import {
   Terminal,
   Calculator,
 } from "lucide-react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import jobs from '../utils/JobsData.jsx'
 function JobCard() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // If we have a jobId, handle the scroll manually
+    if (location.state?.jobId !== undefined) {
+      const timer = setTimeout(() => {
+        const element = document.getElementById(`job-card-${location.state.jobId}`);
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: "smooth", 
+            block: "center" 
+          });
+          window.history.replaceState({}, document.title);
+        }
+      }, 0); // 100ms is usually enough to stop the 'jumping'
+
+      return () => clearTimeout(timer);
+    }
+  }, [location]);
+
+  // ... your map function remains the same
+
   
 
   return (
@@ -27,12 +49,12 @@ function JobCard() {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
         {jobs.map((job, index) => (
           <Link to={`/jobs/${index}`}  key={index}>
             <div
-             
-              className="group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-sky-100 hover:-translate-y-2 flex flex-col justify-between"
+              id={`job-card-${index}`}
+              className="h-full group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-sky-100 hover:-translate-y-2 flex flex-col justify-between"
             >
               <div>
                 {/* Top Section */}
