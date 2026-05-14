@@ -291,6 +291,14 @@ const insightsDetails = [
   return (
     <section className="insight-detail-page">
       <div className="insight-detail-container">
+
+              <button
+        className="close-btn"
+        onClick={handleBackToHome}
+      >
+        ×
+      </button>
+
         <span className="insight-detail-tag">Insight Details</span>
 
         <h1 className="insight-detail-title">{insight.title}</h1>
