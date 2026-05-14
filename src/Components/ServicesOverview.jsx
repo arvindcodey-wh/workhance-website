@@ -71,7 +71,8 @@ function ServicesOverview() {
     },
   ];
 
-  const handleViewFullDetails = (serviceKey) => {
+  function handleViewFullDetails(serviceKey){
+    console.log("hello");
     navigate("/services", {
       state: {
         openService: serviceKey,
@@ -146,3 +147,4 @@ function ServicesOverview() {
 }
 
 export default ServicesOverview;
+// export const  handleViewFullDetails

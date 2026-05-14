@@ -101,22 +101,26 @@ const sections = [
 
 const services = [
   {
+    key: "it",
     title: "IT Services",
     desc: "Custom web development and scalable cloud-based systems built for growth.",
     icon: <Monitor className="w-8 h-8" />,
   },
   {
+    key: "rpo",
     title: "Staffing & RPO",
     desc: "End-to-end recruitment solutions and talent sourcing across multiple industries.",
     icon: <Users className="w-8 h-8" />,
   },
   
   {
+    key: "finance",
     title: "Finance & Accounting",
     desc: "Bookkeeping, payroll management, and strict US compliance support.",
     icon: <BarChart3 className="w-8 h-8" />,
   },
   {
+    key: "marketing",
     title: "Digital Marketing",
     desc: "SEO, SEM, and performance-driven campaigns that create real impact.",
     icon: <Rocket className="w-8 h-8" />,

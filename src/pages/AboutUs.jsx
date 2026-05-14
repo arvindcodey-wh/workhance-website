@@ -25,9 +25,11 @@ import VisionMissionCard from "../Components/VisionMissionCard";
 import { servicesData } from "../data/servicesData";
 import ServiceModal from "../Components/ServiceModal";
 
+
 function AboutUs() {
   let [activeService,setActiveService]=useState(null)
   const Navigate=useNavigate()
+  
   return (
     <div className="min-h-screen bg-white">
       <Banner type={"about us"} />
@@ -168,8 +170,13 @@ function AboutUs() {
 
                      <div
                    onClick={()=>{
+                    console.log("inside fun");
                      
-                    setActiveService(servicesData[i])
+                    Navigate("/services", {
+                      state: {
+                        openService: s.key,
+                      },
+                    });
                     
 
                    }}
