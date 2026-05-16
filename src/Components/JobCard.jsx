@@ -89,9 +89,7 @@ function JobCard() {
 
               {/* Bottom Button */}
               <button
-                onClick={() => {
-                  navigate("/apply");
-                }}
+               
                 className="w-full bg-sky-500 text-white px-4 py-3 rounded-xl font-semibold  active:scale-95 transition-all flex justify-center items-center gap-2 group-hover:shadow-lg shadow-sky-200"
               >
                 Apply Now
