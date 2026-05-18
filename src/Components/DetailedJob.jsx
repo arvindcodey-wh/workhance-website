@@ -301,7 +301,7 @@ function DetailedJob() {
       <div className="bg-white border-b ">
         <div className="w-[90%] max-w-7xl mx-auto py-4 flex items-center justify-between ">
           <button
-            onClick={() => navigate('/careers',{  state: { jobId: jobIndex }})}
+            onClick={() => navigate('/career',{  state: { jobId: jobIndex }})}
             className="flex items-center text-gray-600 hover:text-sky-600 transition-colors font-medium gap-1"
           >
             <ChevronLeft size={20} /> Back to Openings
