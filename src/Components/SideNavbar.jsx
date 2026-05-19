@@ -9,7 +9,7 @@ function SideNavbar({ isOpen, onClose }) {
     { name: "Home", path: "/" },
     { name: "About", path: "/about-us" },
     { name: "Services", path: "/services" },
-    { name: "Career", path: "/career" },
+    { name: "Careers", path: "/careers" },
     { name: "Contact", path: "/contact" },
   ];
 

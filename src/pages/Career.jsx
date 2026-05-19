@@ -1,7 +1,7 @@
 import React from "react";
-import Banner from "../components/Banner";
-import WhyWorkWithUsCard from "../components/WhyWorkWithUsCard";
-import CareerOpportunities from "../components/CareerOpportunities";
+import Banner from "../Components/Banner";
+import WhyWorkWithUsCard from "../Components/WhyWorkWithUsCard";
+import CareerOpportunities from "../Components/CareerOpportunities";
 
 
 function Career() {

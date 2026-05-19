@@ -1,5 +1,5 @@
 import React, { act, useState } from "react";
-import Banner from "../components/Banner.jsx";
+import Banner from "../Components/Banner.jsx";
 import {Link, Navigate, useNavigate} from 'react-router-dom'
 import {
   Users,
@@ -18,12 +18,12 @@ import {
   BarChart3,
   Rocket,
 } from "lucide-react";
-import Leaders from "../components/Leaders";
-import AboutUsDetail from "../components/AboutUsDetail";
-import { sections, services, features } from "../utils/AboutUsData";
-import VisionMissionCard from "../components/VisionMissionCard";
-import { servicesData } from "../data/servicesData";
-import ServiceModal from "../components/ServiceModal";
+import Leaders from "../Components/Leaders.jsx";
+import AboutUsDetail from "../Components/AboutUsDetail.jsx";
+import { sections, services, features } from "../utils/AboutUsData.jsx";
+import VisionMissionCard from "../Components/VisionMissionCard.jsx";
+import { servicesData } from "../data/servicesData.js";
+import ServiceModal from "../Components/ServiceModal.jsx";
 
 
 function AboutUs() {
