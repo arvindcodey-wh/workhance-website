@@ -77,7 +77,7 @@ const handleServiceClick = (serviceId) => {
           <p onClick={() => handleQuickLinkClick("/")}>Home</p>
           <p onClick={() => handleQuickLinkClick("/about-us")}>About Us</p>
           <p onClick={() => handleQuickLinkClick("/services")}>Services</p>
-          <p onClick={() => handleQuickLinkClick("/careers")}>Career</p>
+          <p onClick={() => handleQuickLinkClick("/careers")}>Careers</p>
           <p onClick={() => handleQuickLinkClick("/contact")}>Contact</p>
         </div>
 

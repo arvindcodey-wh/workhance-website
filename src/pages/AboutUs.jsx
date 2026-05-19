@@ -18,18 +18,16 @@ import {
   BarChart3,
   Rocket,
 } from "lucide-react";
-import Leaders from "../Components/Leaders.jsx";
-import AboutUsDetail from "../Components/AboutUsDetail.jsx";
-import { sections, services, features } from "../utils/AboutUsData.jsx";
-import VisionMissionCard from "../Components/VisionMissionCard.jsx";
-import { servicesData } from "../data/servicesData.js";
-import ServiceModal from "../Components/ServiceModal.jsx";
-
+import Leaders from "../Components/Leaders";
+import AboutUsDetail from "../Components/AboutUsDetail";
+import { sections, services, features } from "../utils/AboutUsData";
+import VisionMissionCard from "../Components/VisionMissionCard";
+import { servicesData } from "../data/servicesData";
+import ServiceModal from "../Components/ServiceModal";
 
 function AboutUs() {
   let [activeService,setActiveService]=useState(null)
   const Navigate=useNavigate()
-  
   return (
     <div className="min-h-screen bg-white">
       <Banner type={"about us"} />
@@ -170,13 +168,8 @@ function AboutUs() {
 
                      <div
                    onClick={()=>{
-                    
                      
-                    Navigate("/services", {
-                      state: {
-                        openService: s.key,
-                      },
-                    });
+                    setActiveService(servicesData[i])
                     
 
                    }}
