@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import GetStartedModal from './GetStartedModal';
 
 function SideNavbar({ isOpen, onClose }) {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
-
+ const [showGetStartedModal, setShowGetStartedModal] = useState(false);
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about-us" },
@@ -27,7 +28,7 @@ function SideNavbar({ isOpen, onClose }) {
       <div className={`fixed top-0 right-0 h-full w-[280px] bg-white z-[70] shadow-2xl transform transition-transform duration-300 ease-in-out lg:hidden ${
         isOpen ? "translate-x-0" : "translate-x-full"
       }`}>
-        <div className="p-6 flex flex-col h-full">
+        <div className="p-6 flex flex-col gap-5">
           {/* Close Button */}
           <button 
             onClick={onClose}
@@ -62,8 +63,8 @@ function SideNavbar({ isOpen, onClose }) {
             <button
               className="w-full bg-sky-500 text-white py-3 rounded-xl font-bold hover:bg-sky-600 transition-colors"
               onClick={() => {
-                // You can trigger your GetStartedModal logic here if needed
-                onClose();
+
+                setShowGetStartedModal(true)
               }}
             >
               Get Started
@@ -71,6 +72,7 @@ function SideNavbar({ isOpen, onClose }) {
           </div>
         </div>
       </div>
+      <GetStartedModal isOpen={showGetStartedModal}   onClose={() => setShowGetStartedModal(false)}></ GetStartedModal>
     </>
   );
 }
