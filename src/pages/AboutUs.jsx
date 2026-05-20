@@ -32,7 +32,7 @@ function AboutUs() {
     <div className="min-h-screen bg-white">
       <Banner type={"about us"} />
 
-      <div>
+      <div className="relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -245,10 +245,12 @@ function AboutUs() {
         <VisionMissionCard></VisionMissionCard>
         <AboutUsDetail index={3} item={sections[3]}></AboutUsDetail>
       </div>
+      <div className="mb-0">
       <Leaders></Leaders>
+      </div>
 
       {/* Simple Stats Bar for "Our Story" numbers */}
-      <div className="bg-sky-600 py-16 ">
+      <div className="bg-sky-600 py-16 mt-20">
         <div className="w-[90%] max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center text-white">
           <div>
             <p className="text-4xl font-bold mb-2">200+</p>
