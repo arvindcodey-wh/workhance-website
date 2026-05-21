@@ -3,7 +3,7 @@ import { Upload, Send, CheckCircle } from "lucide-react";
 import PhoneInput from "react-phone-input-2";
 const PhoneInputComponent = PhoneInput.default || PhoneInput;
 import "react-phone-input-2/lib/style.css";
-import { isValidPhoneNumber } from "libphonenumber-js";
+import { isValidPhoneNumber, parsePhoneNumberWithError } from "libphonenumber-js";
 function ApplicationForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
@@ -15,6 +15,7 @@ function ApplicationForm() {
     position: "Head of Technology & AI Product",
     resume: null,
     message: "",
+    countryCode:"in"
   });
   const recruitmentProcess = [
     {
@@ -104,12 +105,36 @@ function ApplicationForm() {
       newErrors.email = "Invalid email format";
     }
 
-    // Phone
+   
     // Phone validation
     if (!applicantData.phone) {
       newErrors.phone = "Phone number is required";
-    } else if (!isValidPhoneNumber(applicantData.phone)) {
-      newErrors.phone = "Enter valid phone number";
+      return false; // Stop here
+    }
+  
+    // 2. Parsed Object
+    let phoneNumber;
+    try {
+      phoneNumber = parsePhoneNumberWithError("+" + applicantData.phone, applicantData.countryCode.toUpperCase());
+    } catch (e) {
+      newErrors.phone = "Invalid format";
+      
+    }
+  
+    // 3. The "Granular" Filters
+    const national = phoneNumber.nationalNumber;
+    
+    // A. Library validity
+    if (!phoneNumber.isValid()) {
+      newErrors.phone = "Please enter a valid number";
+    } 
+    // B. Blacklist (Trash numbers)
+    else if (/^(.)\1+$/.test(national) || /0123456789|9876543210/.test(national)) {
+      newErrors.phone = "Please enter a valid number";
+    }
+    // C. Length check (Only for India)
+    else if (applicantData.countryCode.toLowerCase() === 'in' && national.length !== 10) {
+      newErrors.phone = "Number must be 10 digits";
     }
 
     // Resume
@@ -133,6 +158,9 @@ function ApplicationForm() {
     // Message
     if (!applicantData.message.trim()) {
       newErrors.message = "Message is required";
+    } 
+    if (!(applicantData.message.length>10)) {
+      newErrors.message = "Message should be minimum 10 characters";
     } 
 
     setErrors(newErrors);
@@ -271,13 +299,14 @@ function ApplicationForm() {
               <PhoneInputComponent
                 country={"in"}
                 value={applicantData.phone}
-                onChange={(phone) =>
+                onChange={(phone,countryData) =>
                  {
                 
                   setApplicantData((prev) => ({
                     
                     ...prev,
-                    phone: "+" + phone, // ✅ ADD +
+                    phone: phone,
+                    countryCode:countryData.countryCode // ✅ ADD +
                   }))
                  }
                 }
