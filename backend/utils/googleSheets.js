@@ -6,7 +6,7 @@ const auth = new google.auth.GoogleAuth({
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
-const spreadsheetId = "11soRLzhpTpK-BwgV5hzFsqtQDXbJtVbFaMxEzwCg0b0";
+const spreadsheetId = "1uHJgVuR7h_bC2m_Iy5vHdUdTmpEZ23GsfCqFwiZHOEQ";
 
 exports.appendToSheet = async (data) => {
   const client = await auth.getClient();
@@ -26,7 +26,7 @@ exports.appendToSheet = async (data) => {
 
   await sheets.spreadsheets.values.append({
     spreadsheetId,
-    range: "Sheet1!A:G",
+    range: "ContactForms!A:G",
     valueInputOption: "USER_ENTERED",
     requestBody: {
       values,

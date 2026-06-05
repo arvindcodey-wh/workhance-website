@@ -29,10 +29,18 @@ const applyJob = async (req, res) => {
       });
     }
 
-    if (file.mimetype !== "application/pdf") {
-      return res.status(400).json({ message: "Only PDF allowed" });
-    }
+   const allowedTypes = [
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+];
 
+if (!allowedTypes.includes(file.mimetype)) {
+  return res.status(400).json({
+    success: false,
+    message: "Only PDF, DOC and DOCX files are allowed"
+  });
+}
     const resumePath = `/uploads/${file.filename}`;
 
     const { name, email, phone, jobId } = req.body;

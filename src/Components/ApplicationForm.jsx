@@ -1,12 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Upload, Send, CheckCircle } from "lucide-react";
 import PhoneInput from "react-phone-input-2";
 const PhoneInputComponent = PhoneInput.default || PhoneInput;
 import "react-phone-input-2/lib/style.css";
 import { isValidPhoneNumber } from "libphonenumber-js";
+import { useParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
+
+
+
 function ApplicationForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [file, setFile] = useState(null);
+  const [submitError, setSubmitError] = useState("");
+
+  const { id } = useParams();
+  const [job, setJob] = useState(null);
+
+  useEffect(() => {
+fetch(`http://localhost:5000/api/jobs/${id}`)
+      .then((res) => res.json())
+      .then((data) => setJob(data.data))
+      .catch(console.error);
+  }, [id]);
+
   const [applicantData, setApplicantData] = useState({
     first_name: "",
     last_name: "",
@@ -40,7 +58,7 @@ function ApplicationForm() {
     const { name, value } = e.target;
     if (name === "first_name" || name === "last_name") {
       const sanitizedValue = value.replace(/[^A-Za-z\s]/g, "");
-     
+
 
       setApplicantData({
         ...applicantData,
@@ -49,40 +67,64 @@ function ApplicationForm() {
     } else setApplicantData((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleFileChange(e) {
-    const file = e.target.files[0];
-    setApplicantData((prev) => ({ ...prev, resume: file }));
-  }
-
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (!validate()) return;
 
-    const finalData = {
-      ...applicantData,
-      first_name: applicantData.first_name.trim(),
-      last_name: applicantData.last_name.trim(),
-    };
+    try {
+      const formData = new FormData();
+
+      formData.append(
+        "name",
+        `${applicantData.first_name} ${applicantData.last_name}`
+      );
+
+      formData.append("email", applicantData.email);
+      formData.append("phone", applicantData.phone);
+formData.append("jobId", Number(id));
+      formData.append("resume", file);
+
+      const res = await fetch(
+        "http://localhost:5000/api/applications",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setSubmitError(data.message || " User already applied to this job.");
+        return;
+      }
+      setSubmitError("");
+      toast.success("Application submitted successfully");
+      setIsSubmitted(true);
+
+      setApplicantData({
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone: "",
+        position: "",
+        resume: null,
+        message: "",
+      });
+
+      setErrors({});
+      setFile(null);
+
+      setTimeout(() => setIsSubmitted(false), 5000);
 
 
-
-    setIsSubmitted(true);
-
-    setApplicantData({
-      first_name: "",
-      last_name: "",
-      email: "",
-      phone: "",
-      position: "Head of Technology & AI Product",
-      resume: null,
-      message: "",
-    });
-
-    setErrors({});
-
-    setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (err) {
+      console.error(err);
+      toast.error("Server error");
+    }
   }
+
   function validate() {
     let newErrors = {};
 
@@ -118,16 +160,16 @@ function ApplicationForm() {
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .docx
     ];
 
-    if (!applicantData.resume) {
+    if (!file) {
       newErrors.resume = "Resume is required";
     } else {
       // Check if the file type is in our allowed list
-      if (!allowedTypes.includes(applicantData.resume.type)) {
+      if (!allowedTypes.includes(file.type)) {
         newErrors.resume = "Only PDF and Word documents allowed";
       }
 
       // Size check (keeping your 2MB limit)
-      if (applicantData.resume.size > 2 * 1024 * 1024) {
+      if (file.size > 2 * 1024 * 1024) {
         newErrors.resume = "File size must be less than 2MB";
       }
     }
@@ -275,15 +317,14 @@ function ApplicationForm() {
               <PhoneInputComponent
                 country={"in"}
                 value={applicantData.phone}
-                onChange={(phone) =>
-                 {
-                
+                onChange={(phone) => {
+
                   setApplicantData((prev) => ({
-                    
+
                     ...prev,
                     phone: "+" + phone, // ✅ ADD +
                   }))
-                 }
+                }
                 }
                 inputClass="!w-full !py-3 !pl-14 !rounded-xl"
                 containerClass="w-full"
@@ -302,20 +343,12 @@ function ApplicationForm() {
             >
               Position Applied For
             </label>
-            <select
-              id="position"
-              name="position"
-              value={applicantData.position}
-              onChange={handleOnchange}
-              className="border border-gray-200 rounded-xl p-3 focus:outline-none focus:ring-4 focus:ring-sky-50 focus:border-sky-400 transition-all bg-white appearance-none cursor-pointer"
-            >
-              <option>Head of Technology & AI Product</option>
-              <option>Head of Strategic Acquisitions</option>
-              <option>Blockchain / Smart Contract Developer</option>
-              <option>Talent Acquisition Specialist – Healthcare</option>
-              <option>Talent Acquisition Specialist – IT</option>
-              <option>Finance & Accounting Specialist</option>
-            </select>
+            <input
+              type="text"
+              value={job?.title || ""}
+              readOnly
+              className="border border-gray-200 rounded-xl p-3"
+            />
           </div>
 
           {/* Row 4: File Upload */}
@@ -333,7 +366,7 @@ function ApplicationForm() {
                 type="file"
                 id="resume"
                 name="resume"
-                onChange={handleFileChange}
+                onChange={(e) => setFile(e.target.files[0])}
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
               />
               {errors.resume && (
@@ -342,9 +375,9 @@ function ApplicationForm() {
               <div className="border-2 border-dashed border-gray-200 group-hover:border-sky-400 group-hover:bg-sky-50 rounded-2xl p-8 transition-all flex flex-col items-center justify-center gap-2">
                 <Upload className="w-8 h-8 text-gray-400 group-hover:text-sky-500" />
                 <p className="text-sm text-gray-500">
-                  {applicantData.resume ? (
+                  {file ? (
                     <span className="text-sky-600 font-medium">
-                      {applicantData.resume.name}
+                      {file.name}
                     </span>
                   ) : (
                     "Click to upload or drag and drop"
@@ -375,6 +408,12 @@ function ApplicationForm() {
             )}
           </div>
 
+          {submitError && (
+            <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl p-4 text-center">
+              {submitError}
+            </div>
+          )}
+
           {/* Submit Button */}
           <button
             type="submit"
@@ -388,5 +427,4 @@ function ApplicationForm() {
     </div>
   );
 }
-
 export default ApplicationForm;

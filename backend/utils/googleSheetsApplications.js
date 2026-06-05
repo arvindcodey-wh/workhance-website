@@ -6,7 +6,7 @@ const auth = new google.auth.GoogleAuth({
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
-const spreadsheetId = "1C3nXNiNtnwSrChV6W46x-AY2-K75BhsQxtl9sWr7kAU";
+ const spreadsheetId = "1uHJgVuR7h_bC2m_Iy5vHdUdTmpEZ23GsfCqFwiZHOEQ";
 
 const appendApplication = async (data) => {
   const client = await auth.getClient();
@@ -23,7 +23,7 @@ const appendApplication = async (data) => {
 
   await sheets.spreadsheets.values.append({
     spreadsheetId,
-    range: "Sheet1!A:F", // create this tab in sheet
+    range: "Applications!A:F", // create this tab in sheet
     valueInputOption: "USER_ENTERED",
     requestBody: { values },
   });

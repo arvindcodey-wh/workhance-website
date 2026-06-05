@@ -29,7 +29,7 @@ function App() {
           <Route path="careers" element={<Career></Career>}></Route>
           <Route path="/contact" element={<Contact />} />
           <Route
-            path="apply"
+            path="/apply/:id" 
             element={<ApplicationForm></ApplicationForm>}
           ></Route>
           <Route

@@ -29,8 +29,8 @@ function JobCard() {
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {jobs.map((job, index) => (
-          <Link to={`/jobs/${index}`}  key={index}>
-            <div
+<Link to={`/jobs/${job.id}`} key={job.id}>
+<div
              
               className="group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-sky-100 hover:-translate-y-2 flex flex-col justify-between"
             >
@@ -68,7 +68,7 @@ function JobCard() {
               {/* Bottom Button */}
               <button
                 onClick={() => {
-                  navigate("/apply");
+                 navigate(`/apply/${job.id}`);
                 }}
                 className="w-full bg-sky-500 text-white px-4 py-3 rounded-xl font-semibold  active:scale-95 transition-all flex justify-center items-center gap-2 group-hover:shadow-lg shadow-sky-200"
               >

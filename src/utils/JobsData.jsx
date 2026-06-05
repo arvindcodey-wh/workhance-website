@@ -2,6 +2,7 @@ import { Brain, Briefcase, Calculator, ShieldCheck, Stethoscope, Terminal } from
 
 const jobs = [
     {
+      id : 1,
       title: "Head of Technology & AI Product",
       type: "Full-Time",
       location: "New York, USA",
@@ -9,6 +10,7 @@ const jobs = [
       icon: <Brain className="w-6 h-6 text-sky-600" />,
     },
     {
+      id : 2,
       title: "Head of Strategic Acquisitions",
       type: "Full-Time",
       location: "New York, USA",
@@ -16,6 +18,7 @@ const jobs = [
       icon: <Briefcase className="w-6 h-6 text-sky-600" />,
     },
     {
+      id: 3,
       title: "Blockchain / Smart Contract Developer",
       type: "Full-Time (Hybrid)",
       location: "New York, USA",
@@ -23,6 +26,7 @@ const jobs = [
       icon: <ShieldCheck className="w-6 h-6 text-sky-600" />,
     },
     {
+      id : 4,
       title: "Talent Acquisition Specialist – Healthcare",
       type: "Full-Time (Remote)",
       location: "India",
@@ -30,6 +34,7 @@ const jobs = [
       icon: <Stethoscope className="w-6 h-6 text-sky-600" />,
     },
     {
+      id : 5,
       title: "Talent Acquisition Specialist – IT",
       type: "Full-Time (Remote)",
       location: "India",
@@ -37,6 +42,7 @@ const jobs = [
       icon: <Terminal className="w-6 h-6 text-sky-600" />,
     },
     {
+      id: 6,
       title: "Finance & Accounting Specialist",
       type: "Full-Time (Remote)",
       location: "India",

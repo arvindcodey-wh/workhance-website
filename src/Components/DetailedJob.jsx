@@ -278,8 +278,8 @@ function DetailedJob() {
   const navigate = useNavigate();
   const [openShareModal, setOpenShareModal] = useState(false);
 
-  const jobIndex = parseInt(index);
-  const job = data[jobIndex];
+  const jobId = parseInt(index);
+  const job = data[jobId - 1];
 
   if (!job) {
     return (
@@ -451,7 +451,7 @@ function DetailedJob() {
                 generation of AI platforms.
               </p>
               <button
-                onClick={() => navigate("/apply")}
+                onClick={() => navigate(`/apply/${jobId}`)}
                 className="w-full bg-white text-sky-700 py-4 rounded-2xl font-bold hover:bg-sky-50 transition-all flex items-center justify-center gap-2"
               >
                 Apply Now <ArrowRight size={20} />
