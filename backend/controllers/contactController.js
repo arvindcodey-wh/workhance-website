@@ -40,7 +40,7 @@ exports.createContact = async (req, res) => {
       return res.status(400).json({ error: "Message too long" });
     }
 
-    await db.execute(
+    /*await db.execute(
       "INSERT INTO contacts (name, email, phone, company, service, message) VALUES (?, ?, ?, ?, ?, ?)",
       [
         name,
@@ -51,6 +51,7 @@ exports.createContact = async (req, res) => {
         message || null
       ]
     );
+    */
 
     try {
       await appendToSheet({
